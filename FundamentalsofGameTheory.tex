@@ -1,0 +1,610 @@
+\documentclass[8pt]{beamer}
+
+ \input{preamble}
+
+
+  \title[Discrete]{AL FM Discrete}
+  \subtitle{Fundamentals of Game Theory}
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+
+\frame{\titlepage}
+
+\begin{frame}[shrink=5]{Zero-Sum Games}
+	\begin{definition}
+		A \textbf{zero-sum game} is when the gain of one player is equal to the loss of the other, regardless of what strategy each of the players choose.
+	\end{definition}
+	\begin{definition}
+		We represent the outcomes of such a game in a \textbf{payoff matrix.}
+	\end{definition}
+	\vspace{0.8cm}
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{\tikzmarknode{a}{Carrie}}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\tikzmarknode{b}{\rotatebox{90}{Gary}}}}  & $P$ & $4$ & $2$ & $2$ \\
+& $Q$ & $-3$ & $5$ & $1$ \\
+& $R$ & $2$ & \tikzmarknode{c}{$-1$} & $3$ \\
+\end{tabular}}
+\end{center}
+\vspace{0.4cm}
+\begin{tikzpicture}[overlay,remember picture]
+	\draw[thick, color=aa,<-] (a.north) --++ (-0.5,0.3) node[fill=cc,align=left,above] {The person at the top (whoose startegies \\ are given by the columns) is \textbf{Player 2}. };
+	\draw[thick, color= aa,<-] (b.west) --++ (-0.8,-0.3) node[fill=cc,align=left,left] {The person on the \\ left (whoose strategies \\ are given by the \\ rows) is \textbf{Player 1 }.};
+	\draw[thick,color=aa,<-] (c.south) --++ (0,-0.3) node[fill=cc,align=left,below] {The numbers in the payoff matrix correspond \\to the gains for Player 1};
+\end{tikzpicture}
+
+A negative number indicates a loss for Player 1 and hence, because it is a zero-sum game, a gain for Player 2.
+
+In this example, if Carrie chooses Strategy $Y$ and Gary chooses Strategy $C$ then Gary looses 2 and, therefore, Carrie gains 2.
+
+\end{frame}
+
+\begin{frame}[shrink=18]{Prisoner's Dilemma}
+	\alert<1>{The Prisoner's Dilemma is the most famous example of Game Theory. \emph{The study of it is not on the AL FM course} (as it is not a zero-sum game). However, given its notoriety, we briefly mention it on this slide.}
+	\begin{columns}
+	\begin{column}{.35\linewidth}
+			\begin{center}
+			\colorbox{cc}{
+			 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{cc|cc}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{Alice}\\
+\multicolumn{1}{c}{} &  & $C$  & $D$ \\ \hline 
+\raisebox{0cm}{\multirow{2}*{\rotatebox{90}{Bob}}}  & $C$ & $(-1,-1)$ & $(-3,0)$ \\
+						      & $D$ & $(0,-3)$ & $(-2,-2)$ \\
+\end{tabular}}
+\end{center}
+	\end{column}
+	\begin{column}{.65\linewidth}
+		\begin{itemize}
+			\item If Alice testifies (Cooperates) against Bob, Alice goes free and Bob spends three years in jail.
+			\item Similarly if Bob testifies against Alice, Bob goes free and Alice spends three years in jail.
+			\item If neither of them testify against each other, then they both spend one year in jail. 
+			\item If they both testify against each other, then they both spend two years in jail.
+		\end{itemize}
+	\end{column}
+	\end{columns}
+	Each prisoner must make their decision without communicating with the other. Therefore they pick the play-safe strategy that will get them the highest payoff assuming that the other player's action is fixed.
+
+	Bob reasons like this:
+	\begin{itemize}
+		\item If Alice cooperates, then I spend 1 year in jail if I cooperate and 0 if I don’t, so I should not cooperate.
+		\item If Alice doesn’t cooperate, then I spend 3 years in jail if I cooperate and 2 if I don’t, so I should not cooperate.
+	\end{itemize}
+
+	Alice reasons something similar. This situation is a Nash equilibrium. It's optimal to defect, as under either situation the optimal solution for "me" is to defect. However, this equilibrium doesn't capture the notion of the “best” outcome. Both players cooperating is better for both players.
+
+	The Prisoner’s Dilemma was used as a premise for the TV show Goldenballs. Examples can be seen \href{https://kingedwardvistratford-my.sharepoint.com/:v:/g/personal/lrackham_kes_net/EX8W1GAF-E1IjdIZ24JMfWsBYTzP8XIlMUIQePewPG3ikw?e=Ln7qWu}{here} and \href{https://kingedwardvistratford-my.sharepoint.com/:v:/g/personal/lrackham_kes_net/Edr36Ri6voxGh8dwagslaisB6ZetaTbMpziX8brToaE3lA?e=qd4jDZ}{here}.
+\end{frame}
+
+
+\begin{frame}[shrink=5]{Rewriting the pay of matrix.}
+	If you need to rewrite the pay-off matrix to be from the perspective of the other player (i.e. with them as Player 1) then you need to reflect in the leading diagonal \emph{and} negate all the entries as all gains are now in terms of the other player.
+	\begin{problem}
+		Write down a pay-off matrix from the perspective of Carrie.
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Carrie}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Gary}}}  & $P$ & $4$ & $2$ & $2$ \\
+& $Q$ & $-3$ & $5$ & $1$ \\
+& $R$ & $2$ & $-1$ & $3$ \\
+\end{tabular}}
+\end{center}
+\end{problem}
+
+	\begin{solution}<2->
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Gary}\\
+\multicolumn{1}{c}{} &  & $P$  & $Q$ & $R$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Carrie}}}  & $X$ & $-4$ & $3$ & $-2$ \\
+& $Y$ & $-2$ & $-5$ & $1$ \\
+& $Z$ & $-2$ & $-1$ & $-3$ \\
+\end{tabular}}
+\end{center}
+
+\end{solution}
+\end{frame}
+
+\begin{frame}[shrink=5]{Past Paper Question}
+	\begin{problem}
+		Two players, Jen and Jeff, play a zero-sum game. The pay-off matrix for the game is shown below.	
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Jeff}\\
+\multicolumn{1}{c}{} &  & $I$  & $II$ & $III$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Jen}}}  & $I$ & $1$ & $4$ & $-2$ \\
+& $II$ & $-1$ & $0$ & $1$ \\
+& $III$ & $1$ & $-1$ & $0$ \\
+\end{tabular}}
+\end{center}
+\begin{itemize}
+	\item State what is meant by a two-player zero-sum game.
+	\item On four consecutive trials of the game, Jen plays strategy $III$ and Jeff plays strategy  $II$.
+		Find the gain or loss for Jen.
+\end{itemize}
+	\end{problem}
+
+	\begin{solution}<2->
+		For each pair of strategies (1 mark)
+
+		one player’s gain is equal to the other player’s loss (1 mark)
+	\end{solution}
+
+	\begin{solution}<3->
+		For each trial Jen loses 1 so after four consecutive trials of that strategy she will have lost 4.
+	\end{solution}
+\end{frame}
+
+\begin{frame}[shrink=10]{Play-Safe Strategies}
+	\begin{definition}
+		A \textbf{play-safe} strategy seeks to minimise possible losses.
+	\end{definition}
+	\begin{block}{Method}
+		We seek to find the maximum minimum gain for each player for each strategy.
+		\begin{itemize}
+			\item For Player 1 we need to find the maximum out of the minimum pay-offs of each row
+			\item For Player 2 we need to find the minimum out of the maximum payoffs of each column
+		\end{itemize}
+		\alert<1>{Read the second line again. It's the other way round. \emph{This is because the numbers represent losses for Player 2.}}
+	\end{block}
+
+	\begin{columns}[T]
+		\begin{column}{.4\textwidth}
+	\begin{problem}
+		Find the play-safe strategy for each player.
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{\tikzmarknode{a}{Carrie}}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\tikzmarknode{b}{\rotatebox{90}{Gary}}}}  & $P$ & $4$ & $2$ & $2$ \\
+& $Q$ & $-3$ & $5$ & $1$ \\
+& $R$ & $2$ & \tikzmarknode{c}{$-1$} & $3$ \\
+\end{tabular}}
+\end{center}
+	\end{problem}
+\end{column}
+\begin{column}{.6\textwidth}
+		\begin{solution}<2->
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|cccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Carrie} & Minimum \\
+	\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ & \\ \hline
+	\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Gary}}}  & $P$ & $4$ & $2$ & $2$ & $2$ \\
+							       & $Q$ & $-3$ & $5$ & $1$ & $-3$\\
+							       & $R$ & $2$ & $-1$ & $3$ & \tikzmarknode{a}{$\boxed{-1}$} \\
+							       & Maximum & $3$ &  $4$ &  $\tikzmarknode{b}{$\boxed{2}$}$ & \\
+\end{tabular}}
+\end{center}
+\begin{tikzpicture}[overlay,remember picture]
+	\draw[thick,<-,color=aa] (a.south) --++ (0,-0.5) node[draw,fill=cc,align=left,below] {Largest \\ so Gary's \\ play-safe is $C$};
+	\draw[thick,<-,color=aa] (b.south) --++ (-0.5,-0.5) node[draw,fill=cc,align=left,left] {Smallest so play-safe for\\ Carrie is  $Z$};
+\end{tikzpicture}
+	\end{solution}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=2]{Unstable solution}
+	Consider the following pay-off matrix:
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|cccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Ben} & Minimum \\
+	\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ & \\ \hline
+	\raisebox{0.0cm}{\multirow{2}*{\rotatebox{90}{Amina}}}  & $P$ & $4$ & $5$ & $-1$ & $-1$ \\
+							       & $Q$ & $2$ & $1$ & $3$ & $1$\\
+							       & Maximum & $4$ &  $5$ &  $3$ & \\
+\end{tabular}}
+\end{center}
+
+If Amina knows that Ben will use his play-safe strategy of $Z$, then Amina should still play her play-safe strategy of $Q$, since in the $Z$ column this gives her a better result.
+
+However, if Ben knows that Amina will use her play-safe strategy of $Q$, then Ben can do better by choosing strategy $Y$.
+
+\begin{definition}
+	If knowing the other players play-safe strategy in advance means that a player can upgrade their play-safe strategy then the solution is called $unstable$.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}[shrink=11]{Value of a Stable Solution}
+	\begin{definition}
+		If neither player can improve their strategy if the other plays safe, then the game has a \textbf{stable solution}.
+	\end{definition}
+
+	Consider this game where only one value has changed from the previous example (the 5 in the $PY$ strategy has become a 0):
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|cccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Ben} & Minimum \\
+	\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ & \\ \hline
+	\raisebox{0.0cm}{\multirow{2}*{\rotatebox{90}{Amina}}}  & $P$ & $4$ & $0$ & $-1$ & $-1$ \\
+							       & $Q$ & $2$ & $1$ & $3$ & $1$\\
+							       & Maximum & $4$ &  $1$ &  $3$ & \\
+\end{tabular}}
+\end{center}
+
+
+If Amina chooses $Q$, Ben cannot improve on his play-safe strategy of $Y$. If Ben chooses $Y$, Amina cannot improve on her play-safe strategy of \sol{$Q$}. We say the game has a stable solution.
+
+\begin{definition}
+	The \textbf{value} of a game is the expected gain for Player 1 for each game played.
+\end{definition}
+\begin{definition}
+	When the game is stable, the value of the game is the pay-off in the position according to the row and column of the play-safe strategies.
+\end{definition}
+
+The value of game above is \sol{1}. 
+
+\end{frame}
+
+\begin{frame}{Stable Solution}
+	Consider again the pay-off matrix from the previous example:
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|cccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Ben} & Minimum \\
+	\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ & \\ \hline
+	\raisebox{0.0cm}{\multirow{2}*{\rotatebox{90}{Amina}}}  & $P$ & $4$ & $0$ & $-1$ & $-1$ \\
+								& $Q$ & $2$ & \sol{$1$} & $3$ & $1$\\
+							       & Maximum & $4$ &  $1$ &  $3$ & \\
+\end{tabular}}
+\end{center}
+
+We have already argued that the indicated value is stable.
+
+If Amina could have improved her gain by switching to strategy to $P$ (while Ben still follows $Y$) then the value at $PY$ must have been bigger than one and therefore the maximum outcome of $Y$ would increase.
+
+Similarly if Ben could have improved his gain by switching strategy to $X$ or $Z$ then the value at $QX$ or $QZ$ must have been smaller than 1 and therefore the minimum outcome of $Q$ would decrease.
+
+In either of these circumstances, once we make the game unstable, either the 1 on the minimum outcome for Amina or the maximum outcome for Ben changes.
+\end{frame}
+
+\begin{frame}[shrink=2]{Condition for a Stable Solution}
+ \begin{center}
+  \colorbox{cc}{
+          \setlength\arrayrulewidth{0.5mm}
+  \arrayrulecolor{white}
+ \begin{tabular}{cc|cccc}
+          \multicolumn{2}{c}{} & \multicolumn{3}{c}{Ben} & Minimum \\
+         \multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ & \\ \hline
+          \raisebox{0.0cm}{\multirow{2}*{\rotatebox{90}{Amina}}}  & $P$ & $4$ & $0$ & $-1$ & $-1$ \\
+								  & $Q$ & $2$ & \sol{$1$} & $3$ & \tikzmarknode{b}{$1$}\\
+								  & Maximum & $4$ &  \tikzmarknode{a}{$1$} &  $3$ & \\  
+  \end{tabular}}                                                                                              
+  \end{center}
+
+
+  \begin{tikzpicture}[overlay,remember picture]
+	  \draw[thick,<-,color=aa] (a.south) --++ (2,-0.5) node[fill=cc,draw,align=left,below] (c) {The maximum minimum of the rows equals \\ the minimum maximum of the columns};
+	  \draw[thick,<-,color=aa] (b.south) -- (c);
+\end{tikzpicture}
+
+\vspace{1cm}
+
+This works both ways and therefore can be used to identify whether a two-player zero-sum game is stable or unstable:
+
+\begin{block}{Method}
+	\begin{itemize}
+		\item If a stable solution exists then the maximum minimum of the rows equals the minimum maximum of the columns.
+		\item If the maximum minimum of the rows \emph{does not equal} the minimum maximum of the columns then a stable solution \emph{does not} exist.
+	\end{itemize}
+\end{block}
+	
+\end{frame}
+
+\begin{frame}{Past Paper Question}
+	\begin{columns}[T]
+		\begin{column}{.5\textwidth}
+	\begin{problem}
+		Two people, Adam and Bill, play a zero-sum game. The game is represented by the following pay-off matrix for Adam.
+		
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Bill}\\
+\multicolumn{1}{c}{} &  & $B_1$  & $B_2$ & $B_3$ \\ \hline
+\raisebox{0.0cm}{\multirow{4}*{\rotatebox{90}{Adam}}}  & $A_1$ & $-6$ & $-1$ & $-5$ \\
+& $A_2$ & $5$ & $2$ & $-3$ \\
+& $A_3$ & $-5$ & $4$ & $-4$ \\
+& $A_4$ & $2$ & $1$ & $-4$ \\
+\end{tabular}}
+\end{center}
+\begin{itemize}
+	\item Show that this game has a stable solution.
+	\item Find the play-safe strategies for each player.
+	\item State the value of the game for \emph{Bill}.
+\end{itemize}
+	\end{problem}
+\end{column}
+\begin{column}{.5\textwidth}
+	\begin{solution}<2->
+		Row min: $-6,-3,-5,-5$
+
+		Max(row min)$= -3$
+
+		Col max 5,4, $-3$
+
+		Min(col max)$=-3$
+
+		max(row min)$=$min(col max) $=-3$
+
+		 $\implies$ game has a stable solution.
+
+		 \alert<2>{Explanation is needed!}
+	\end{solution}
+	\begin{solution}<3->
+		Adam plays $ A_2$ and Bill plays $ B_3$.
+	\end{solution}
+	\begin{solution}<4->
+		Value of game for bill is $+3$.
+
+		\alert<4>{Question says Bill!} 
+	\end{solution}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Past Paper Question}
+	\begin{problem}
+		Romeo and Juliet play a zero-sum game. The game is represented by the following pay-off matrix   for Romeo:
+
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Juliet}\\
+\multicolumn{1}{c}{} &  & $D$  & $E$ & $F$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Romeo}}}  & $A$ & $4$ & $-4$ & $0$ \\
+& $B$ & $-2$ & $-5$ & $3$ \\
+& $C$ & $2$ & $1$ & $-2$ \\
+\end{tabular}}
+\end{center}
+
+\begin{itemize}
+	\item Find the play-safe strategy for each player.
+	\item Show that there is no stable solution.
+\end{itemize}
+	\end{problem}
+
+	\begin{solution}<2->
+		R min: $-4,-5,-2$ plays  $C$
+
+		J max:  $4,1,3$ plays  $E$
+	\end{solution}
+
+	\begin{solution}<3->
+		maximin R  $=-2\neq 1=$minimax J
+	\end{solution}
+\end{frame}
+
+\begin{frame}[shrink=13]{Past Paper Question}
+	\begin{columns}[T]
+		\begin{column}{.5\textwidth}
+	\begin{problem}
+		Two players, Gary and Carrie, play a zero-sum game. The pay-off matrix for the game is shown below,
+
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Carrie}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Gary}}}  & $A$ & $3$ & $-3$ & $-3$ \\
+& $B$ & $-1$ & $k$ & $1$ \\
+& $C$ & $1$ & $-4$ & $2$ \\
+\end{tabular}}
+\end{center}
+
+A stable solution for the game exists.
+
+Find the allowed value(s) of $k$.
+	\end{problem}
+\end{column}
+		\begin{column}{.5\linewidth}
+			\begin{solution}<2->
+		Case 1: $ k>2$
+
+		Row min:  $-3,-1,-4$ 
+
+Col Max: $3,k,2$
+
+ $2\neq -1 \implies$ no stable soln. 
+ \end{solution}
+ \begin{solution}<3->
+ Case 2: $-1<k<2$
+
+ Row min:  $ -3,-1,-4$
+
+ Col Max:  $3,k,2$ 
+
+  $k>-1\implies$ no stable soln.
+  \end{solution}
+		\end{column}
+	\end{columns}
+		\begin{columns}[T]
+		\begin{column}{.5\linewidth}
+			\begin{solution}<4->
+Case 3: $-3<k\leq -1$
+
+Row min:  $-3,k,-4$
+
+Col max: $3,k,2$
+
+ $k=k\implies$ Stable soln.
+ \end{solution}
+ \end{column}
+ \begin{column}{.5\textwidth}
+ \begin{solution}<5->
+ Case 4: $k\leq -3$
+
+ Row min: $-3,k,-4$
+
+ Col Max: $3,-3,2$
+
+  $k=-3\implies$ Stable soln.
+  \end{solution}
+		\end{column}
+		\end{columns}
+		\begin{solution}<6->
+		So $-3\leq k\leq -1$ gives a stable soln.
+	\end{solution}
+\end{frame}
+
+
+\begin{frame}[shrink=5]{Dominated Strategies}
+
+	\begin{definition}
+	A \textbf{dominated strategy} is one which it never makes sense for a player to choose.
+	\end{definition}
+
+	If the outcomes for a particular row are always smaller than the corresponding outcomes for another row, then clearly it would not make sense for the first player to choose the option with the smaller outcomes, regardless of the other player’s strategy.
+
+Similarly, if the outcomes for a particular column are always larger than the corresponding outcomes for another column, then clearly it would not make sense for the second player to choose the option with the larger outcomes, regardless of the other player’s strategy.
+\begin{columns}[T]
+\begin{column}{.5\linewidth}
+
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Player 2}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Player 1}}}  & $P$ & $5$ & $3$ & $2$ \\
+& $Q$ & $6$ & $2$ & $-3$ \\
+& $R$ & $4$ & $-1$ & $1$ \\
+\end{tabular}}
+\end{center}
+In this pay-off matrix the entries in Row $R$ are always less than those in Row  $P$ so it is always better for player 2 to choose Strategy  $P$ over Strategy  $R$. Therefore  Row $R$ can be ignored.
+\end{column}
+\begin{column}{.5\linewidth}
+
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Player 2}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Player 1}}}  & $P$ & $2$ & $1$ & $3$ \\
+& $Q$ & $-3$ & $2$ & $3$ \\
+& $R$ & $1$ & $-2$ & $-1$ \\
+\end{tabular}}
+\end{center}
+
+The entries in Column $Z$ are always more than those in Column  $Y$ so it always better for Player 2 to choose Strategy  $Z$ over Strategy  $Y$. Therefore Column  $Z$ can be ignored.
+
+\alert<1>{Remember the pay-off matrix shows how much Player 1 wins.}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Past Paper Questions}
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}
+	\begin{problem}
+		Two people, Roz and Colum, play a zero-sum game. The game is represented by the following pay-off matrix for Roz.
+
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Colum}\\
+\multicolumn{1}{c}{} &  & $C_1$  & $C_2$ & $C_3$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Roz}}}  & $R_1$ & $-2$ & $-6$ & $-1$ \\
+& $R_2$ & $-5$ & $2$ & $-6$ \\
+& $R_3$ & $-3$ & $3$ & $-4$ \\
+\end{tabular}}
+\end{center}
+
+Show that the matrix can be reduced to a 2 by 3 matrix, giving the reason for deleting one of the rows.
+\end{problem}
+	\begin{solution}<2->
+		Delete $ R_2$.
+
+		Since $ R_3$ dominates $ R_2$.
+	\end{solution}
+
+	\end{column}
+	\begin{column}{.5\linewidth}
+\begin{problem}
+Two people Rhona and Colleen, play a zero-sum game. The game is represented by the following pay-off matrix for Rhona.
+
+
+		\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Colleen}\\
+\multicolumn{1}{c}{} &  & $C_1$  & $C_2$ & $C_3$ \\ \hline
+\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Rhona}}}  & $R_1$ & $2$ & $6$ & $4$ \\
+& $R_2$ & $3$ & $-3$ & $-1$ \\
+& $R_3$ & $x$ & $x+3$ & $3$ \\
+\end{tabular}}
+\end{center}
+
+It is given that $x<2$.
+
+Explain why Rhona should never play strategy  $ R_3$.
+	\end{problem}
+	\begin{solution}<3->
+		$x<2,x+3<6,3<4$
+
+		 $\implies R_1 \text{ dominates } R_3$.
+	\end{solution}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+
+\end{document}

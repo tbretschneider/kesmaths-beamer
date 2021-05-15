@@ -1,0 +1,694 @@
+\documentclass[8pt]{beamer}
+
+ \usepackage[utf8]{inputenc}                                                     
+  \usetheme{Berlin}                                                               
+%  \usecolortheme{crane}                                                       
+  %\useinnertheme{circles}                                                         
+  \usepackage[english]{babel}                                                     
+  \usepackage{csquotes}                                                           
+  \usepackage[T1]{fontenc}                                                        
+  \usepackage{booktabs}                                                           
+  \usepackage{amsmath}   
+  \usepackage{tikz}
+  \usepackage{amssymb}
+  \usepackage{amsfonts}
+  \usepackage{mathrsfs}   
+  \usepackage{graphicx}
+  \usepackage{varioref}
+  \usepackage{probsoln}
+  \usepackage[style=authoryear,backref=true]{biblatex}
+ \usepackage[]{hyperref} 
+  \graphicspath{{Graphics/}}
+  \usepackage{multirow,array}
+  \addbibresource{../Everything.bib}
+  \usepackage{colortbl}
+  \definecolor{aa}{RGB}{247, 232, 35}
+  \definecolor{cc}{RGB}{29, 23, 80}    
+  %\setbeamercolor{palette tertiary}{fg=aa,bg=cc}
+  %\setbeamercolor{structure}{fg=cc}
+  %\setbeamercolor{alerted text}{fg=red}
+  
+  %Information to be included in the title page:
+  \title[Discrete]{AL FM Discrete}
+  
+  \subtitle{Group Theory}
+  
+  \author[]{T. Bretschneider}
+  
+  \date[\today]{\today}
+
+\usepackage{comment}
+\usepackage{varwidth}
+
+\newcommand{\mat}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 \\ \end{array}\right)}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+
+\end{frame}
+
+
+\section{Introduction}
+
+\begin{frame}[allowframebreaks]{What is a Group?}
+	\begin{definition}
+		A non-empty set $G$ with binary operation  $*$ is said to be a  \textbf{group}, written $(G,*)$, if each of the following four axioms hold:
+		\begin{itemize}
+			\item $G$ is  \textbf{closed} under  $*$ (for all  $a,b \in G, a*b \in G$)
+			\item  $*$ is \textbf{associative} on  $G$  (for all $a,b,c\in G, (a*b)*c = a*(b*c))$ 
+			\item $*$ has an \textbf{identity} element in  $G$ (there exists  $e \in G$ such that $a*e=e*a=a$ for all  $a\in G$)
+			\item Each element of  $G$ has an  \textbf{inverse} under $*$ (for each  $a\in G$ there exists  $a^{-1}$ so  $a^{-1}*a=a*a^{-1}=e$)
+		\end{itemize}
+		
+	\end{definition}
+	
+	\begin{definition}
+	The number of elements in a group is called the \textbf{order of the group}. 
+	\end{definition}
+
+		It is possible to have groups with infinite order, e.g. $(\mathbb{Z},+)$ (the set of all integers under addition)
+	\begin{columns}[T]
+		
+	\begin{column}{0.7\textwidth}
+		\begin{Problem}
+			The set $A={w,x,y,z}.$ The Cayley table shows the outcome for each pair of elements of the set  $A$ under the binary operation  $*$.
+
+			Prove that the set  $A$ forms a group under the binary operation  $*$.
+
+			 \emph{You may assume that $*$ is associative on $A$}
+			
+		 \end{Problem}
+	\end{column}
+	\begin{column}{0.3\textwidth}
+		\begin{center}
+		\colorbox{cc!30}{
+			\setlength\arrayrulewidth{0.5mm}
+			\arrayrulecolor{white}
+$\begin{array}{c|cccc}
+	* & w & x & y & z \\
+	\hline
+	w & w & x & y & z \\
+	x & x & w & z & y \\
+	y & y & z & x & w \\
+	z & z & y & w & x \\
+\end{array}$}
+\end{center}
+
+	\end{column}
+\end{columns}
+
+
+\onslide<2->{Closure: The Cayley table only contains elements of $A$ and so  $A$ is closed on  $*$.
+
+			Identity:  $w$ is the identity as the row and column is a copy of the header row and column.
+			
+		Inverse: As there is the identity in each row and column, each element has an inverse.}	
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	\begin{Problem}
+	Prove that the set of non-negative integers does not form a group under the binary operation of addition.
+		
+	\end{Problem}
+
+	\onslide<2->{The Identity element under addition is zero which is a non-negative integer.
+
+	However none of the other elements have an inverse in the group (as the inverse of an element $a$ would be  $-a$, a negative integer)}
+	 \begin{Problem}
+		 A student says that the set $A={2,5,8,10}$ forms a group under multiplication modulo 15. Determine whether the student is correct.
+	\end{Problem}
+	\onslide<3->{$A$ is not closed under multiplication modulo 15 because  $2 \times_{15} 8 = 1 \not\in A$}
+	\begin{Problem}
+		Let $G=\mathbb{Q}^{+}$ with binary operation $*$ where $a*b=\frac{ab}{4}$ where $a,b\in \mathbb{Q}^{+}$. Show that $(G,*)$ is a group.
+	\end{Problem}
+	\onslide<4->{Closure: If $a,b\in \mathbb{Q}^{+}$ then  $a=\frac{p}{q}$ and $b=\frac{r}{s}$ where $p,q,r,s\in \mathbb{Z}$,  $a*b=\frac{pr}{4qs}\in \mathbb{Q}^{+}$.
+
+		Associativity: Follows from the associativity of multiplication in $\mathbb{R}$.
+
+		Identity:  $a*4=\frac{a\times_4}{4}=a$, and commutativity follows from commutativity of multiplication in $\mathbb{R}$, so the identity is 4, which is in  $\mathbb{Q}^{+}$.
+
+	Inverse: For all  $a\in \mathbb{Q}^{+}, a^{-1}=\frac{16}{a}$ which is also in $\mathbb{Q}^{+}$ if  $a\in \mathbb{Q}^{+}.$}
+
+\end{frame}
+
+\begin{frame}{Past Paper Question}
+	\begin{Problem}
+		The set $M$ is defined as  \[
+			M = \left\{\left(\begin{array}{cc} 
+						\cos \theta & -\sin \theta \\
+						\sin \theta & \cos \theta \\ 
+			\end{array}\right):\theta \in \mathbb{R}\right\}
+		.\] 
+
+		Prove that $M$ forms a group under the operation of matrix multiplication.
+	\end{Problem}
+\onslide<2->{Closure: \[ 
+		\left(\begin{array}{cc} 
+						\cos \alpha & -\sin \alpha \\
+						\sin \alpha & \cos \alpha \\ 
+				\end{array}\right)
+				\left(\begin{array}{cc} 
+						\cos \beta & -\sin \beta \\
+						\sin \beta & \cos \beta \\ 
+			\end{array}\right)=
+		\]
+		\[
+			=
+\left(\begin{array}{cc} 
+		\cos \alpha \cos \beta - \sin \alpha \sin \beta & -(\cos \alpha \sin \beta + \sin \alpha \cos \beta) \\
+						\sin \alpha \cos \beta + \cos \alpha \sin \beta & \cos \alpha \cos \beta - \sin \alpha \sin \beta \\
+			\end{array}\right)
+	\]
+\[
+	\left(\begin{array}{cc}
+			\cos (\alpha + \beta) & -\sin(\alpha+\beta) \\
+			\sin (\alpha + \beta) & \cos (\alpha + \beta) 
+	\end{array}\right)  
+\] 
+
+Associativity: Follows from associativity of matrix multiplication. 
+
+Identity: Follows from matrix identity. Which is part of $M$, when  $\theta=0$.
+
+Inverse: Set  $\beta=\alpha$ and result follows.
+
+}
+\end{frame}
+\section{Group Properties}
+\begin{frame}{Period (or Order) of an Element}
+	\begin{definition}
+		The \textbf{period (or Order) of an element} $a$ of a group  $(G,*)$ is the smallest  $n$ such that  $a^n=e$ 
+	\end{definition}
+
+	\begin{Problem}
+For the group shown by the Clayley table:
+\begin{itemize}
+	\item State the identity element
+	\item Find the period (or order) of each element.
+\end{itemize}
+	\end{Problem}
+
+	\onslide<2->{The identity element is $I$}
+
+	\onslide<3->{The order of  $I$ is 1
+
+	The orders of  $X,Y,Z$ are 2, as they are all self-inverse.}
+\end{frame}
+\section{Types of Groups}
+\begin{frame}{Abelian Groups}
+	\begin{definition}
+		If a group $(G,*)$ also has the property that  $*$ is commutative the it is an  \textbf{Abelian Group}.
+	\end{definition}
+
+\begin{Problem}
+	The Cayley table shows a group that is called the Quaternion group:
+	\begin{itemize}
+		\item What is the order of the group?
+		\item What is the identity element?
+		\item What is the period of the element $-k$?
+		\item Is the Quaternion group Abelian? Justify your answer.
+	\end{itemize}
+\end{Problem}
+
+\onslide<2->{
+The order of the group is 8
+}
+\onslide<3->{
+The Identity element is 1
+}
+\onslide<4->{
+$-k^1=-k,-k^2=-1,-k^3=k,-k^4=1$. Therefore  $-k$ has period 4.
+}
+\onslide<5->{
+ $j*k=-i$ and  $k*j=i$ so  $j*k\neq k*j$ and so the Quaternion group is not Abelian.
+}
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	\begin{Problem}
+		Show that $\{1,2,3,4\}$ form an Abelian group under  $\times _5$
+
+		
+	\end{Problem}
+
+	\onslide<2->{
+		The Cayley table is :
+
+
+
+		Closure: Since the only elements in the Cayley table are in the set then it is closed.
+
+		Associativity: Follows from the associativity of multiplication on $\mathbb{R}$.
+
+		Identity: 1 is the identity as it leaves the header row and column of the Cayley table unchanged.
+
+		Inverse: Since the identity element, 1, is in each row and column, every element has an inverse.
+
+		Commutativity: The Cayley table is symmetrical around the leading diagonal.
+}
+
+\begin{Problem}
+	Prove that $\{a+bi:a,b\in \mathbb{R},|a+bi|=1\}$ forms an Abelian group under multiplication.
+\end{Problem}
+
+\onslide<3->{$a+bi$ can in this case be written as  $e^{i\theta}$.
+
+	Closure:  $e^{i\alpha}\times e^{i\beta}=e^{i(\alpha+\beta)}$ which is clearly also in the group.
+
+	Associativity: Follows from the associativity of multiplication on  $\mathbb{C}$.
+
+	Identity: 1 is the multiplicative identity. Which is also in the group.
+
+	Inverse:  $e^{i\alpha}\times e^{i(-\alpha)}=e^0=1$ and $e^{-i\alpha}$ is clearly in the group.
+	
+	Commutativity: Follows from commutativity of multiplication on  $\mathbb{C}$
+}
+
+\end{frame}
+
+\begin{frame}{Subgroups}
+	\begin{definition}
+		Given a group $(G,*)$, if  $H$ is a non-empty subset of  $G$ which is also a group under the binary operation  $*$ then we say that  $H$ is a  \textbf{subgroup} of $G$.
+	\end{definition}
+	
+	Consider the group $\{0,1,2,3,4,5\}$ under  $+_6$:
+
+
+
+	Consider the subsets  $\{0,2,4\}$ and  $\{0,3\}$ of the set. If we form the Cayley table using just these elements, it can be shown that both of these are groups in their own right, and therefore subgroups of the original group.
+
+
+
+
+\end{frame}
+
+
+\begin{frame}{Trivial, Non-Trivial and Proper Subgroups}
+	\begin{definition}
+		The group containing just the identity element will always be a subgroup. We call this the \textbf{trivial subgroup}. 
+	\end{definition}
+
+	\begin{definition}
+		Other subgroups are called \textbf{non-trivial} subgroups. 
+	\end{definition}
+	
+	\begin{definition}
+Any set is a subset of itself and therefore technically any group is a subgroup of itself. A \textbf{proper subgroup} is any subgroup which is not the parent group itself.
+	\end{definition}
+
+\begin{Problem}
+	A group $G$ is formed by the set  $A=\{w,x,y,z\}$ under the binary operation  $*$ with outcomes as shown in the Cayley table.
+	 \begin{itemize}
+		 \item State the proper subgroups of $(G,*)$
+		 \item State the non-trivial subgroups of  $(G,*)$
+	\end{itemize}
+\end{Problem}
+
+\onslide<2->{$w$ and  $\{w,x\}$ are subsets of  $A$ which would form proper subgroups of  $(G,*)$.}
+
+\onslide<3->{ $\{w,x\}$ and  $\{w,x,y,z\}$ are subsets of  $A$ which would form non-trivial subgroups of  $G$ under  $*$.}
+
+ \begin{Problem}
+	 Show that $(\mathbb{Z},+)$ is a subgroup of  $(\mathbb{R},+)$.	
+\end{Problem}
+
+\onslide<4->{Closure: If $a,b\in \mathbb{Z}$ then  $a+b\in \mathbb{Z}$.
+
+	Associativity: Follows from associativity on the parent group.
+
+	Identity: The identity  $0\in \mathbb{Z}$.
+
+	Inverse: If  $a\in \mathbb{Z}$ the  $-a\in \mathbb{Z}$ so the inverse is in the subgroup.
+
+	Since: $\mathbb{Z} \subset \mathbb{R}$ then it is indeed a subgroup.
+
+}
+\end{frame}
+
+\begin{frame}{Cyclic Groups}
+	\begin{definition}
+		A group $(G,*)$ is  \textbf{cyclic} if every element can be written as $a^n$ for some  $a\in G$ and  $n \in Z$. 
+		
+	\end{definition}
+	In other words, if you can generate the whole group using just one element and the binary operator then it is cyclic.
+
+	\begin{definition}
+		Any element, $a$, of a cyclic group where any element can be written as $a^n$ for some  $n\in \mathbb{Z}$ is called a generator of that cyclic group.
+
+		
+	\end{definition}
+	
+	It is possible for a cyclic group to be infinite. For instance, $(\mathbb{Z},+)$ is cyclic as it can be generated by 1.
+
+	 \begin{Problem}
+		 What are the generators of the cyclic group $(\{1,-1,i,-i\},\times)$?
+		
+	\end{Problem}
+	\onslide<2->{$i^1=i,i^2=-1,i^3=-i,i^4=1$. Therefore $i$ is a generator. By similar reasoning  $-i$ is also a generator.}
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	\begin{Problem}
+		Show that the group $(\{1,2,3,4,5,6\},\times_7)$ is a cyclic group.
+	\end{Problem}
+
+	\onslide<2->{ Closure: The Cayley table only contains elements from the set so it is closed.
+
+		Associativity: Follows from the associativity of multiplication on $\mathbb{R}$.
+
+		Identity: 1 is the identity as the 1 row and column leave the header row and column unchanged.
+
+		Inverse: There is a 1 in every row and column so there is an inverse for each element.
+
+		$3^1=3,3^2=2,3^3=6,3^4=4,3^5=5,3^6=1$
+
+		Therefore 3 is a generator and so the group is cyclic.
+	}
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	\begin{Problem}
+		$M$ is the set of all  $2\times 2$ invertible matrices.
+		 \begin{itemize}
+			\item Show that $M$ forms a group under the binary operation of matrix multiplication.
+			\item State whether or not  $M$ is an Abelian group.
+			\item Show that the set  $N= \left\{\left(\begin{array}{cc} 1 & 0 \\ 0 & 1\\ \end{array}\right), \left(\begin{array}{cc} 1 & 0 \\ 0 & -1 \\ \end{array}\right)\right\}$ is a subgroup of the group $M$ under the binary operation of matrix multiplication.
+		\end{itemize}
+	\end{Problem}
+	\onslide<3->{Closure: Since $\det AB = \det(A)\det(B)$ then if $\det A, \det B \neq 0, \det AB \neq 0$. So $AB\in M$.
+
+		Associativity: Matrix multiplication is associative.
+
+		Identity: The identity matrix is in  $M$.
+
+	Inverse:  $A^{-1}$ will be in  $M$ since  $\det A^{-1}=\frac{1}{\det A}$.}
+
+	\onslide<4->{Matrix multiplication is not commutative so the group will not be Abelian.}
+
+	\onslide<5->{Closure: $I^2=I,I\mat{1}{0}{0}{-1}=\mat{1}{0}{0}{-1},\mat{1}{0}{0}{-1}I=\mat{1}{0}{0}{-1},\mat{1}{0}{0}{-1}\mat{1}{0}{0}{-1}=I$. 
+
+		Thus closed under matrix multiplication.
+
+		Associativity: Follows from parent group.
+
+		Identity: $I\in N$.
+		
+	Inverse: From above both elements are self inverse.} 
+		
+\end{frame}
+
+\begin{frame}{Generators}
+	\begin{definition}
+		A cyclic subgroup can always be formed by picking one element of the parent group and using it to generate a group.
+
+		We denote as $<a>$ the group generated by the element  $a$.
+	\end{definition}
+
+	\begin{Problem}
+		Determine the order of the group $(<2>,+_7)$.
+	\end{Problem}
+
+		\onslide<2->{ $2^1=2,2^2=4,2^3=6,2^4=1,2^5=3,2^6=5,2^7=0$, which is the identity.
+
+		Therefore the group has order 7.}
+
+		\begin{Problem}
+			The group $R$ is defined as  $R=(<4>,\times _7)$. Construct a Cayley table for  $R$.
+			
+		\end{Problem}
+	
+		\onslide<3->{
+			aoeu
+		}
+\end{frame}
+
+\begin{frame}{Past Paper Question}
+	\begin{Problem}
+	The set $\{1,2,4,,8,9,13,15,16\}$ forms a group under the operation of multiplication modulo 17.
+
+	Which of the following is a generator of the group?
+
+	 \begin{itemize}
+		\item 4
+		\item 9
+		\item 13
+		\item 16
+	\end{itemize}
+\end{Problem}
+
+\onslide<2->{9}
+\end{frame}
+
+\section{Occurrences of Groups}
+
+\begin{frame}{Rotational Symmetries of Regular Polygons}
+	Consider the anti-clockwise rotational symmetries of an equilateral triangle.
+
+	Let $r$ be an anticlockwise rotation of 120 degrees, then $r^2$ is a rotation of 240 degrees.
+
+	Let $e$ be the identity rotation of leaving it as it is.
+
+	Then the Cayley table is as follows:
+
+	This is closed, has an identity and each element has an inverse and therefore it is a group. 
+
+	If fact it is a cyclic group with generator  $r$ (or  $r^2$).
+
+	The same is true for any regular polygon.
+\end{frame}
+
+\begin{frame}{Rotation and Reflection Symmetries}
+	There are six rotation of reflection symmetries of an equilateral triangle:
+	\begin{itemize}
+		\item $e$ the identity transformation
+		\item  $r$ rotate anticlockwise by 120 degrees
+		\item  $r^2$ rotate anticlockwise by 240 degrees
+		\item  $x$ reflect in the line  $ L_1$
+		\item $y$ reflect in the line  $ L_2$
+		\item $z$ reflect in the line  $ L_3$
+	\end{itemize}
+
+	This gives the following Cayley table:
+
+	This is closed, associative, has an identity and each element has an inverse and therefore is a group.
+
+	\begin{definition}
+		This group is called the \textbf{dihedral} group of order 6. There is a similar \textbf{dihedral} group of order $2n$ for an  $n$-sided regular polygon.  
+		
+	\end{definition}
+	
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	\begin{Problem}
+		\begin{itemize}
+			\item Find the Cayley table for the symmetries of a rectangle. You should let $ R_1$ and $ R_2$ be the two reflection and have $r$  denote a rotation of 180 degrees.
+			\item Prove that the set of symmetries of a rectangle forms a group.
+
+				\emph{You may assume that composition of transformation is associative.}
+			\item Give the period of each of the elements.
+			\item State whether the group is Abelian.
+
+		\end{itemize}
+		\onslide<2->{ The table!!}
+		
+		\onslide<3->{ Closure: Each element of the Cayley table is one of the original symmetries.
+
+			Associativity: The question lets us assume this.
+
+			Identity: The row and column for the transformation $e$ is the same as the header row and column.
+
+			Inverse: The identity appears in every row and column, so every element has an inverse.
+		}
+
+		\onslide<4->{
+			$|e|=1,|r|=2,|R_1|=2$ and $|R_2|=2$
+		}
+
+		\onslide<5->{
+			The Cayley table is symmetrical about the leading diagonal so the group is Abelian.
+		}
+
+	\end{Problem}
+	
+\end{frame}
+
+\begin{frame}{Lagrange's Theorem}
+	\begin{Theorem}
+		The order of any subgroup must divide the order of the parent group.
+		
+
+	\end{Theorem}
+	\begin{Problem}
+		Determine the only possible orders of the subgroups of a group that has order 81.
+		
+	\end{Problem}
+\onslide<2->{$81=3^4$, so only factors of 81 are 1,3,9,27,81.
+
+	So by Lagrange's Theorem these are the only possible orders of any subgroups.
+}
+
+\begin{Problem}
+	Prove that no subgroups of order 12 exist for a group of order 196
+	
+\end{Problem}
+
+\onslide<3->{
+	12 does not divide 196, so by Lagrange's Theorem there cannot be any subgroups of order 12.
+}
+
+\begin{Problem}
+	A student states that $(\{1,-1,i\},\times)$ is a subgroup of the group  $(\{1,-1,i,-i\},\times)$. Explain whether the student is correct, fully justifying your answer.
+	
+\end{Problem}
+
+\onslide<4->{
+	Since 3 does not divide 4, a group of order 4 cannot have a subgroup of order 3, as in this case.
+}
+
+
+
+\end{frame}
+
+\begin{frame}{Past Paper Question}
+	\begin{Problem}
+		The group $(G,*)$ has order 8.
+		$q$ and  $r$ are elements of  $G,$ with the following properties:
+		\begin{align*}
+			r& \text{ has period 4} \\
+			q& \text{ has period 2} \\
+			r^3*q &= q*r \end{align*} 
+		\begin{itemize}
+			\item Explain why $(G,*)$ is not an abelian group.
+			\item Show that \[
+			r^2*q*r^2=q
+			.\] 
+		\item Jenny claims that the \textbf{only} possible orders of the subgroups of $G$ are 2,3,4,5,6 and 7 because each of these numbers is less than the order of  $G$.
+
+			Comment fully on the validity of Jenny's claim.
+
+			Fully justify your answer.
+		\end{itemize}
+
+	\end{Problem}
+	
+\onslide<2->{$q*r=r^3*q\neq r*q$. Hence not commutative and hence the group won't be abelian.
+}
+
+\onslide<3->{ $r^2*q*r^2=r^2*r^3*q*r=r*q*r=r*r^3*q=q$. As required. }
+
+\onslide<4->{3,5,6,7 cannot be orders of subgroups by Lagrange's Theorem.
+
+	1,2,4,8 can be orders of subgroups by Lagrange's Theorem.
+
+	She has not considered Lagrange's Theorem, nor Proper and trivial subgroups. 
+}
+
+\end{frame}
+
+\begin{frame}{Isomorphism}
+	Consider the following two groups:
+
+	Rotational symmetries of an equilateral triangle:
+
+	Addition modulo 3 on $\{0,1,2\}$:
+
+	They are the same up to the following relabelling of the elements:  $e \rightarrow 0, r \rightarrow 1, r^2 \rightarrow 2$.
+
+	 \begin{definition}
+		Two groups $ G_1$ and $ G_2$ are said to be \textbf{isomorphic}  if they have the same structure.
+
+		We denote \textbf{isomorphism} as $ G_1 \approxeq G_2$. 
+	\end{definition}
+	
+\end{frame}
+
+\begin{frame}{Showing Isomorphism}
+	\begin{definition}
+		If two groups are isomorphic:
+		\begin{itemize}
+			\item They must have the same order
+			\item The set of the orders of all the elements must be the same
+			\item The identity of one group will map to the identity of the other
+		\end{itemize}
+	\end{definition}
+		\begin{Problem}
+			The group $R$ is defined as  $R=(<4>,\times_7)$ and the group  $S$ as  $(\{0,1,2\},+_3)$.
+
+			Prove that  $R \approxeq S$, fully justifying your answer.
+
+		\end{Problem}
+
+\onslide<2->{tables
+
+	if we map $1\rightarrow 0, 4 \rightarrow 1 \text{ and } 2\rightarrow 2$, then this gives us an isomorphism between the two groups.
+}
+\end{frame}
+
+
+\begin{frame}{Test Your Understanding}
+	\begin{Problem}
+		The group $J$ is defined as  $(\{1,-1,i,-i\},\times)$ and the group  $N$ is defined as  $(<2>,\times_7)$.
+
+		Determine whether the groups  $J$ and  $N$ are isomorphic, fully justifying your answer.
+	\end{Problem}
+	\onslide<2->{$2^1=2, 2^2=4, 2^3 = 1$.
+
+		Therefore the orders of the groups are different, and it is not possible for them to be isomorphic.
+	}
+
+	\begin{Problem}
+		Show that the groups shown in the two Cayley tables below are not isomorphic:
+		
+	\end{Problem}
+
+	\onslide<3->{In the first Cayley table the orders of the elements are 1,2,4 and 4.
+
+		In the second all the elements have order 2.
+
+		Therefore as the set of orders of the elements is different, the two groups cannot be isomorphic.
+	}
+\end{frame}
+
+\begin{frame}{Past Paper Question}
+
+	\begin{Problem}
+		The binary operation $*$ is defined as  \[
+			a*b=a+b+4 (\mod 6)
+		.\] Where $a,b\in \mathbb{Z}$.
+		 \begin{itemize}
+			 \item Show that the set $\{0,1,2,3,4,5\}$ forms a group  $G$ under  $*$.
+			 \item Find the Proper subgroups of the group  $G$.
+			 \item Determine whether or not the group  $G$ is isomorphic to the group  $K=(<3>,\times_{13}$.
+		\end{itemize}
+		
+	\end{Problem}
+	
+\onslide<2->{
+	Closure: All answers to $a*b$ are reduced modulo 6 they are in the given set and the set is thus closed under  $*$.
+
+	Identity: 2
+
+	Inverse: (0,4) and (1,3) are inverse pairs, and 2 and 5 are self-inverse elements.
+
+	Associativity: Must be shown.
+
+	As  $G$ satisfies the four group axioms under the binary operation  $*$,  $G$ is a group.
+}
+
+\onslide<3->{ $\{2\},\{0,2,4\},\{2,5\}$. }
+
+\onslide<4->{ $G=(<1>,*)$,  $1\mapsto 3, 0\mapsto 9, 5\mapsto 13, 4 \mapsto 11, 3\mapsto 5, 2\mapsto 1$.
+	
+	As there is a one to one mapping of the elements of  $G$ and the elements of  $K$,  $G\approxeq K$.
+}
+
+
+\end{frame}
+
+\end{document}

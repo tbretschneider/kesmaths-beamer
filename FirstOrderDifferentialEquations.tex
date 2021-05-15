@@ -1,0 +1,643 @@
+\documentclass[8pt]{beamer}
+
+ \usepackage[utf8]{inputenc}                                                     
+ \usetheme[block=fill,progressbar=foot,background=light]{metropolis}                                                               
+%  \usecolortheme{crane}                                                       
+  %\useinnertheme{circles}                                                         
+  \usepackage[english]{babel}                                                     
+  \usepackage{csquotes}                                                           
+  \usepackage[T1]{fontenc}                                                        
+  \usepackage{booktabs}                                                           
+  \usepackage{amsmath}   
+  \usepackage{tikz}
+  \usepackage{amssymb}
+  \usepackage{amsfonts}
+  \usepackage{mathrsfs}   
+  \usepackage{graphicx}
+  \usepackage{varioref}
+  \usepackage{probsoln}
+  \usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+  \usepackage[style=authoryear,backref=true]{biblatex}
+ \usepackage[]{hyperref} 
+  \graphicspath{{Graphics/}}
+  \usepackage{multirow,array}
+  \addbibresource{../Everything.bib}
+  \usepackage{colortbl}
+  \definecolor{aa}{RGB}{255, 124, 0}
+  \definecolor{cc}{RGB}{230, 230, 230}    
+  %\setbeamercolor{palette tertiary}{fg=aa,bg=cc}
+  %\setbeamercolor{structure}{fg=cc}
+  %\setbeamercolor{alerted text}{fg=red}
+  
+  %Information to be included in the title page:
+  \title[Discrete]{AL FM Discrete}
+  
+  \subtitle{First Order Differential Equations}
+  
+  \author[]{T. Bretschneider}
+  
+  \date[\today]{\today}
+
+\usepackage{comment}
+\usepackage{varwidth}
+
+\newcommand{\mat}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 \\ \end{array}\right)}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\sol}[2][+]{
+	\tikz[baseline]{\node[color=aa,fill=cc,rectangle,draw,anchor=base] {  {\onslide<#1->{#2}}  };}
+}
+
+\usetikzlibrary{positioning}
+\usetikzlibrary{tikzmark}
+
+
+
+\def\height{0.8cm}
+\def\width{1.2cm}
+
+		\newcommand{\keynode}[6]{\node[minimum height=\height,minimum width=\width,draw,rectangle,color=aa,fill=cc] (#3) at (#1,#2) {};
+	\node[rectangle,minimum height=\height/2,minimum width=\width,above,color=aa,fill=cc] at (#3) {#3};
+	\node[draw,rectangle,minimum height=\height/2,minimum width=\width/3,below,color=aa,fill=cc,inner sep =0cm] at (#3) {\footnotesize#4};
+	\node[draw,rectangle,minimum height=\height/2,minimum width=\width/3,below,xshift=\height/2,color=aa,fill=cc,inner sep=0cm] at (#3) {\footnotesize#5};
+	\node[draw,rectangle,minimum height=\height/2,minimum width=\width/3,below,xshift=-\height/2,color=aa,fill=cc,inner sep=0cm] at (#3) {\footnotesize#6}; }
+
+
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+
+\frame{\titlepage}
+
+
+\begin{frame}[shrink]{Differential Equations}
+	\begin{definition}
+		\textbf{Differential Equations} are equations which include the derivatives of the variable.
+	\end{definition}
+	\alert<1>{Typically we will start with an equation which involves derivatives and aim to get the equation which just relates the two variables to each other.}
+	
+		\begin{columns}
+			\begin{column}{0.6\linewidth}
+				\begin{example}
+					\begin{itemize}
+						\item The rate of temperature loss is proportional to the current temperature.
+						\item The rate of population change is proportional to $P\left( 1-\frac{P}{M} \right) $ where $P$ is the current population and $M$ is the limiting size of the population. (the Verhulst-Pearl Model)
+						\item Suppose $x$ is GDP (Gross Domestic Product). Rate of change of GDP is proportional to current GDP.
+					\end{itemize}
+				\end{example}
+			\end{column}
+			\begin{column}{0.4\linewidth}
+				\begin{itemize}
+					\item \[
+					\frac{dT}{dt}=-kT
+					.\] 
+					\item \[
+					\frac{dP}{dt}=-kP\left( 1-\frac{P}{M} \right)               
+					.\] 
+					\item \[                    
+					\frac{dx}{dt}=kx
+					.\] 
+				\end{itemize}
+			\end{column}	
+		\end{columns}
+		
+
+	They are used a lot in physics and engineering, including modelling radioactive decay, mixing fluids, cooling materials, shock absorbance and bodies falling under gravity against resistance.
+	\begin{definition}
+		A \textbf{first order differential equation} mean the equation contain the first derivative, $\frac{dy}{dx}$, but not the second derivative nor beyond. 
+	\end{definition}
+\end{frame}
+
+\begin{frame}{A-level Revision: Separation of Variables}
+\begin{align*}
+	\frac{dy}{dx}&=\tikzmarknode{a}{f(x)g(y)} \\
+	\frac{1}{g(y)}\frac{dy}{dx} &= \tikzmarknode{b}{f(x)}\\
+	\frac{1}{g(y)}dy &= f(x)\tikzmarknode{c}{dx} \\
+	\tikzmarknode{d}{\int} \frac{1}{g(y)}dy &= \int f(x) {dx} 
+.\end{align*}	
+
+\begin{alertblock}{Exceptions}
+	However, we would not be able to use this trick on the differential equation:
+	\[
+		x^3\frac{dy}{dx}+3x^2y=\sin(x)
+	.\] 
+	
+\end{alertblock}
+
+\begin{center}
+\begin{tikzpicture}[overlay,remember picture,scale=1]
+	\draw[color=aa,thick,<-] (a.north) --++ (-0.5,0.5) node[above, align=left] {$x$ and $y$ are said to be \emph{separable} because there is \\ just one product of a function of $x$ and a function of $y$.};
+	\draw[color=aa,thick,<-] (b.east) --++ (1,-0.5) node (e) {};
+		\draw[color=aa, thick,<-] (c.east) -- (e) node[right,align=left] {Divide through by $g(y)$ and \\ then multiply by  $dx$.}; 
+		\draw[color=aa,thick,<-] (d.west) --++ (-1.5,0.5) node[above,align=left] {Put an integral symbol \\ on the front!};
+\end{tikzpicture}
+\end{center}
+
+
+\end{frame}
+
+
+\begin{frame}[shrink=8]{General Solution}
+	\begin{definition}
+		If we are just given a differential equation then there is a family of equations that could be the final answer which we call the \textbf{general solution} .
+	\end{definition}
+
+	\begin{problem}
+		Find general solutions to $\frac{dy}{dx}=2$.
+	\end{problem}
+
+	\sol{$y=2x+C$}, Why is it called the general solution?
+
+	\sol{There is a 'family' of solutions as the constant of integration varies.}
+
+\begin{problem}
+	Find general solutions to $\frac{dy}{dx}=-\frac{x}{y}$.
+\end{problem}
+
+
+	\begin{columns}[T]
+		\begin{column}{.4\linewidth}
+			\begin{solution}<3->
+	\begin{align*}
+		\int y dy &= \int -x dx \\
+		\frac{1}{2}y^2 &= -\frac{1}{2}x^2+C \\
+		x^2+y^2&= 2C \\
+		\text{If we let } r^2&= 2C \\
+		x^2+y^2&=r^2
+	.\end{align*}
+	\end{solution}
+\end{column}
+\begin{column}{.6\linewidth}
+	\onslide<4->{
+	So the 'family of circles' satisfies this D.E.
+				\begin{tikzpicture}
+					\begin{axis}[mlineplot,width=4cm,height=4cm,
+						xmin= -1, xmax= 1,
+						ymin= -1, ymax = 1,
+						axis lines = middle,
+					]
+					\addplot[domain=-180:180, samples=100]({cos(x)},{sin(x)});
+					\addplot[domain=-180:180,samples=100]({0.5*cos(x)},{0.5*sin(x)});
+					\addplot[domain=-180:180,samples=100]({0.25*cos(x)},{0.25*sin(x)});
+
+					\end{axis}
+				\end{tikzpicture}}
+		\end{column}
+	\end{columns}
+
+
+\end{frame}
+
+\begin{frame}[shrink]{Test Your Understanding}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+	\begin{problem}
+	Find general solution to $\frac{dy}{dx}=xy+x$.
+	\end{problem}
+	\begin{solution}<2->
+		\begin{align*}
+			\frac{dy}{dx}&=x(y+1) \\
+		\int \frac{1}{y+1} dy &= \int x dx \\
+		\ln (y+1) &= \frac{1}{2}x^2+C \\
+		y+1&=e^{\frac{1}{2}x^2+C} \\
+		   y &= Ae^{\frac{1}{2}x^2}-1 
+		.\end{align*}
+	\end{solution}
+\end{column}
+\begin{column}{.5\textwidth}
+	\begin{problem}
+		Find general solutions to $\frac{dy}{dx}=-\frac{y}{x}.$
+	\end{problem}
+	\begin{solution}<3->
+		\begin{align*}
+			\int \frac{1}{y}dy&= \int -\frac{1}{x}dx \\
+			\ln |y| &= -\ln x +C \\
+			\ln x + \ln |y| &= C\\
+			\ln xy &= C \\
+			|xy| &= e^{C} = A \\
+			y &= \pm \frac{A}{x}
+		.\end{align*}
+		A family of rectangular hyperbola. 
+	\end{solution}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=2]{Particular Solutions}
+	\begin{definition}
+		In an A-level question we usually only end up with one solution because...
+
+		They give us the details of one point (sometimes called \emph{initial condition}) which must be satisfied by the solution. We can the substitute this into the general solution and this gives us a \textbf{particular solution} .
+		
+
+	\end{definition}
+
+	\begin{problem}
+		Find the particular solution for $\frac{dx}{dt}=\sqrt{x} $ which satisfy the initial conditions $x=9$ when $t=0.$
+
+	\end{problem}
+
+	\begin{solution}<2->
+		\begin{align*}
+			\int \frac{1}{\sqrt{x} } dx &= \int 1 dt \\
+			2\sqrt{x} &= t+c \\
+			2(3) &= 0+c \implies c=6 \\
+			2\sqrt{x} &= t+6 \\
+			x&= \left( \frac{t+6}{2} \right)^2 = \frac{(t+6)^2}{4}  
+		.\end{align*}
+	\end{solution}
+
+	\alert<2>{Some people (including myself) like to sub in as soon as possible before rearranging.}
+\end{frame}
+
+\begin{frame}{Reversing the Product Rule}
+	\begin{problem}
+		Find general solutions of the equation $x^3 \frac{dy}{dx}+ 3x^2y=\sin x$.
+	\end{problem}
+
+	We can't \sol{separate} the variables. But do you notice anything about the LHS?
+
+	\sol{It's $\frac{d}{dx}\left( x^3y \right) $.}
+
+	Quickfire Questions:
+
+	\begin{columns}
+		\begin{column}{.5\textwidth}
+			$\frac{d}{dx}\left( x^2y \right) =$\sol{$2xy+x^2 \frac{dy}{dx}$.}
+
+			$\frac{d}{dx}\left( y\sin(x) \right) =$ \sol{$\cos(x)y + \sin(x) \frac{dy}{dx}$.}
+	
+\end{column}
+\begin{column}{.5\textwidth}
+	$x^{4} \frac{dy}{dx}+4 x^3y = $ \sol{$\frac{d}{dx}\left( x^{4}y \right) $.}
+
+		$e^x \frac{dy}{dx}+ e^x y=$ \sol{$e^x y$.}
+	
+		$(\ln x) \frac{dy}{dx}+ \frac{y}{x}=$ \sol{$ \ln(x)y$.}
+\end{column}
+		
+	\end{columns}
+	  
+	\alert<5->{So it appears whatever term ends up on front of the $\frac{dy}{dx}$ will be on front of the $y$ in the integral.}
+\end{frame}
+
+\begin{frame}[shrink]{Differential Equations by Reversing the Product Rule}
+	\begin{problem}
+		Find general solutions of the equation $x^3 \frac{dy}{dx} + 3x^2 y = \sin x$.
+	\end{problem}
+
+	\begin{solution}<2->
+		\begin{align*}
+			\frac{d}{dx}(x^3y) &= \sin x \\
+			x^3y &= \int \sin x dx = -\cos x +C \\
+			y &= \frac{C-\cos x}{x^3}
+		.\end{align*}
+	\end{solution}
+
+\begin{columns}
+\begin{column}{.5\linewidth}
+\begin{problem}
+	Find general solutions of the equation $\frac{1}{x} \frac{dy}{dx}-\frac{1}{x^2}y=e^{x}$.
+\end{problem}
+\begin{solution}<3->
+	\begin{align*}
+		\frac{d}{dx}\left( \frac{y}{x} \right) &= e^{x} \\
+		\frac{y}{x} &= e^{x}+c \\
+		y &= x(e^{x}+c)
+	.\end{align*}
+\end{solution}
+\end{column}
+\begin{column}{.5\linewidth}
+\begin{problem}
+	Find general solution of the equation $4xy \frac{dy}{dx}+2y^2=x^2$.
+\end{problem}
+\begin{solution}<4->
+	\begin{align*}
+		\frac{d}{dx}(2xy^2)&= x^2 \\
+		2xy^2 &= \frac{1}{3}x^3+C \\
+		      &\ldots
+	.\end{align*}
+\end{solution}
+\end{column}
+\end{columns}
+
+
+
+\end{frame}
+
+\begin{frame}{Solving $\frac{dy}{dx}+ Py=Q$}
+	Even if the coefficient of $y$ isn't the derivative by the coefficient of $\frac{dy}{dx}$ there is a cunning trick which means that this becomes the case and we can reverse Th product rule.
+
+	\begin{definition}
+		We can multiply through by the \textbf{integrating factor}, $ e^{\int P dx}$. This then produces an equation where we can use the previous  reverse product rule trick. 
+	\end{definition}
+	
+\begin{problem}
+	Find the general solution of $\frac{dy}{dx}-4y=e^{x}$.
+\end{problem}
+\begin{columns}[T]
+\begin{column}{.5\textwidth}
+\sol{Integrating Factor} $=$ \sol{ $e^{\int-4dx}=e^{-4x}$}
+
+Then multiplying through the original D.E. by the integrating factor:
+
+\sol{$e^{-4x} \frac{dy}{dx}-4e^{-4x}y=e^{-3x}$.}
+
+Then we can solve the usual way:
+\end{column}
+\begin{column}{.5\textwidth}
+\begin{solution}<4->
+	\begin{align*}
+		\frac{d}{dx}\left( ye^{-4x} \right) &= e^{-3x} \\
+		ye^{-4x}&= -\frac{1}{3}e^{-3x}+C \\
+		y&=-\frac{1}{3}e^{x}+Ce^{4x}
+	.\end{align*}
+\end{solution}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=10]{Proof that the integrating factor method works}
+	\begin{problem}
+		Solve the general equation $\frac{dy}{dx}+Py=Q$ where $P,Q$ are function of  $x$.
+	\end{problem}
+
+	Suppose $f(x)$ is the I.F. As usual we'd multiply by it:
+	\[
+		\text{\sol{$f(x) \frac{dy}{dx} + f(x) P y = f(x)Q$}}
+	.\] 
+	If we can use the reverse trick on the LHS, then it would be of the form:
+\[
+	\text{\sol{$f(x) \frac{dy}{dx}+f'(x)y$}}
+.\] 
+Thus comparing the coefficients of the two LHSs:
+\[
+	\text{\sol{$ f'(x)=f(x)P$}}
+.\] 
+Dividing by $f(x)$ and integrating:
+
+\begin{solution}<4->
+	\begin{align*}
+		\int \frac{f'(x)}{f(x)} dx &= \int P dx \\
+		\ln f(x) &= \int P dx \\
+		f(x) &= e^{\int P dx}
+	.\end{align*}
+\end{solution}
+
+
+\end{frame}
+
+
+\begin{frame}[shrink]{When the Coefficient of $\frac{dy}{dx}$ isn't 1}
+	\begin{problem}
+		Find the general solution of $\cos x \frac{dy}{dx}+ 2y\sin x = \cos^4 x.$
+	\end{problem}
+
+	What shall we do first so that we have an equation like before? \sol{Divide by $\cos x$}
+
+	\begin{columns}[T]
+	\begin{column}{.6\linewidth}
+	\begin{solution}<2->
+		\[
+		\frac{dy}{dx}+2y \tan x = \cos^3 x
+		.\] 
+	\end{solution}
+
+	\begin{solution}<3->
+		\[
+			\text{I.F.}= e^{\int 2 \tan x dx}= e ^{2 \ln \sec x}=\sec^2x
+		.\] 
+	\end{solution}
+	\begin{solution}<4->
+		\[
+		\sec^2 x \frac{dy}{dx} + 2y \sec^2x \tan x = \cos x 
+		.\] 
+		\[
+			\frac{d}{dx}(y \sec^2 x)=\cos x
+		.\] 
+	\end{solution}
+	\begin{solution}<5->
+		\[
+		y \sec^2x =\sin x +c
+		.\] 
+		\[
+			y= \cos^2x(\sin x +c)
+		.\] 
+	\end{solution}
+	\end{column}
+	\begin{column}{.4\linewidth}
+		\begin{block}{Step 1}
+		Divide by anything on front of $\frac{dy}{dx}$.
+	\end{block}
+	\begin{block}{Step 2}
+		Determine the integrating factor.
+	\end{block}
+	\begin{block}{Step 3}
+		Multiply through by I.F. and use product rule backwards.
+		
+	\end{block}
+	\begin{block}{Step 4}
+		Integrate and simplify.
+	\end{block}
+	\end{column}
+	\end{columns}
+
+
+\end{frame}
+
+\begin{frame}{Past Paper Question}
+	\begin{problem}
+		Find the general solution of the differential equation
+		\[
+		x \frac{dy}{dx} + 5y = \frac{\ln x}{x}, \quad x > 0
+		.\] 
+	\end{problem}
+
+	\begin{solution}<2->
+		\begin{align*}
+			\frac{dy}{dx} + \frac{5}{x} y &= \frac{\ln x}{x^2} \\
+			x^5 \frac{dy}{dx}+ 5x^4 y &= \ln (x) x^3 \\
+			x^5y &=  \int \ln (x) x^3 \ dx \\
+			x^5y &= \frac{1}{4}x^4 \ln x - \frac{1}{16x^4}+c\\
+			y &= \frac{1}{4x}(\ln x - \frac{1}{4}+\frac{c}{5})
+		.\end{align*}
+	\end{solution}
+\end{frame}
+
+
+\begin{frame}[shrink]{Making a Substitution}
+	Sometimes making a substitution will turn a more complex differential equation into one like we've seen before.
+
+	\begin{problem}
+		Use the substitution $z=\frac{y}{x}$ to transform the differential equation $\frac{dy}{dx}=\frac{x^2+3y^2}{ 2xy}, x>0$ into a differential equation in $z$ and $x$. By first solving this new equation, find the general solution of the original equation, giving $y^2$ in terms of $x$.
+	\end{problem}
+
+	\begin{columns}
+	\begin{column}{.6\linewidth}
+	\begin{solution}<2->
+		$z=\frac{y}{x} \implies y=xz$
+
+		$\frac{dy}{dx}= x \frac{dz}{dx}+z$ (Product rule)
+	\end{solution}
+	\begin{solution}<3->
+		$x \frac{dz}{dx}+z=\frac{x^2+3x^2z^2}{ 2x^2z}=\frac{1}{2z}+\frac{3}{2}z$
+	\end{solution}
+	\begin{solution}<4->
+		$x \frac{dz}{dx}=\frac{1}{2z}+\frac{1}{2}z=\frac{1+z^2}{2z}$ 
+
+		$\int \frac{2z}{1+z^2} dz=\int \frac{1}{x}dx$ ?
+
+$1+z^2=Ax$
+
+	\end{solution}
+	\end{column}
+	\begin{column}{.4\linewidth}
+		\begin{itemize}
+			\item<2-> Make $y$ the subject so that we can find  $\frac{dy}{dx}$ and sub $y$ out.
+				\item<3-> Sub in $y$ and  $\frac{dy}{dx}$.
+				\item<4-> Simplify to either get a separable case or one with I.F.
+				\item<5-> Sub back $y$ in at the end.
+		\end{itemize}
+	\begin{solution}<5->
+		$y^2=x^2(Ax-1)$
+	\end{solution}
+	\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\begin{frame}{Substitution then Integrating Factor}
+	\begin{problem}
+		Use the substitution $z=y^{-1}$ to transform the differential equation $\frac{dy}{dx}+xy=xy^2$, into a differential equation in $z$ and $x$. Find the general solution using an integrating factor.
+	\end{problem}
+	\begin{solution}<2->
+		\begin{align*}
+			y=\frac{1}{z} &, \frac{dy}{dx}= -\frac{1}{z^2}\frac{dz}{dx} \\
+			-\frac{1}{z^2}\frac{dz}{dx}+\frac{x}{z} &= \frac{x}{z^2} \\
+			\frac{dz}{dx} -xz &= -x \\
+			\text{I.F.} &= e^{\int -x\ dx}=e^{-\frac{1}{2}x^2} \\
+			\frac{d}{dx}\left( ze^{-\frac{1}{2}x^2} \right) &= -xe^{-\frac{1}{2}x^2} \\
+			ze^{-\frac{1}{2}x^2} &= e^{-\frac{1}{2}x^2}+c \\
+			z &= 1+ce^{\frac{1}{2}x^2} \\
+			y &= \frac{1}{1+ce^{\frac{1}{2}x^2}}
+		.\end{align*}
+	\end{solution}
+\end{frame}
+
+\begin{frame}[shrink]{Test Your Understanding}
+	\begin{problem}
+		A particle is moving along the $x$-axis and its displacement, $x$ meters, is modelled using the differential equation 
+		\[
+		t \frac{dx}{dt} +x = 2t^3x^2, \quad 0<t<1.5
+		.\]
+		Where $t$ is the time in seconds.
+		\begin{itemize}
+			\item Use the substitution $u=xt$ to show that the differential equation can be expressed as $\frac{du}{dt}=2u^2t$.
+			\item Hence show that the general solution to the differential equation is $ x= \frac{1}{t(A-t^2}$, where $A$ is an arbitrary constant.
+			\item Given that $x=1$ when $t=0.5,$ find the displacement after 1.2 seconds.
+		\end{itemize}
+
+	\end{problem}
+	\begin{columns}[T]
+	\begin{column}{.3\linewidth}
+	\begin{solution}<2->
+		$\frac{du}{dt}=t \frac{dx}{dt}+x$
+
+		$x=\frac{u}{t}$ 
+
+		$t \frac{dx}{dt} + x= 2t^3x^2$ 
+
+		$\frac{du}{dt}=2t^3\left( \frac{u}{t} \right)^2=2u^2t $
+	\end{solution}
+	\end{column}
+	\begin{column}{.3\linewidth}
+		\begin{solution}<3->
+	$\int \frac{1}{u^2}du=\int 2t dt$
+
+	$-\frac{1}{u}=t^2+c$
+
+	$u=-\frac{1}{t^2+c}$
+
+	$xt=\frac{1}{A-t^2}$
+
+	$x=\frac{1}{t(A-t^2)}$
+	\end{solution}
+	\end{column}
+	\begin{column}{.4\textwidth}
+		\begin{solution}<4->
+			$x=1$ when $t=0.5$ :
+
+			$1=\frac{1}{0.5(A-0.25)} \implies A =2.25$
+
+			$x=\frac{1}{1.2(2.25-1.2^2}$ 
+
+			The displacement after 1.2s is 1.03m (3s.f)
+		\end{solution}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[shrink]{Past Paper Question}
+	\begin{problem}
+		\begin{itemize}
+			\item Show that the substitution $y=vx$ transforms the differential equation 
+				\[
+				3xy^2 \frac{dy}{dx}=x^3+y^3
+				.\] 
+				Into the differential equation
+				\[
+				3v^2x \frac{dv}{dx}=1-2v^3
+				.\] 
+			\item By solving the second differential equation, find a general solution to the first differential equation in the form $y=f(x)$.
+			\item Given that $y=2$ at $x=1,$ find the value of $\frac{dy}{dx}$ at $x=1$.
+			
+		\end{itemize}
+
+
+	\end{problem}
+\begin{columns}[T]
+\begin{column}{.5\linewidth}
+\begin{solution}<2->
+	$\frac{dy}{dx}=v+x \frac{dv}{dx}$
+
+	$3x(vx)^2(v+x \frac{dv}{dx})= x^3+(vx)^3$
+
+	$3(v)^2(v+x \frac{dv}{dx})=1+(v)^3$ 
+
+	$3v^2x \frac{dv}{dx}= 1-2v^3$
+\end{solution}
+\begin{solution}<4->
+         $3(1)(2)^2 \frac{dy}{dx}=(1)^3+(2)^3$
+  
+          $12 \frac{dy}{dx}=1+8$
+  
+          $\left.\frac{dy}{dx}\right\rvert_{x=1}=\frac{3}{4}$
+  \end{solution}
+
+\end{column}
+\begin{column}{.5\linewidth}
+\begin{solution}<3->
+          $\int \frac{3v^2}{1-2v^3} dv = \int \frac{1}{x} dx$ 
+  
+          $-\frac{1}{2}\ln (1-2v^3)=\ln x +c$
+  
+          $1-2v^3=\frac{A}{x^2}$
+  
+          $x^3-2y^3=Ax$
+  
+         $y=(\frac{1}{2}(x^3-Ax))^{\frac{1}{3}}$
+  \end{solution}
+\end{column}
+\end{columns}
+	
+\end{frame}
+
+
+\end{document}

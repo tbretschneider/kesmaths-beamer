@@ -1,0 +1,631 @@
+% !TeX spellcheck = en_GB
+% !TeX encoding = UTF-8
+\documentclass[8pt]{beamer}
+
+ \input{preamble}
+
+
+  \title[Discrete]{AL FM Discrete}
+  \subtitle{Mixed Strategies}
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+
+\frame{\titlepage}
+
+\begin{frame}[shrink=5]{Expected Value for Discrete Distributions}
+	\begin{problem}
+		Consider the following probability distribution. If you played the game for a long time, on average how much would you expect to win on each round.
+			\begin{center}
+			\colorbox{cc}{
+			 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{c|c|c|c}
+		£1 & £2 & £3 & £4 \\ \hline
+		\sol{$\frac{1}{8}$} & $\frac{1}{2}$ & $\frac{1}{4}$ & $\frac{1}{8}$ \\
+\end{tabular}}
+\end{center}
+	\end{problem}
+
+\sol{
+		
+$		\frac{1}{8}\times 1+\frac{1}{2}\times 2+\frac{1}{4}\times 3+\frac{1}{8}\times 4=\frac{19}{8}
+$		.}
+
+	The expected value of a random variable is the mean value you would expect it to take in the long run.
+
+	\begin{definition}
+		For a random variable $X$, the expected value is
+		\[
+			E(X) = \sum p_i x_i
+		.\] 
+	\end{definition}
+
+	Note that this is just like the mean but with theoretical probabilities rather than actual data. If you repeated an experiment a lot of times you would expect that the mean value would get closer and closer to the expected value.
+
+	(Note that if you wrote the formula as $\frac{\sum p_i x_i}{\sum p_i}$ it would look like the mean formula even more but you don't need the denominator as $\sum p_i =1$.)
+\end{frame}
+
+\begin{frame}[shrink=25]{Mixed Strategies}
+	\begin{definition}
+		In many two-person zero-sum games, there is no stable solution, and so the optimal strategy is more complicated, consisting of multiple options with a fixed probability. This is called a \textbf{mixed strategy}. 	
+	\end{definition}
+
+	\begin{columns}[T]
+\begin{column}{.7\linewidth}
+\begin{problem}
+	A two-player zero-sum game has the given pay-off matrix. Find the value of the game and the optimal mixed strategies for both players.
+\end{problem}
+\end{column}
+\begin{column}{.3\linewidth}
+
+			\begin{center}
+			\colorbox{cc}{
+			 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{cc|cc}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{Player 2}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ \\ \hline 
+\raisebox{0cm}{\multirow{2}*{\rotatebox{90}{Player 1}}}  & $A$ & $3$ & $-2$ \\
+						      & $B$ & $1$ & $4$ \\
+\end{tabular}}
+\end{center}
+\end{column}
+\end{columns}
+
+\begin{solution}<2->
+	Let Player 1 choose Strategy $A$ with probability $p$ and Strategy $B$ with probability $1-p$.
+
+	If Player 2 chooses Strategy $X$ then the expected pay-off is $3p+1(1-p)=2p+1$. 
+
+	If Player 2 chooses Strategy $Y$ then the expected pay-off is $-2p+4(1-p)=4-6p $.
+
+	For the play-safe strategy we equate these pay-offs so $2p+1=4-6p \implies p= \frac{3}{8}$.
+
+	\alert<3>{Equating the two strategies is the important step. This gives the best worse case outcome as if one gets bigger, the other gets smaller.}
+
+	Substituting this  $p$ back into either of the expected pay-offs gives a game value of 1.75.
+
+	Similarly let Player 2 choose Strategy  $X$ with probability $q$ and Strategy $Y$ with probability $1-q $.
+
+	If Player 1 chooses Strategy $A$ then the expected pay-off is $3q-2(1-q)=5q-2$.
+ 
+	If Player 1 chooses Strategy  $B$ then the expected pay-off is $q+4(1-q)=4-3q$.
+
+	For the play-safe strategy we equate these pay-offs so  $5q-2=4-3q$ and $q=\frac{3}{4}.$ 
+
+	\alert<5>{If we substitute the $q=\frac{3}{4}$ into either of the expected pay-offs we would also get a value of 1.75. It should always happen that the values should be the same no matter which player's mixed strategy you have found.}
+\end{solution}
+
+
+\end{frame}
+
+\begin{frame}[shrink=10]{Past Paper Question}
+	\begin{problem}
+	Roza plays a zero-sum game against a computer. The game is represented by the following pay-off matrix for Roza.
+			\begin{center}
+			\colorbox{cc}{
+			 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{cc|ccc}
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Computer}\\
+\multicolumn{1}{c}{} &  & $C_1$  & $C_2$ & $ C_3$ \\ \hline 
+\raisebox{0cm}{\multirow{2}*{\rotatebox{90}{Roza}}}  & $R_1$ & $3$ & $4$ & $-3$ \\
+						     & $R_2$ & $-2$ & $-1$ & $5$ \\
+\end{tabular}}
+\end{center}
+
+\begin{itemize}
+	\item State which strategy the computer should never play, giving a reason for your answer.
+	\item Roza chooses strategy $R_1$ with probability $p$. Find expressions for the expected gains for Roza when the computer chooses each of its two remaining strategies.
+	\item Hence find the value of $p$ for which Roza will maximise her expected gains.
+	\item Find the value of the game for Roza.
+\end{itemize}
+\end{problem}
+\begin{columns}
+\begin{column}{.5\linewidth}
+
+\begin{solution}<2->
+	Never play $ C_2$.
+
+	$C_2$ dominated by $ C_1$ $(-3>-4 \text{ and } 2>1)$.
+\end{solution}
+\begin{solution}<3->
+	$ C_1:\ 3p-2(1-p)$.
+
+	$C_2:\ -3p+5(1-p)$.
+\end{solution}
+\end{column}
+\begin{column}{.5\linewidth}
+\begin{solution}<4->
+	$3p-2(1-p)=-3p+5(1-p)$.
+
+	 $\implies p=\frac{7}{13}$.
+\end{solution}
+\begin{solution}<5->
+	Value of game $=5\times \frac{7}{13}-2=\frac{9}{13}$.
+\end{solution}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}[shrink=13]{Mixed Strategies with Pay-off Matrices}
+	With a 2 by 2 pay-off matrix we could equate the two expected pay-offs as we knew this would always give the largest minimum value (because as one goes up the other would go down and therefore the minimum value would get smaller).
+
+When there are more equations it is not as easy to find the largest value of the minimum. If there is only one variable, the best way of achieving this is by drawing a graph.
+
+\begin{columns}
+\begin{column}{.7\linewidth}
+	\begin{problem}
+For the two-person zero-sum game with pay-off matrix as shown, find optimal mixed strategies for both players and find the value of the game.
+\end{problem}
+\end{column}
+\begin{column}{.3\linewidth}
+
+			\begin{center}
+			\colorbox{cc}{
+			 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{cc|ccc}
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Player 2}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \hline 
+\raisebox{0cm}{\multirow{2}*{\rotatebox{90}{Player 1}}}  & $P$ & $4$ & $5$ & $-3$ \\
+						     & $Q$ & $2$ & $1$ & $3$ \\
+\end{tabular}}
+\end{center}
+\end{column}
+\end{columns}
+
+\begin{solution}<2->
+	Let Player 1 choose Strategy $P$ with probability $p$ and Strategy $Q$ with probability $1-p$.
+
+	If Player 2 chooses Strategy $X$, then the expected pay-off for Player 1 is $4p+2(1-p)=2p+2$.
+
+	If Player 2 chooses Strategy $Y$, then the expected pay-off for Player 1 is  $5p+1(1-p)=4p+1$.
+
+	If Player 2 chooses Strategy  $Z$, then the expected pay-off for Player 1 is  $-3p+3(1-p)=3-6p$.
+
+	\alert<3>{The important point is that it is not easy to see what the largest minimum of all three of these functions is for any value of  $p$ between $0$ and $1$. On the next slide we draw the graph.}
+\end{solution}
+
+\end{frame}
+
+\begin{frame}{Mixed Strategies with $n\times 2$ Pay-off Matrices.}
+	
+
+\begin{columns}
+\begin{column}{.4\linewidth}
+\begin{tikzpicture}
+					\begin{axis}[mlineplot,width=4cm,height=4cm,
+						xmin= 0, xmax= 1,
+						ymin= -4, ymax = 6,
+						axis lines = middle,
+					]
+					\addplot[domain=0:1, samples=100] {4*x+1};
+					\addplot[domain=0:1,samples=100]{2*x+2};
+					\addplot[domain=0:1,samples=100]{3-6*x};
+					\node[right] at (axis cs:1,5) {$4p+1$};
+					\node[right] at (axis cs:1,4) {$2p+2$};
+					\node[right] at (axis cs:1,-3) { $3-6p$};
+					\end{axis}
+				\end{tikzpicture}
+\end{column}
+\begin{column}{.6\linewidth}
+This is the graph of the probability $p$ vs expected pay-off for the three pay-offs calculated on the previous slide.
+
+Rather than read off the graph, solve the simultaneous equations: $4p+1=3-6p$ so  $p=0.2$.
+
+The value of the game is therefore  $4\times 0.2+1=1.8$.
+\end{column}
+\end{columns}
+
+\alert<2>{The two lines that were used to find this minimum point were those corresponding to Strategy $Y$ and  $Z$. Therefore these are the only ones that Player 2 should use in their optimal mixed strategy because Strategy  $X$ would give a bigger win for Player 1.}
+
+\begin{solution}<3->
+	Let Player 2 choose Strategy $Y$ with probability $q$ and Strategy $Z$ with probability $1-q$.
+
+	For Strategy  $P$ the expected pay-off is  $5q-3(1-q)=8q-3 $.
+
+	For $Q$ it is  $q+3(1-q)=3-2q $.
+
+	Since only two, we can equate. $8q-3=3-2q$ so  $q=0.6$.
+
+\end{solution}
+\end{frame}
+
+
+\begin{frame}[shrink=8]{Stable Solutions}
+	What would happen if we tried to apply a mixed strategy to a stable solution?
+
+	\begin{center}
+\colorbox{cc}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+	\multicolumn{2}{c}{} & \multicolumn{3}{c}{Ben} \\
+	\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$  \\ \hline
+	\raisebox{0.0cm}{\multirow{2}*{\rotatebox{90}{Amina}}}  & $P$ & $4$ & $0$ & $-3$  \\
+							       & $Q$ & $2$ & $1$ & $3$ \\
+\end{tabular}}
+\end{center}
+
+Let Amine choose Strategy $P$ with probability $p$ and Strategy $Q$ with probability  $1-p$.
+
+If Ben chooses Strategy $X$ then the expected pay-off for Amina is  $4p+2(1-p)= 2p+2$.
+
+If Ben chooses Strategy  $Y$ then the expected pay-off for Amina is  $0p+1(1-p)= 1-p$.
+
+If Ben chooses Strategy  $Z$ then the expected pay-off for Amina is  $-3p+3(1-p)= 3-6p$.
+\begin{columns}
+\begin{column}{.3\linewidth}
+
+\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=4cm,height=4cm,
+						xmin= 0, xmax= 1,
+						ymin= -4, ymax = 6,
+						axis lines = middle,
+					]
+					\addplot[domain=0:1, samples=100] {2*x+2};
+					\addplot[domain=0:1,samples=100]{1-x};
+					\addplot[domain=0:1,samples=100]{3-6*x};
+					
+					\node[right] at (axis cs:1,4) {$2p+2$};
+					\node[right] at (axis cs:1,0) {$p-1$};
+					\node[right] at (axis cs:1,-3) { $3-6p$};
+					\end{axis}
+				\end{tikzpicture}
+\end{column}
+\begin{column}{.7\linewidth}
+The optimal strategy is when $p=0$ so when Amina only chooses Strategy $Q$.
+
+Since it was only on the blue line then Ben's optimal strategy must be  $Y$.
+
+\alert<2>{This is the same solution as we had before but much more work! Hence only follow the mixed strategy approach if you have first checked to see whether there is a stable solution. }
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}[shrink=15]{Past Paper Question}
+	\begin{problem}
+		Rohan and Carla play a zero-sum game for which there is no stable solution. The game is represented by the following pay-off matrix for Rohan.
+
+			\begin{center}	
+			\colorbox{cc}{
+			 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{cc|ccc}
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Carla}\\
+\multicolumn{1}{c}{} &  & $C_1$  & $C_2$ & $ C_3$ \\ \hline 
+\raisebox{0cm}{\multirow{2}*{\rotatebox{90}{Rohan}}}  & $R_1$ & $3$ & $5$ & $-1$ \\
+						     & $R_2$ & $1$ & $-2$ & $4$ \\
+\end{tabular}}
+\end{center}
+
+\begin{itemize}
+	\item Find the optimal mixed strategy for Rohan and show that the value of the game is $\frac{3}{2}$.
+	\item Carla plays strategy $C_1$ with probability $p$, and strategy $ C_2$ with probability $q$.
+
+		Find the value of  $p$ and  $q$ and hence find the optimal mixed strategy for Carla.
+\end{itemize}
+	\end{problem}
+	\begin{columns}[T]
+	\begin{column}{.3\linewidth}
+	\begin{solution}<2->
+		Let Rohan play $ R_1$ with prob $p$
+
+		 $\implies$ plays $ R_2$ with prob $1-p$
+
+		 When Carla plays  $ C_1$,
+
+		 Rohan's expected gain $=3p+(1-p)$
+		  $=1+2p$
+
+		  $ C_2:5p+(-2)(1-p)=7p-2$
+
+		  $ C_3:-p+4(1-p)=4-5p$
+	\end{solution}
+	\end{column}
+	\begin{column}{.4\linewidth}
+	\begin{solution}<2->
+  \begin{tikzpicture}
+                                          \begin{axis}[clip=false,mlineplot,width=4cm,height=4cm,
+                                                  xmin= 0, xmax= 1,
+                                                  ymin= -4, ymax = 6,
+                                                  axis lines = middle,
+                                          ]
+                                          \addplot[domain=0:1, samples=100] {2*x+1};
+                                          \addplot[domain=0:1,samples=100]{7*x-2};
+                                          \addplot[domain=0:1,samples=100]{4-5*x};
+                                       
+                                          \node[right] at (axis cs:1,4) {$2p+1$};
+                                          \node[right] at (axis cs:1,0) {$7p-2$};
+                                          \node[right] at (axis cs:1,-3) { $4-5p$};
+                                          \end{axis}
+                                  \end{tikzpicture}
+				  $7p-2=4-5p$
+		$\implies p=\frac{1}{2}$
+
+		Value of the game=$7\times \frac{1}{2}-2=\frac{3}{2}.$
+	\end{solution}
+	\end{column}
+	\begin{column}{.3\textwidth}
+		\begin{solution}<3->
+		When Rohan plays $R_1$, expected loss for Carla is $3p+3q+(-1)(1-p-q)$
+
+		and when Rohan plays  $ R_2$, expected loss for Carla is $p+(-2)q+4(1-p-q)$
+
+		 $4p+6q=\frac{3}{2}+1$ 
+
+		 $3p+6q=4-\frac{3}{2}$ 
+
+		 $\implies p=0,q=\frac{5}{12}$
+	 \end{solution}
+	\end{column}
+	\end{columns}
+
+\end{frame}
+
+
+\begin{frame}[shrink=10]{Past Paper Question}
+\begin{problem}
+	Kate and Pippa play a zero-sum game. The game is represented by the following pay-off matrix for Kate.
+
+			\begin{center}	
+			\colorbox{cc}{
+			 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{cc|ccc}
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Pippa}\\
+\multicolumn{1}{c}{} &  & $D$  & $E$ & $ F$ \\ \hline 
+\raisebox{0cm}{\multirow{3}*{\rotatebox{90}{Kate}}}  & $A$ & $-2$ & $0$ & $3$ \\
+						     & $B$ & $3$ & $-2$ & $-2$ \\
+						     & $C$ & $4$ & $1$ & $-1$ \\
+\end{tabular}}
+\end{center}
+
+\begin{itemize}
+	\item Explain why Kate should not adopt strategy $B$.
+	\item Find the optimal mixed strategy for Kate and find the value of the game.
+	\item Find the optimal mixed strategy for Pippa.
+\end{itemize}
+\end{problem}	
+
+\begin{columns}[T]
+\begin{column}{.3\linewidth}
+\begin{solution}<2->
+	$R_C>R_B$
+\end{solution}
+\begin{solution}<3->
+	$K$ plays  $A$ prob  $p$ and  $C$ prob  $1-p$
+
+	 $P$ plays 
+
+	 $D$,  $K$ wins  $-2p+4(1-p)=4-6p$
+
+	  $E$,  $K$ wins  $1-p$
+
+	  $F$,  $K$ wins  $3p-1(1-p)=-1+4p$
+\end{solution}
+\end{column}
+\begin{column}{.4\linewidth}
+\begin{solution}<3->
+	
+  \begin{tikzpicture}
+                                          \begin{axis}[clip=false,mlineplot,width=4cm,height=4cm,
+                                                  xmin= 0, xmax= 1,
+                                                  ymin= -4, ymax = 6,
+                                                  axis lines = middle,
+                                          ]
+                                          \addplot[domain=0:1, samples=100] {4-6*x};
+                                          \addplot[domain=0:1,samples=100]{1-x};
+                                          \addplot[domain=0:1,samples=100]{-1+4*x};
+                                          
+                                          \node[right] at (axis cs:1,4) {$4-6p$};
+                                          \node[right] at (axis cs:1,0) {$1-p$};
+                                          \node[right] at (axis cs:1,-3) { $-1+4p$};
+                                          \end{axis}
+                                  \end{tikzpicture}
+
+				  Max at 
+				  $1-p=-1+4p$
+
+				   $p=\frac{2}{5}$ 
+
+				   Value of the game $=\frac{3}{5}$
+\end{solution}
+\end{column}
+\begin{column}{.3\linewidth}
+	\begin{solution}<4->
+		Probability of $D$ is 0
+
+		$3(1-p)=\frac{3}{5}$ 
+
+		$p=\frac{4}{5}$ 
+
+
+	\end{solution}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Past Paper Question}
+	\begin{problem}
+		Mark and Owen play a zero-sum game. The game is represented by the following pay-off matrix for Mark.
+
+			\begin{center}	
+			\colorbox{cc}{
+			 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{cc|ccc}
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Owen}\\
+\multicolumn{1}{c}{} &  & $D$  & $E$ & $ F$ \\ \hline 
+\raisebox{0cm}{\multirow{3}*{\rotatebox{90}{Mark}}}  & $A$ & $4$ & $1$ & $-1$ \\
+						     & $B$ & $3$ & $-2$ & $-2$ \\
+						     & $C$ & $-2$ & $0$ & $3$ \\
+\end{tabular}}
+\end{center}
+\begin{itemize}
+	\item Explain why Mark should never play strategy $B.$
+	\item It is given that the value of the game is 0.6. Find the optimal strategy for Owen.
+\end{itemize}
+	\end{problem}
+
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}
+	\begin{solution}<2->
+		$A$ dominates  $B$.
+	\end{solution}
+	\begin{solution}<3->
+		Mark plays $A$ Owen loses
+
+		$4p+q-1(1-p-q)$
+
+		Mark plays  $C$, Owen loses
+
+		$-2p+3(1-p-q)$
+
+		 $5p+2q=1.6$
+	\end{solution}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	\begin{solution}<3->
+		$-5p-3q=-2.4$
+
+		 $q=0.8$
+
+		  $p=0$
+
+		   $1-p-q=0.2$
+	\end{solution}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[shrink]{Past Paper Question}
+	\begin{problem}
+		John and Danielle play a zero-sum game which does not have a stable solution.
+
+		The game is represented by the following pay-off matrix for John.
+
+			\begin{center}	
+			\colorbox{cc}{
+			 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{cc|ccc}
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Danielle}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \hline 
+\raisebox{0cm}{\multirow{3}*{\rotatebox{90}{John}}}  & $A$ & $2$ & $1$ & $-1$ \\
+						     & $B$ & $-3$ & $-2$ & $2$ \\
+						     & $C$ & $-3$ & $-4$ & $1$ \\
+\end{tabular}}
+\end{center}
+Find the optimal mixed strategy for John.
+	\end{problem}
+	\begin{columns}
+	\begin{column}{.5\linewidth}
+	\begin{solution}<2->
+		Strategy $B$ dominates strategy $C$.
+
+		John plays  $A$ with prob $p$, and $B$ with  $1-p$.
+
+		If Danielle plays:
+
+		$X$: expected gain for John  $=2p-3(1-p)=5p-3$
+
+		$Y$: expected gain  $=p-2(1-p)=3p-2$
+
+		$Z$:  $-p+2(1-p)=2-3p$
+	\end{solution}
+	\end{column}
+	\begin{column}{.5\linewidth}
+		\begin{solution}
+  \begin{tikzpicture}
+                                          \begin{axis}[clip=false,mlineplot,width=4cm,height=4cm,
+                                                  xmin= 0, xmax= 1,
+                                                  ymin= -4, ymax = 6,
+                                                  axis lines = middle,
+                                          ]
+                                          \addplot[domain=0:1, samples=100] {5*x-3};
+                                          \addplot[domain=0:1,samples=100]{3*x-2};
+                                          \addplot[domain=0:1,samples=100]{2-3*x};
+                                          
+                                          \node[right] at (axis cs:1,2) {$5p-3$};
+                                          \node[right] at (axis cs:1,1) {$3p-2$};
+                                          \node[right] at (axis cs:1,-1) { $2-3p$};
+                                          \end{axis}
+                                  \end{tikzpicture}
+
+				  $3p-2=2-3p$
+
+ $6p=4$
+
+  $p=\frac{2}{3}$
+  \end{solution}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=20]{Past Paper Problem}
+\begin{problem}
+	Victoria and Albert play a zero-sum game. The game is represented by the following pay-off matrix for Victoria.
+	\begin{center}
+	\colorbox{cc}{
+		\arrayrulecolor{white}
+		\setlength\arrayrulewidth{0.5mm}
+		\begin{tabular}{cc|ccc}
+			\multicolumn{2}{c}{} & \multicolumn{3}{c}{Albert}\\
+			\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \hline 
+			\raisebox{0cm}{\multirow{3}*{\rotatebox{90}{Victoria}}}  & $P$ & $3$ & $-1$ & $1$ \\
+			& $Q$ & $-2$ & $0$ & $1$ \\
+			& $R$ & $4$ & $-1$ & $-1$ \\
+	\end{tabular}}
+\end{center}
+\begin{itemize}
+	\item Find the play-safe strategies for each player.
+	\item State, with a reason, the strategy that Albert should never play.
+	\item Determine an optimal mixed strategy for Victoria.
+	\item Find the value of the game for Victoria.
+	\item State an assumption that must be made in order that this is the maximum expected pay-off that Victoria can achieve.
+\end{itemize}
+\end{problem}
+\begin{solution}<2->
+	Row minima: $-1,-2,(-1)$
+	
+	Column maxima: $4,0,(1)$
+	
+	max(row min) $=-1$
+	min(col max) $=0$
+	
+	Victoria plays $R$ (or $P$); Albert plays $Y$.
+\end{solution}
+\begin{solution}<3->
+	Albert should never play $Z$ because strategy $Y$ dominates strategy $Z$.
+	\end{solution}
+\begin{solution}<4->
+	Strategy $P$ dominated by $R$.
+	
+	Victoria plays $Q$ with $p$ and $R$ with $1-p$.
+	
+	$X$: expected gain $=-2p+4(1-p)=4-6p$
+	$Y$: expected gain $=-(1-p)=p-1$
+	
+	$\implies p=\frac{5}{7}$
+\end{solution}
+\begin{solution}<5->
+	$4-6\times \frac{5}{7}=-\frac{2}{7}$
+\end{solution}
+\begin{solution}<6->
+	Only if Albert also plays an optimal mixed strategy.
+\end{solution}
+\end{frame}
+
+
+\end{document}

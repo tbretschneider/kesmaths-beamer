@@ -1,0 +1,279 @@
+\documentclass[8pt]{beamer}
+
+ \usepackage[utf8]{inputenc}                                                     
+  \usetheme{metropolis}                                                               
+  \usecolortheme{wolverine}                                                       
+  \useinnertheme{circles}                                                         
+  \usepackage[english]{babel}                                                     
+  \usepackage{csquotes}                                                           
+  \usepackage[T1]{fontenc}                                                        
+  \usepackage{booktabs}                                                           
+  \usepackage{amsmath}   
+  \usepackage{amssymb}
+  \usepackage{amsfonts}
+  \usepackage{mathrsfs}   
+  \usepackage{graphicx}
+  \usepackage{varioref}
+  \usepackage[style=authoryear,backref=true]{biblatex}
+ \usepackage[]{hyperref} 
+  \graphicspath{{Graphics/}}
+  \usepackage{multirow,array}
+  \addbibresource{../Everything.bib}
+  \usepackage{colortbl}
+  \definecolor{aa}{RGB}{247, 232, 35}
+  \definecolor{cc}{RGB}{29, 23, 80}    
+  \setbeamercolor{palette tertiary}{fg=aa,bg=cc}
+  \setbeamercolor{structure}{fg=cc}
+  \setbeamercolor{alerted text}{fg=red}
+  
+  %Information to be included in the title page:
+  \title[Discrete]{AL FM Discrete}
+  
+  \subtitle{Linear Programming in Game Theory}
+  
+  \author[]{T. Bretschneider}
+  
+  \date[\today]{\today}
+
+\usepackage{comment}
+\usepackage{varwidth}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Outline}
+\tableofcontents
+
+\end{frame}
+
+
+\section{Motivation}
+
+\begin{frame}{Motivation}
+	We have so far come across the following methods for finding the optimal mixed strategy from a pay-off matrix:
+\begin{itemize}
+	\item Solving simultaneous equations ($2 \times 2$)
+	\item Drawing the graphs and find the maxmin point  ($2 \times 2$)
+\item By rewriting a $n \times 2$ pay-off in terms of the other person to reducing the problem.
+\end{itemize}
+Large pay-off matrices can be solved if there are dominated strategies allowing reduction to one of the smaller sizes above.
+\begin{alertblock}{General Idea}
+We want a method that can be extended to larger matrices and gives a programmatic way of solving the problems. We can formulate the problem of finding the largest minimum pay-off of the expected pay-off equations as a linear programming problem. 
+\end{alertblock}
+
+\end{frame}
+\section{The LP}
+\begin{frame}[allowframebreaks]{Formulation of the LP}
+	We start with showing the method for a $2\times 2$.
+	\begin{enumerate}
+		\item Formulate as an LP
+		\item Use the simplex method to solve
+	\end{enumerate}
+	\begin{center}
+	\colorbox{cc!30}{
+	 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{cc|cc}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{Player 2}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ \\ \cline{2-4} 
+\raisebox{0.4cm}{\multirow{2}*{\rotatebox{90}{Player 1}}}  & $P$ & $3$ & $-2$ \\
+& $Q$ & $1$ & $4$ \\
+\end{tabular}}
+\end{center}
+\begin{exampleblock}{Step 1}
+	All the entries have to be positive. So add the smallest possible value to every entry so that they all become positive.
+		\begin{center}
+			\colorbox{cc!30}{
+			 \arrayrulecolor{white}
+  \setlength\arrayrulewidth{0.5mm}
+	\begin{tabular}{cc|cc}
+\multicolumn{2}{c}{} & \multicolumn{2}{c}{Player 2}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ \\ \cline{2-4} 
+\raisebox{0.4cm}{\multirow{2}*{\rotatebox{90}{Player 1}}}  & $P$ & $6$ & $1$ \\
+& $Q$ & $4$ & $7$ \\
+\end{tabular}}
+\end{center}
+We have added 3 to each value. We do this so that we can write an inequality with probabilities summing to 1.
+\end{exampleblock}
+\begin{exampleblock}{Step 2}
+	We write down the objective function. This is what we want to maximise.
+	Let $V$ be the value of the new matrix.  This implies that $V-3$ is the value of the original game, which is what we want to maximise. Hence this is also the objective function. $P=V-3$.
+	
+\end{exampleblock}
+
+\begin{exampleblock}{Step 3}
+	Constraints come from the expected pay-offs being larger \emph{or equal} to the value and the probabilities summing to 1. In the sense of an inequality being less than or equal to 1. However since all entries in the matrix are positive we know that increasing the probabilities will always increase the value, hence this the inequality suffices.  
+	
+Expected pay-off if Player 2 plays strategy $X$ is  $6p+4q$. Thus  $V\leq 6p+4q$. Hence  $V-6p-4q\leq 0$.
+
+And, expected pay-off if Player 2 plays strategy $Y$ is  $1p+7q$. Hence  $V-p-7q\leq 0$. 
+
+The final constraint is simply $p+q \leq 1$. Here we would expect the slack variable to always be 0 though since all entries in the matrix are positive. 
+\end{exampleblock}
+
+
+\end{frame}
+
+\section{Simplex algorithm}%
+
+\begin{frame}[allowframebreaks]{Rewriting for the Simplex algorithm}
+	Rewriting everything using slack variables leads to:
+
+	\begin{flalign*}
+		\text{Maximise} && P &= V-3 && \\
+		\text{Subject to} && V -6p-4q + s_1 &= 0 && \\
+				  && V -p-7q + s_2 &= 0 && \\
+				  && p + q + s_3 &= 1 &&
+	.\end{flalign*}
+
+
+This leads to the following initial simplex tableau:
+
+\begin{center}
+\colorbox{cc!30}{
+\arrayrulecolor{white}
+\setlength\arrayrulewidth{0.5mm}
+\begin{tabular}{c|cccccc|c}
+$P$ & $v$ & $p$ & $q$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ 
+  \hline
+1 & $-1$ & $0$ & $0$ & 0 & 0 & 0 & $-3$   \\ 
+   \hline
+0 & 1 & $-6$ & $-4$ & 1 & 0 & 0 & 0 \\ 
+  0 & 1 & $-1$ & $-7$ & 0 & 1 & 0 & 1  \\ 
+  0 & 0 & $1$ & 1 & 0 & 0 & 1 & 1 \\ 
+\end{tabular}}
+\end{center}
+
+\begin{center}
+\colorbox{cc!30}{
+\arrayrulecolor{white}
+\setlength\arrayrulewidth{0.5mm}
+\begin{tabular}{c|cccccc|c}
+$P$ & $v$ & $p$ & $q$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ 
+  \hline
+1 &\boxed{$-1$} & $0$ & $0$ & 0 & 0 & 0 & $-3$   \\ 
+   \hline
+0 & 1 & $-6$ & $-4$ & 1 & 0 & 0 & 0 \\ 
+  0 & 1 & $-1$ & $-7$ & 0 & 1 & 0 & 0  \\ 
+  0 & 0 & $1$ & 1 & 0 & 0 & 1 & 1 \\ 
+\end{tabular}}
+\end{center}
+
+Using the indicated pivot element our second iteration is:
+
+\begin{center}
+\colorbox{cc!30}{
+\arrayrulecolor{white}
+\setlength\arrayrulewidth{0.5mm}
+\begin{tabular}{c|cccccc|c}
+$P$ & $v$ & $p$ & $q$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ 
+  \hline
+1 & $0$ & $-6$ & $-4$ & 1 & 0 & 0 & $-3$   \\ 
+   \hline
+0 & 1 & $-6$ & $-4$ & 1 & 0 & 0 & 0 \\ 
+0 & 0 & \boxed{5} & $-3$ & $-1$ & 1  & 0 & 0  \\ 
+  0 & 0 & $1$ & 1 & 0 & 0 & 1 & 1 \\ 
+\end{tabular}}
+\end{center}
+
+Using the newly indicated pivot we get for the third iteration (remember the same row can't be used again.):
+
+\begin{center}
+\colorbox{cc!30}{
+\arrayrulecolor{white}
+\setlength\arrayrulewidth{0.5mm}
+\begin{tabular}{c|cccccc|c}
+$P$ & $v$ & $p$ & $q$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ 
+  \hline
+1 & $0$ & $0$ & $-7.6$ & $-0.2$ & $1.2$ & 0 & $-3$   \\ 
+   \hline
+0 & 1 & $0$ & $-7.6$ & $-0.2$ & $1.2$ & 0 & 0 \\ 
+  0 & 0 & $1$ & $-0.6$ & $-0.2$ & $0.2$ & 0 & 0  \\ 
+  0 & 0 & $0$ & \boxed{$1.6$} & $0.2$ & $-0.2$ & 1 & 1 \\ 
+\end{tabular}}
+\end{center}
+
+Finally for the fourth and final iteration we get:
+
+\begin{center}
+\colorbox{cc!30}{
+\arrayrulecolor{white}
+\setlength\arrayrulewidth{0.5mm}
+\begin{tabular}{c|cccccc|c}
+$P$ & $v$ & $p$ & $q$ & $s_1$ & $s_2$ & $s_3$ & RHS \\ 
+  \hline
+1 & $0$ & $0$ & $0$ & $0.75$ & $0.25$ & $4.75$ & $1.75$   \\ 
+   \hline
+0 & 1 & $0$ & $0$ & $0.75$ & $0.25$ & $0.45$ & $4.75$ \\ 
+  0 & 0 & $1$ & $0$ & $-0.125$ & $0.125$ & $0.375$ & $0.375$  \\ 
+  0 & 0 & $0$ & 1 & $0.125$ & $-0.125$ & $0.625$ & $0.625$ \\ 
+\end{tabular}}
+\end{center}
+
+The table is now optimal, giving $P=1.75$.
+
+\end{frame}
+
+\section{Pay-off matrix}
+
+\begin{frame}[allowframebreaks]{Formulation with a bigger matrix}
+	
+\begin{problem}
+		For the game shown, formulate the game as a linear programming problem to find the optimal mixed strategy for Player 1.
+\end{problem}
+
+		\begin{center}
+\colorbox{cc!30}{
+	\setlength\arrayrulewidth{0.5mm}
+\arrayrulecolor{white}
+\begin{tabular}{cc|ccc}
+\multicolumn{2}{c}{} & \multicolumn{3}{c}{Player $2$}\\
+\multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \cline{2-5}
+\raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Player $1$}}}  & $P$ & $4$ & $2$ & $2$ \\
+& $Q$ & $-3$ & $5$ & $1$ \\
+& $R$ & $2$ & $-1$ & $3$ \\
+\end{tabular}}
+\end{center}
+	
+
+	First make all values positive by adding 4. 
+	\begin{center}                                        
+  \colorbox{cc!30}{           
+          \setlength\arrayrulewidth{0.5mm} 
+  \arrayrulecolor{white}                                        
+  \begin{tabular}{cc|ccc}                                       
+  \multicolumn{2}{c}{} & \multicolumn{3}{c}{Player $2$}\\       
+  \multicolumn{1}{c}{} &  & $X$  & $Y$ & $Z$ \\ \cline{2-5}        
+  \raisebox{0.0cm}{\multirow{3}*{\rotatebox{90}{Player $1$}}}  & $P$ & $  8$ & $6$ & $6$ \\                                                     
+  & $Q$ & $1$ & $9$ & $5$ \\                                           
+  & $R$ & $6$ & $3$ & $7$ \\                                           
+  \end{tabular}}                                                        
+  \end{center}
+Let each Player 1 pick their strategies with the lower-case letter probabilities.
+
+So for player 2 choosing:
+\begin{flalign*}
+	$X$; &&  \text{pay-off} &= 8p+1q+6r && \\
+	$Y$; && &= 6p+9q+3r && \\
+	$Z$; && &= 6p+5q+7r.  &&
+\end{flalign*}
+
+\begin{flalign*}
+                  \text{Maximise} && P &= V-4 && \\
+                  \text{Subject to} && V -8p-q-6r + s_1 &= 0 && \\
+                                    && V -6p-9q -3r+ s_2 &= 0 && \\
+				    && V -6p-5q-7r+s_3 &=0 && \\
+                                    && p + q +r +s_4 &= 1 &&
+\end{flalign*}
+\end{frame}
+
+
+
+
+% Need a past paper question to finish it off.
+
+
+
+\end{document}
