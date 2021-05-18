@@ -1,0 +1,1073 @@
+% !TeX spellcheck = en_GB
+% !TeX encoding = UTF-8
+\documentclass[8pt]{beamer}
+
+ \input{preamble}
+
+
+  \title[Pure]{{\color{aa}\Huge\adfbullet{9}}AL FM Pure}
+  \subtitle{The Argand Diagram, \textattachfile{TheArgandDiagram.tex}{(TeX)}}
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+
+\frame{\titlepage}
+
+\begin{frame}{Argand Diagram}
+	Argand Diagrams are a way of geometrically representing complex numbers.
+
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=6cm,height=6cm,
+						xmin= -3.5, xmax= 3.5,
+						ymin= -4.5, ymax = 4.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\fill[color=aa] (axis cs:1,1) node[anchor=south west] {\sol{$1+i$}} circle (0.04cm);
+					\fill[color=aa] (axis cs:2,-3) node[right] {\sol{$2-3i$}} circle (0.04cm);
+					\fill[color=aa] (axis cs:-1,2) node[left] {\sol{$-1+2i$}} circle (0.04cm);
+					\fill[color=aa] (axis cs:-3,-1) node[anchor=north east] {\sol{$-3-i$}} circle (0.04cm);
+					\end{axis}
+				\end{tikzpicture}
+\end{center}
+
+\begin{definition}
+	\[
+	z=x+iy
+	.\] 
+	The $x$-axis is the real component.
+
+	The  $y$-axis is the imaginary component.
+\end{definition}
+
+\end{frame}
+
+\begin{frame}[shrink=30]{Why Visualise Complex Numbers?}
+	Just as with standard 2D coordinates, Argand diagrams help us interpret the relationship between complex numbers in a geometric way:
+
+
+\begin{columns}[T]
+\begin{column}{.5\linewidth}
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -3.5, xmax= 3.5,
+						ymin= -4.5, ymax = 4.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\fill[color=aa] (axis cs:2,1) circle (0.04cm);
+					\fill[color=aa] (axis cs:2,-1) circle (0.04cm);
+					\draw[color=aa] (axis cs:0,0) -- (axis cs:2,1);
+					\draw[color=aa] (axis cs:0,0) -- (axis cs:2,-1);
+					\end{axis}
+				\end{tikzpicture}
+\end{center}
+
+Recall that complex roots of a polynomial come in conjugates $a \pm bi$. That means when plotted on an Argand diagram, the real axis is a line of symmetry for solutions of polynomial equations.
+
+
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -3.5, xmax= 3.5,
+						ymin= -4.5, ymax = 4.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\draw[color=aa] (axis cs:1,0) circle (1cm);
+					\end{axis}
+				\end{tikzpicture}
+\end{center}
+
+Sketch $|z-1|=2$. Later in this chapter we will see how to represent the locus of points that satisfy a given equation or inequality.
+\end{column}
+\begin{column}{.5\linewidth}
+
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -3.5, xmax= 3.5,
+						ymin= -4.5, ymax = 4.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\fill[color=aa] (axis cs:2,1) circle (0.04cm);
+					\fill[color=aa] (axis cs:-1,2) circle (0.04cm);
+					\fill[color=aa] (axis cs:-2,-1) circle (0.04cm);
+					\fill[color=aa] (axis cs:1,-2) circle (0.04cm);
+					\draw[color=aa] (axis cs:0,0) -- (axis cs:2,1);
+					\draw[color=aa] (axis cs:0,0) -- (axis cs:-1,2);
+					\draw[color=aa] (axis cs:0,0) -- (axis cs:-2,-1);
+					\draw[color=aa] (axis cs:0,0) -- (axis cs:1,-2);
+					\end{axis}
+				\end{tikzpicture}
+\end{center}
+
+Solve $z^4=1+i$. When you find the  $n$th roots of a complex number, the solutions are the same distance from the origin and equally spaced.
+\centering
+\tikz\shade[shading=Mandelbrot set] (0,0) rectangle (4,4);
+
+You may recognise images like the ones above. They are Mandelbrot sets, and are plotted on an Argand diagram.
+
+\end{column}
+\end{columns}
+
+\end{frame}
+
+\begin{frame}{Argument and Modulus}
+	Rather than writing complex numbers in Cartesian form (where we write the complex
+number as the sum of a real and a complex part) we can also write complex number
+in modulus-argument form.
+
+
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -3.5, xmax= 3.5,
+						ymin= -4.5, ymax = 4.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\fill[color=aa] (axis cs:2,3) circle (0.04cm);
+					\draw[color=aa] (axis cs:0,0) -- (axis cs:2,3);
+				\draw[color=aa,->] (0.5,0) arc (0:56.3:0.5cm);
+					\coordinate (a) at (axis cs:0.2,0.2);
+					\coordinate (b) at (axis cs:1,1.5);
+					\end{axis}
+					\draw[color=aa,<-] (b) --++ (1.5,1) node[draw,color=aa,fill=cc,align=left,right] {The modulus of a complex number, $z$, is \\ the distance of the point representing that \\ complex number from the origin on an \\ Argand diagram. It is denoted $|z|$.};
+					\draw[color=aa,<-] (a) --++ (2,-1.5) node[draw,color=aa,fill=cc,align=left,right] {The argument of a complex number ,$z$, is \\ the angle (measured anticlockwise) of the \\ line to the point representing that complex \\ number from the real axis on an Argand \\ diagram. It is denoted $ \text{arg}(z)$. \\ Measured in radians usually from $[-\pi,\pi)$};
+					
+						
+				\end{tikzpicture}
+\end{center}
+\end{frame}
+
+\begin{frame}{Calculating Argument and Modulus}
+	\begin{definition}
+		For a complex number in Cartesion form:
+		\begin{itemize}
+			\item Pythogoras' Theorem can be used to calculate the modulus.
+			\item Right-angled trigonometry (and specifically arctan) can be used to calculate the argument.
+		\end{itemize}
+
+	\end{definition}
+
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -3.5, xmax= 3.5,
+						ymin= -4.5, ymax = 4.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\fill[color=aa] (axis cs:2,3) node[right] {\sol{$2+3i$}} circle (0.04cm);
+					\draw[color=aa] (axis cs:0,0) -- (axis cs:2,3);
+				\draw[color=aa,->] (axis cs:1,0) arc (0:56.3:0.5cm);
+					\end{axis}
+					\node[right] (a) at (5,2) {$|2+3i|=$ \sol{$\sqrt{2^2 + 3^2}=\sqrt{13}$}};
+					\node[right] at (5,1) {$\text{arg}(2+3i)=$ \sol{$\arctan{\frac{3}{2}}=0.983$}};
+				\end{tikzpicture}
+\end{center}
+
+
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	Give exact answers where possible, otherwise to 3dp.
+
+	\begin{columns}
+	\begin{column}{.5\linewidth}
+		\centering
+		\adjustbox{max width=\linewidth}{
+		\colorbox{cc}{
+			\begin{nicetable}{ccc}
+				$z$ & $|z|$ & $\text{arg}(z)$ \\ 
+				\hline
+				$-1$ & \sol[2]{$1$} & \sol[2]{ $\pi$ } \\
+				$i$ & \sol[2]{$1$} & \sol[2]{ $\frac{\pi}{2}$ } \\
+				$1+i$ & \sol[2]{$\sqrt{2} $} & \sol[2]{ $\frac{\pi}{4}$ } \\
+				$1+2i$ & \sol[2]{$\sqrt{5} $} & \sol[2]{ $\arctan{\frac{2}{1}}$ } \\
+				$1-2i$ & \sol[2]{$\sqrt{5} $} & \sol[2]{ $-\arctan{\frac{2}{1}}$ } \\
+				$-1+2i$ & \sol[2]{$\sqrt{5} $} & \sol[2]{ $\pi-\arctan{\frac{2}{1}}$ } \\
+				$-1-2i$ & \sol[2]{$\sqrt{5} $} & \sol[2]{ $-\pi+\arctan{\frac{2}{1}}$ } \\
+				$3+4i$ & \sol[2]{$5$} & \sol[2]{ $\arctan{\frac{4}{3}}$ } \\
+				$-5+12i$ & \sol[2]{$13$} & \sol[2]{ $\pi-\arctan{\frac{12}{5}}$ } \\
+				$1-i\sqrt{3} $ & \sol[2]{$2$} & \sol[2]{ $-\frac{\pi}{3} $ } \\
+			\end{nicetable}
+		}}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	\begin{problem}
+		Given that $\text{arg}(3+a+4i)=\frac{\pi}{3}$ and that $a$ is real, determine $a$.
+	\end{problem}
+	\begin{solution}<+->
+		$\frac{4}{3+a}=\tan{\frac{\pi}{3}}=\sqrt{3} .$
+
+		Thus $a=\frac{4}{\sqrt{3} }-3$.
+	\end{solution}
+	\begin{problem}
+		Given that $ \text{arg}(5+i+ai)=\frac{\pi}{4}$ and that $a$ is real, determine  $a$.
+	\end{problem}
+	\begin{solution}<+->
+		$\frac{a+1}{5}=\tan(\frac{\pi}{4})=1$. So $a=4$.
+	\end{solution}
+	\end{column}
+	\end{columns}
+
+\end{frame}
+
+
+\begin{frame}{Past Paper Question}
+	\begin{problem}
+		\[
+		z=2-3i
+		.\] 
+		\begin{itemize}
+			\item Show that $z^2=-5-12i$.
+			\item Find, showing your working
+				\begin{itemize}
+					\item the value of $|z^2|$,
+					\item the value of $\arg(z^2)$, giving your answer in radians to 2 dp.
+					\item Show $z$ and $z^2$ on a single Argand diagram.
+				\end{itemize}
+		\end{itemize}
+	\end{problem}
+
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}
+	\begin{solution}<2->
+	    $
+		    (2-3i)(2-3i)=4-6i+9i^2=4-6i-9=-5-12i
+	$ 
+	\end{solution}
+	\begin{solution}<3->
+		\[
+			=\sqrt{(-5)^2+(-12)^2}=13 
+		.\] 
+	\end{solution}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	\begin{solution}<4->
+		\[
+		\tan \alpha = \frac{12}{5}
+		.\] 
+		\[
+			\arg(z^2)=-(\pi-1.176)=-1.97
+		.\] 
+	\end{solution}
+	\begin{solution}<5->
+		
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -6, xmax= 3,
+						ymin= -13, ymax = 1,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\fill[color=aa] (axis cs:-5,-12) circle (0.04cm);
+					\fill[color=aa] (axis cs:2,-3) circle (0.04cm);
+					\end{axis}
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=10]{Loci}
+	\begin{definition}
+		The \textbf{locus} (plural \textbf{loci}) of a particular condition is all the places that condition is true.  
+	\end{definition}
+
+	The locus of $|z|=1$ is  \textbf{all the places where} $|z|=1$.
+
+	The locus of $\arg z =\frac{\pi}{6}$ is \textbf{all the places where} $\arg z = \frac{\pi}{6}$.
+
+	We represent these loci on an Argand diagram.
+
+	\alert{For loci, it is helpful to think of the complex numbers as vectors (where the amount across
+and up is the real and imaginary part of the complex number)}
+
+\begin{columns}[T]
+\begin{column}{.5\linewidth}
+\begin{problem}
+	Draw the locus of $|z|=1$
+\end{problem}
+\begin{solution}<2->
+	
+
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -2, xmax= 2,
+						ymin= -2, ymax = 2,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:0,0);
+					\coordinate (b) at (axis cs:0,1);
+					\end{axis}
+
+					\node [draw,color=aa] at (a) [circle through={(b)}] {};
+				\end{tikzpicture}
+\end{center}
+\end{solution} 
+\end{column}
+\begin{column}{.5\linewidth}
+	\begin{problem}
+		Draw the locus of $\arg z=\frac{\pi}{6}$.
+	\end{problem}
+	\begin{solution}<3->
+		
+
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -2, xmax= 2,
+						ymin= -2, ymax = 2,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:0,0);
+					\coordinate (b) at (axis cs:1.73,1);
+					\end{axis}
+
+					\draw[color=aa] (a) -- (b);
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+\end{column}
+\end{columns}
+\end{frame}
+
+
+\begin{frame}{Locus of $\text{Re}(z)=k$ or $\text{Im}(z)=k$}
+	Remember that:
+	\begin{itemize}
+		\item $\text{Re}(z)$ means the real part of $z$.
+		\item  $\text{Im}(z)$ means the imaginary part of $z$.
+	\end{itemize}
+
+
+	\begin{columns}
+	\begin{column}{.5\linewidth}
+	\begin{problem}
+		Draw the locus of $\text{Re}(z)=-1$.
+	\end{problem}
+	\begin{solution}<2->
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -2, xmax= 2,
+						ymin= -2, ymax = 2,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:-1,-2);
+					\coordinate (b) at (axis cs:-1,2);
+					\end{axis}
+
+					\draw[color=aa] (a) -- (b);
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	\begin{problem}
+		Draw the locus of $\text{Im}(z)=\pi$.
+	\end{problem}
+	\begin{solution}<3->
+		
+
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -4, xmax= 4,
+						ymin= -4, ymax = 4,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:-4,3.141);
+					\coordinate (b) at (axis cs:4,3.141);
+					\end{axis}
+
+					\draw[color=aa] (a) -- (b);
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+	\end{column}
+	\end{columns}
+
+\begin{definition}
+	The locus of $\text{Re}(z)=k$ is a \textbf{vertical line} at $k$ on the real axis.
+
+	The locus of  $\text{Im}(z)=k$ is a \textbf{horizontal line} at $k$ on the imaginary axis. 
+\end{definition}
+\end{frame}
+
+\begin{frame}[shrink=10]{Subtraction on an Argand Diagram}
+	\alert{For loci, it is helpful to think of the complex numbers
+as vectors (where the amount across and up is the real
+and imaginary part of the complex number)}
+
+
+
+	\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=6cm,height=5cm,
+						xmin= -5, xmax= 5,
+						ymin= -1, ymax = 5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:3,1);
+					\coordinate (b) at (axis cs:4,5);
+					\end{axis}
+					\fill[color=aa] (b) node[right] {$4+5i$} circle (0.04cm);
+					\fill[color=aa] (a) node[right] {$3+i$} circle (0.04cm);
+					\draw[color=aa,->] (a) -- (b) node[midway] {\sol{$1+4i$}};
+				\end{tikzpicture}
+\end{center}
+
+
+	$4+5i-(3+i)=$ \sol{$1+4i$}
+
+
+This can be represented on an Argand diagram as ...
+
+\sol{The vector you need to add to $3+i$ to get to  $4+5i$}
+
+Therefore  $|4+5i-(3+i)|$ represents the \sol{distance between the two points.}
+
+So the distance between  $4+5i$ and  $3+i$ is \sol{$|1+4i|=\sqrt{1^2+4^2}=\sqrt{17}  $.}
+
+\begin{definition}
+	For two complex numbers $z$ and  $w$,  $|z-w|$ is the \textbf{distance}  between them.
+\end{definition}
+\end{frame}
+
+
+\begin{frame}{Locus of $|z-w|=r$}
+	\begin{columns}
+	\begin{column}{.5\linewidth}
+	\begin{problem}
+		Draw the locus of $|z-(3+4i)|=2$.
+	\end{problem}
+	\begin{solution}<2->
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -2, xmax= 6,
+						ymin= -2, ymax = 6,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:3,4);
+					\coordinate (b) at (axis cs:5,4);
+					\end{axis}
+					\fill[color=aa] (a) circle (0.04cm);
+					\node [draw,color=aa,align=center] at (a) [circle through={(b)}] {\\ \\ $3+4i$};
+					\draw[color=aa,<->] (a) -- (b) node[midway,above] {$2$};
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	\begin{problem}
+		Draw the locus of $|z+(2+i)|=3$.
+	\end{problem}
+	\begin{solution}<3->
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -6, xmax= 2,
+						ymin= -6, ymax = 2,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:-2,-1);
+					\coordinate (b) at (axis cs:-5,-1);
+					\end{axis}
+					\fill[color=aa] (a) circle (0.04cm);
+					\node [draw,color=aa,align=center] at (a) [circle through={(b)}] { \\ \\ $-2-i$};
+					\draw[color=aa,<->] (a) -- (b) node[midway,above] {$3$};
+				\end{tikzpicture}
+\end{center}
+\end{solution}
+	\end{column}
+	\end{columns}
+
+\begin{definition}
+	In general if $w$ is a complex number and $r$ is a real number, $|\tikzmarknode{A}{z}-w|=r$ will be a circle of radius $r$ with center $w$.
+\end{definition}
+
+\begin{tikzpicture}[overlay,remember picture]
+	\draw[color=aa,->] (A) --++ (-2,-1) node[below,align=center] {\alert{Even though $z$ and  $w$ are both letters representing complex numbers} \\ \alert{$z$ is a variable and  $w$ is a constant in this sentence}};
+\end{tikzpicture}
+
+\end{frame}
+
+\begin{frame}{Locus of $|z-w_1|=|z-w_2|$}
+	\begin{problem}
+		Draw the locus of $|z-(4+2i)|=|z-(4+4i)|$.
+	\end{problem}
+	\begin{solution}<2->
+		
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -2, xmax= 6,
+						ymin= -2, ymax = 6,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:4,4);
+					\coordinate (c) at (axis cs:-2,3);
+					\coordinate (b) at (axis cs:4,2);
+					\coordinate (d) at (axis cs:6,3);
+					\end{axis}
+					\draw[color=aa] (a) node[above] {$4+4i$} circle (0.04cm);
+					\draw[color=aa] (b) node[above] {$4+2i$} circle (0.04cm);
+					\draw[color=aa] (c) -- (d);
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+\begin{definition}
+	In general if $ w_1$ and $ w_2$ are complex numbers, $|z-w_1|=|z-w_2|$ will be the perpendicular bisector of $ w_1$ and $ w_2$.
+\end{definition}	
+\end{frame}
+
+\begin{frame}[shrink=10]{Locus of $\arg(z-w)=\theta$}
+
+	Say we want to draw the locus of $\arg(z-(2+3i))=\frac{\pi}{4}$.
+	We already know that on the Argand diagram $z-(2+3i)$ is the 'vector' between  $z$ and  $2+3i$.
+	If the argument of that is  $\frac{\pi}{4}$ it means that the angle between that vector and the real axis is $\frac{\pi}{4}$.
+	\begin{problem}
+		Draw the locus of $\arg(z-(2+3i))=\frac{\pi}{4}$.
+	\end{problem}
+
+	\begin{solution}<2->
+		
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -2, xmax= 6,
+						ymin= -2, ymax = 6,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:2,3);
+					\coordinate (b) at (axis cs:4,5);
+					\end{axis}
+					\fill[color=aa] (a) node[below] {$2+3i$} circle (0.04cm);
+					\draw[color=aa,dashed] (a) --++ (1,0);
+					\draw[color=aa] (a) -- (b);
+					\draw[->,color=aa] ($(a)+(0.5,0)$) arc (0:45:0.5cm) node[anchor=west] {$ \frac{\pi}{4}$};
+					\node[align=left] at (5,2) {Remember this is only a \\ half-line. In the other \\ direction the argument \\ would be $ \frac{\pi}{4}-\pi = -\frac{3\pi}{4}$.};
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+	\begin{definition}
+		The locus of $\arg(z-w)=\theta$ is a half-line beginning at  $w$ which makes an angle  $\theta$ with the positive real axis.
+	\end{definition}
+\end{frame}
+
+\begin{frame}{Regions}
+	At GCSE an equation which linked two variables represented a line and an inequality represented a region.
+
+	\begin{columns}
+	\begin{column}{.5\linewidth}
+	
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -3, xmax= 3,
+						ymin= -1, ymax = 3,
+						axis lines = middle,
+					]
+					\addplot[domain=-2:2,samples=10,color=aa] {1-x};
+					\node at (axis cs:-3,2) {$y=1-x$};
+					\end{axis}
+				\end{tikzpicture}
+\end{center}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -3, xmax= 3,
+						ymin= -1, ymax = 3,
+						axis lines = middle,
+					]
+					\addplot[domain=-2:2,samples=10,color=aa] {1-x};
+					\node at (axis cs:-3,2) {$y\geq 1-x$};
+					\fill[color=aa, fill opacity=0.2] (axis cs:-2,3) -- (axis cs:3,3) -- (axis cs:3,-1) -- (axis cs:2,-1) -- cycle;
+					\end{axis}
+				\end{tikzpicture}
+\end{center}
+	\end{column}
+	\end{columns}
+	The same applies in the Argand diagram with equations (as we have seen) or inequalities
+involving complex numbers.
+
+\begin{columns}
+\begin{column}{.5\linewidth}
+\begin{problem}
+	Draw the locus of $|z| \leq 1$.
+\end{problem}
+\begin{solution}<2->
+	
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[axis equal image,clip=false,mlineplot,width=5cm,height=4cm,
+						xmin= -1.5, xmax= 1.5,
+						ymin= -1.5, ymax = 1.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:0,0);
+					\coordinate (b) at (axis cs:0,1);
+					\end{axis}
+					\node [draw,color=aa,align=center,fill=aa, fill opacity = 0.2] at (a) [circle through={(b)}] {};
+				\end{tikzpicture}
+\end{center}
+\end{solution}
+\end{column}
+\begin{column}{.5\linewidth}
+\begin{problem}
+	Draw the locus of $|z|>2$.
+\end{problem}
+\begin{solution}<3->
+			\centering
+			\adjustbox{max width=\linewidth}{
+	\begin{tikzpicture}
+					\begin{axis}[axis equal image,clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -2.5, xmax= 2.5,
+						ymin= -2.5, ymax = 2.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:0,0);
+					\coordinate (b) at (axis cs:0,2);
+					\coordinate (c) at (axis cs:-2.5,-2.5);
+					\coordinate (d) at (axis cs:2.5,2.5);
+					\end{axis}
+					\node [draw,color=aa,align=center,dashed,] at (a) [circle through={(b)}] {};
+					\node [align=left] at (3,0) {Because it's $>$ the \\ line is dotted.};
+					\fill[even odd rule,fill=aa, fill opacity=0.2] (c) rectangle (d) let \p1=($(b)-(a)$),\n1={veclen(\x1,\y1)} in (a) circle[radius=\n1] ;
+				\end{tikzpicture}
+}
+\end{solution}
+\end{column}
+\end{columns}
+
+
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	\begin{columns}
+	\begin{column}{.5\linewidth}
+	\begin{problem}
+		Draw the region for which $|z-(1+i)|<3$.
+	\end{problem}
+	\begin{solution}<2->
+		
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[axis equal image,clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -2, xmax= 4.5,
+						ymin= -2, ymax = 4.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:1,1);
+					\coordinate (b) at (axis cs:4,1);
+					\end{axis}
+					\node [draw,color=aa,align=center,dashed,fill=aa, fill opacity=0.2] at (a) [circle through={(b)}] {};
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+	\begin{problem}
+		Draw the region for which $|z+1-i|\leq |z-3+3i|$.
+	\end{problem}
+	\begin{solution}<3->
+		
+\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -3.5, xmax= 3.5,
+						ymin= -3.5, ymax = 3.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:-1,1);
+					\coordinate (b) at (axis cs:3,-3);
+					\coordinate (c) at (axis cs:3.5,2.5);
+					\coordinate (d) at (axis cs:-2.5,-3.5);
+					\coordinate (e) at (axis cs:-3.5,-3.5);
+					\coordinate (f) at (axis cs:-3.5,3.5);
+					\coordinate (g) at (axis cs:3.5,3.5);
+					\end{axis}
+				
+					\fill[color=aa] (a) node[above] {$-1+i$} circle (0.04cm);
+					\fill[color=aa] (b) node[above] {$3-3i$} circle (0.04cm);
+					\draw[color=aa] (c) -- (d);
+					\fill[color=aa, fill opacity=0.2] (c) -- (d) -- (e) -- (f) -- (g) -- cycle;
+		\end{tikzpicture}
+\end{center}
+	\end{solution}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	\begin{problem}
+		Draw the region for which $|z-i|\geq 1$.
+	\end{problem}
+	\begin{solution}<4->
+		
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[axis equal image,clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -2.5, xmax= 2.5,
+						ymin= -2.5, ymax = 2.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:0,1);
+					\coordinate (b) at (axis cs:0,2);
+					\coordinate (c) at (axis cs:-2.5,-2.5);
+					\coordinate (d) at (axis cs:2.5,2.5);
+					\end{axis}
+					\node [draw,color=aa,align=center,] at (a) [circle through={(b)}] {};
+					\fill[even odd rule,color=aa, fill opacity=0.2] (c) rectangle (d) let \p1=($(b)-(a)$),\n1={veclen(\x1,\y1)} in (a) circle[radius=\n1] ;
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+	\begin{problem}
+		Draw the region for which $|z|>|z+2i|$.
+	\end{problem}
+	\begin{solution}<5->
+		
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -2.5, xmax= 2.5,
+						ymin= -2.5, ymax = 2.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:0,0);
+					\coordinate (b) at (axis cs:0,-2);
+					\coordinate (c) at (axis cs:-2.5,-1);
+					\coordinate (d) at (axis cs:2.5,-1);
+					\coordinate (e) at (axis cs:-2.5,-2.5);
+					\coordinate (f) at (axis cs:2.5,-2.5);
+					\end{axis}
+					\fill[color=aa] (a) circle (0.04cm);
+					\fill[color=aa] (b) circle (0.04cm);
+					\draw[color=aa,dashed] (c) -- (d);
+					\fill[color=aa, fill opacity=0.2] (c) -- (d) -- (f) -- (e) -- cycle;
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	\begin{columns}
+		\begin{column}{.5\linewidth}
+	\begin{problem}
+		Draw the region for which $\Re (z) \leq 5$.
+	\end{problem}
+	\begin{solution}<2->
+		
+			\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= 0, xmax= 7,
+						ymin= -3, ymax = 3,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:5,-3);
+					\coordinate (b) at (axis cs:5,3);
+					\coordinate (c) at (axis cs:0,-3);
+					\coordinate (d) at (axis cs:0,3);
+
+					\end{axis}
+					\draw[color=aa] (a) -- (b);
+					\fill[fill=aa, fill opacity=0.2] (a) -- (b) -- (d) -- (c) -- cycle;
+				\end{tikzpicture}
+\end{center}
+	\end{solution}
+	\begin{problem}
+		Draw the region for which $-\frac{\pi}{6}<\arg(z+1-i)\leq \frac{\pi}{6}$.
+	\end{problem}
+	\begin{solution}<3->
+				\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -2, xmax= 2,
+						ymin= -2, ymax = 2,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:-1,1);
+					\coordinate (b) at (axis direction cs:{3*cos(30)},{3*sin(30)});
+					\coordinate (c) at (axis direction cs:{3*cos(-30)},{3*sin(-30)});
+					\fill[color=aa] (a) node[below] {$-1+i$} circle (0.04cm);
+					\draw[color=aa,dashed] (a) -- ($(c)+(a)$);
+					\draw[color=aa] (a) -- ($(b)+(a)$);
+					\fill[color=aa,fill opacity=0.2] (a) -- ($(b)+(a)$) -- ($(c)+(a)$) -- cycle;
+				\end{axis}
+				\end{tikzpicture}
+\end{center}	
+\end{solution}
+\end{column}
+\begin{column}{.5\linewidth}
+	\begin{problem}
+		Draw the region for which $\Im(z)>\Re(z)$.
+	\end{problem}
+	\begin{solution}<4->
+		
+				\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -2, xmax= 2,
+						ymin= -2, ymax = 2,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:-2,-2);
+					\coordinate (b) at (axis cs:2,2);
+					\coordinate (c) at (axis cs:-2,2);
+					\end{axis}
+					\draw[color=aa,dashed] (a) -- (b);
+					\fill[color=aa,fill opacity=0.2] (a) -- (b) -- (c) -- cycle;
+				\end{tikzpicture}
+\end{center}	
+	\end{solution}
+	\begin{problem}
+		Draw the region for which $|z|<3$ and  $\frac{\pi}{6}\leq \arg z \leq \frac{\pi}{4}$.
+	\end{problem}
+	\begin{solution}<5->
+		
+				\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[axis equal image,clip=false,mlineplot,width=5cm,height=3cm,
+						xmin= -1.5, xmax= 3.5,
+						ymin= -1.5, ymax = 3.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:0,0);
+					\coordinate (b) at (axis cs:{3*cos(30)},{3*sin(30)});
+					\coordinate (c) at (axis cs:{3*cos(45)},{3*sin(45)});
+					\draw[color=aa] (a) -- (b);
+					\draw[color=aa] (a) -- (c);
+					\draw[color=aa,dashed] let \p1=($(b)-(a)$),\n1={veclen(\x1,\y1)} in (b) arc (30:45:\n1);
+					\fill[color=aa,fill opacity=0.2] (a) -- (b) -- (b) let \p1=($(b)-(a)$),\n1={veclen(\x1,\y1)} in arc (30:45:\n1) -- cycle;
+				\end{axis}
+				\end{tikzpicture}
+\end{center}	
+	\end{solution}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[shrink=5]{Minimising/Maximising $\arg(z)$ and  $|z|$}
+	\begin{problem}
+		A complex number $z$ is represented by the point  $P$. Given that  $|z-5-3i|=3$;
+		 \begin{itemize}
+			\item Sketch the locus of $P$.
+			\item Find the Cartesian equation of the locus.
+			\item Find the maximum value of  $\arg z$ in the interval  $(-\pi,\pi)$.
+			\item Find the minimum and maximum value of $|z|$.
+		\end{itemize}
+	\end{problem}
+
+	\begin{columns}[T]
+	\begin{column}{.4\linewidth}
+		\begin{solution}<2->
+				\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[axis equal image,clip=false,mlineplot,width=5cm,height=4cm,
+						xmin= 0, xmax= 9,
+						ymin= 0, ymax = 7,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\coordinate (a) at (axis cs:5,3);
+					\coordinate (b) at (axis cs:5,6);
+					\end{axis}
+					\node [draw,color=aa,align=center,] at (a)  [circle through={(b)}] {}; \fill[above,fill=aa] (a) node[above] {$5+3i$} circle (0.04);
+				\end{tikzpicture}
+\end{center}
+\end{solution}
+\begin{solution}<3->
+	$(x-5)^2+(y-3)^2=9$
+\end{solution}
+
+	\end{column}
+	\begin{column}{.3\linewidth}
+		\begin{solution}<4->
+	\centering
+	\adjustbox{max width=\linewidth}{                                           
+          \begin{tikzpicture}                                                                    
+                                          \begin{axis}[axis equal image,clip=false,mlineplot,width=5cm,height=5cm,
+                                                  xmin= 0, xmax= 9,                              
+                                                  ymin= 0, ymax = 7,                             
+                                                  axis lines = middle,                           
+                                                  xlabel={$\Re(z)$},                              
+                                                  ylabel={$\Im(z)$},                              
+                                          ]                                                      
+                                          \coordinate (a) at (axis cs:5,3);                      
+                                          \coordinate (b) at (axis cs:5,6);
+					  					  \coordinate (c) at (axis cs:0,0);
+					  					  \coordinate (d) at (axis cs:5,0);
+					  					  \coordinate (e) at (axis cs:2.35,4.41);
+                                          \end{axis}
+                                      	  \draw[color=aa] let \p1=($(b)-(a)$),\n1={veclen(\x1,\y1)} in (a) circle[radius=\n1];                     
+                                          \fill[color=aa] (a) node[above] {$5+3i$} circle (0.04);
+					  					  \draw [color=aa] (c) -- (d) -- (a) -- (e) -- cycle;
+         \end{tikzpicture}   }
+     
+			  $\arg z = 2 \arctan \left( \frac{3}{5} \right) $.
+		  \end{solution}
+	\end{column}
+	\begin{column}{.3\linewidth}
+		\begin{solution}<5->
+The minimum and maximum $z$ can be found be drawing a line between the origin and the centre of circle, and seeing where the line intersects the circle. Note that we do not need the actual $z$ themselves!
+
+Min $=\sqrt{34} +3$
+Max  $=\sqrt{34} -3$
+\end{solution}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Test your Understanding}
+	\begin{problem}
+		Given that the complex number $z$ satisfies the equation  $|z-12-5i|=3$, find the minimum value of  $z$ and the maximum.
+	\end{problem}
+	\begin{solution}<2->
+		\begin{center}                                                 
+            \begin{tikzpicture}                                                                    
+                                            \begin{axis}[axis equal image,clip=false,mlineplot,width=5cm,height=5cm,
+                                                    xmin= 0, xmax= 16,                              
+                                                    ymin= 0, ymax = 9,                             
+                                                    axis lines = middle,                           
+                                                    xlabel={$\Re(z)$},                              
+                                                    ylabel={$\Im(z)$},                              
+                                            ]                                                      
+                                            \coordinate (a) at (axis cs:12,5);                      
+                                            \coordinate (b) at (axis cs:12,8);
+                                            \coordinate (c) at (axis cs:0,0);
+                                            \end{axis}                                             
+                                            \node [draw,color=aa,] at (a)  [circle through={(b)}] {};
+                                            \fill[color=aa] (a) node[above] {$12+5i$} circle (0.04);
+                                            \draw [color=aa] (a) -- (c) node[midway,auto] {13};
+                                    \end{tikzpicture}                                                                                                      
+                            \end{center}
+Center is 13 away from the origin.
+
+Min $=13-3=10$.
+
+Max $=13+3=16.$
+	\end{solution}
+\end{frame}
+
+\begin{frame}[shrink=5]{More Difficult Minimising $|z|$ Question}
+	\begin{problem}
+		\begin{itemize}
+			\item Find the Cartesian equation of the locus of $z$ if  $|z-3|=|z+i|$, and sketch the locus of  $z$ on an Argand diagram.
+			\item Hence, find the least possible value of  $|z|$.
+		\end{itemize}
+	\end{problem}
+	\begin{columns}
+	\begin{column}{.5\linewidth}
+		\alert{Write $z=x+iy$, plug it in and simplify to an equation linking  $x$ and  $y$.}
+		\begin{solution}<2->
+	$|x+iy-3|=|x+iy+i|$
+
+	$|x-3+iy|=|x+i(y+1)|$
+
+	$(x-3)^2+y^2=x^2+(y+1)^2$
+
+	$y=-3x+4$
+
+		\begin{center}
+	\begin{tikzpicture}
+					\begin{axis}[clip=false,mlineplot,width=5cm,height=5cm,
+						xmin= -4.5, xmax= 4.5,
+						ymin= -4.5, ymax = 4.5,
+						axis lines = middle,
+						xlabel={$\Re(z)$},
+						ylabel={$\Im(z)$},
+					]
+					\addplot[color=aa,domain=0:2.7,samples=10] {4-3*x};
+					\end{axis}
+				\end{tikzpicture}
+\end{center}
+		\end{solution}
+	\end{column}
+	\begin{column}{.5\linewidth}
+		\alert{You could probably use vectors in 2D but the easiest approach is probably to use coordinate geometry}
+		\begin{solution}<3->
+			The minimum distance is the perpendicular
+distance from the origin.
+
+Gradient of loci:-3
+
+Gradient of perpendicular line: $\frac{1}{3}$ 
+
+Equation of perpendicular line:
+
+$y=\frac{1}{3}x$ 
+
+$\frac{1}{3}x=-3x+4$ 
+
+$\implies x=\frac{6}{5}, y=\frac{2}{5}$ 
+
+Distance $=\sqrt{\left( \frac{6}{5} \right)^2+\left( \frac{2}{5} \right)^2  }= \frac{2\sqrt{10} }{5}  $.
+		\end{solution}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\end{document}
