@@ -1,0 +1,450 @@
+% !TeX spellcheck = en_GB
+% !TeX encoding = UTF-8
+\documentclass[8pt]{beamer}
+
+ \input{preamble}
+
+
+  \title[Pure]{{\color{aa}\Huge\adfbullet{9}}AL FM Pure}
+  \subtitle{Complex Roots of Equations, \textattachfile{ComplexRootsofEquations.tex}{(TeX)}}
+
+\begin{document}
+
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+
+\frame{\titlepage}
+
+\begin{frame}[shrink=10]{Roots in Conjugate Pairs}
+	\begin{definition}
+		Complex roots of polynomial equations with real coefficients always occur in complex conjugate pairs.
+In other words, if $a+bi$ is the root of an equation then so is $a-bi$.
+	\end{definition}
+
+	\alert{Note that this is only true if the coefficients of the polynomial are real.}
+
+	\begin{problem}
+		Prove that complex roots of a quadratic, with real coefficients, come in conjugate pairs.
+	\end{problem}
+
+	\begin{columns}[T]
+	\begin{column}{.5\linewidth}
+		\textbf{Proof 1:}
+Using the quadratic formula:
+		\begin{solution}<2->
+			\[
+			x=\frac{-b \pm \sqrt{b^2+4ac} }{2a}.
+			.\] 
+
+			We can see the real part (before the $\pm$) is the same (provided that  $b,a$ are real), so if one root is complex, the other is its conjugate.
+		\end{solution}
+	\end{column}
+	\begin{column}{.5\linewidth}
+	\textbf{Proof 2:}
+Let the roots be $\alpha$ and $\beta$.
+	Then $(x-\alpha)(x-\beta)=$\sol{$x^2-(\beta+\alpha)x+\alpha\beta$}.
+	Since the statement says that there are real coefficients, $\alpha + \beta$ and  $\alpha \beta$ must be real.
+	Let  $\alpha=a_1+b_1 i$, and $\beta=a_2 + b_2 i$.
+	Then $\alpha +\beta=$\sol{$a_1 + a_2 + (b_1 +b_2)i$.}
+	If we require this to be real then \sol{$ b_1 +b_2=0$} and therefore $b_2=-b_1$.
+	Also $\alpha \beta= $\sol{$(a_1+ b_1 i)(a_2+ b_2 i)$}\sol{$= a_1 a_2-b_1 b_2+(a_1b_2+a_2b_1)i$.}
+	In order for this to be real, $ a_1b_2+a_2b_1=0.$
+	But $b_2=-b_1$ therefore: 
+	$-a_1b_1+a_2b_1=0$ and $b_1(a_2-a_1)=0$
+	Thus either $b_1=b_2=0$(i.e the roots weren't complex) or $ a_2=a_1$, which combined with $b_2=-b_1$, means the roots are conjugates.
+
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	\begin{problem}
+		Given that $\alpha=7+2i$ is one of the roots of a monic quadratic equation with real coefficients,
+		 \begin{itemize}
+			\item state the value of the other root, $\beta$.
+			\item find the quadratic equation.
+		\end{itemize}
+	\end{problem}
+
+	\begin{solution}<2->
+		$\beta=7-2i$
+	\end{solution}
+
+	\begin{solution}<3->
+		\textbf{Slow way:} 
+		\[
+			(z-(7-2i))(z-(7+2i))=0
+		.\] 
+		\[
+			z^2-(7+2i)z-(7-2i)z+(7-2i)(7+2i)=0
+		.\] 
+		\[
+		z^2-7z+2iz-7z-2iz+7-14i+14i+4=0
+		.\] 
+		 \[
+		z^2-14z+53=0
+		.\] 
+
+		\textbf{Quick (preferred) way:}
+		\[
+			(z-(7-2i))(z-(7+2i))=(z-7-2i)(z-7+2i)
+		.\] 
+		This is a difference of two squares:
+		\[
+			=(z-7)^2-(2i)^2
+		.\] 
+		\[
+			z^2-14z+47-(-4)
+		.\] 
+		\[
+		=z^2-14z+53
+		.\] 
+
+		So the equation is $z^2-14z+53=0$.
+	\end{solution}
+\end{frame}
+
+\begin{frame}{Past Paper Question}
+	\begin{problem}
+		Given that $2-4i$ is a root of the equation
+		 \[
+		z^2+pz+q=0
+		,\]
+		where $p$ and $q$ are real constants,
+		\begin{itemize}
+			\item write down the other root of the equation,
+			\item find the value of $p$ and the value of $q$.
+		\end{itemize}
+	\end{problem}
+	
+	\begin{solution}<2->
+		$z_2=2+4i$
+	\end{solution}
+	\begin{solution}<3->
+		$(z-2+4i)(z-2-4i)=0$
+
+		$\implies z^2-4z+4-(-16)$
+
+		$\implies z^2-4z+20=0$
+	\end{solution}
+\end{frame}
+
+\begin{frame}{Roots of Cubics}
+	\begin{definition}
+		Any cubic (with coefficients of $x^3$ of 1) can be expressed as:
+		\[
+			y=(x-\alpha)(x-\beta)(x-\gamma)
+		\]
+
+		where $\alpha,\beta$ and  $\gamma$ are the roots.
+
+	\end{definition}
+	However, this 3 roots may not necessarily all be real...
+
+	\noindent
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\adjustbox{max width=\linewidth}{
+		\begin{tikzpicture}
+					\begin{axis}[mlineplot,width=4cm,height=4cm,
+						xmin= -4, xmax= 4,
+						ymin= -4, ymax = 4,
+						axis lines = middle,
+					]
+					\addplot[color=aa,domain=-4:4, samples=100] {(x+3)*(x-1)*(x-3)};
+					\node[auto] at (axis cs:-3,0) {$\alpha$};
+					\node[auto] at (axis cs:1,0) {$\beta$};
+					\node[auto] at (axis cs:3,0) { $\gamma$};
+					\end{axis}
+			\end{tikzpicture}}
+			\sol{All 3 roots are real.}
+	\end{minipage}%
+	\begin{minipage}{.3\linewidth}
+
+		\centering
+		\adjustbox{max width=\linewidth}{
+		\begin{tikzpicture}
+					\begin{axis}[mlineplot,width=4cm,height=4cm,
+						xmin= -4, xmax= 4,
+						ymin= -4, ymax = 4,
+						axis lines = middle,
+					]
+					\addplot[color=aa,domain=-4:4, samples=100] {(x+3)*(x-1)*(x-3)+4};
+					\node[auto] at (axis cs:-3,0) {$\alpha$};
+					\end{axis}
+			\end{tikzpicture}}
+			\sol{\parbox{\linewidth}{1 real root, 2 complex roots.}}
+	\end{minipage}%
+	\begin{minipage}{.3\linewidth}
+
+		\centering
+		\adjustbox{max width=\linewidth}{
+		\begin{tikzpicture}
+					\begin{axis}[mlineplot,width=4cm,height=4cm,
+						xmin= -4, xmax= 4,
+						ymin= -4, ymax = 4,
+						axis lines = middle,
+					]
+					\addplot[color=aa,domain=-4:4, samples=100] {(x+3)*(x-2)*(x-2)};
+					\node[auto] at (axis cs:-3,0) {$\alpha$};
+					\node[auto] at (axis cs:2,0) {$\beta=\gamma$};
+					\end{axis}
+			\end{tikzpicture}}
+			\sol{3 real roots (one repeated)}
+	\end{minipage}
+
+Are there any other possibilities?
+
+\begin{solution}<3->
+	No: since cubics have a range of $-\infty$ to  $\infty$, it must cross the  $x$ axis. And it can't cross an even number of times, otherwise the cubic would start and end in the same vertical direction.
+\end{solution}
+
+\end{frame}
+
+\begin{frame}{Past Paper Questions}
+	\begin{problem}
+		$x=2$ is one of the roots of the polynomial $x^3-x-6$. Find the other two roots.
+
+
+	\end{problem}
+	\begin{solution}<2->
+		The factor theorem tells us that $(x-2)$ is a factor. We can then work out the factorisation is $(x-2)(x^2+2x+3)$. The other roots arise when the second bracket is zero. Using the quadratic formula, we obtain the roots: 
+		\[
+		x=-1 \pm i
+		.\] 
+	\end{solution}
+	\begin{problem}
+		$x=-\frac{1}{2}$ is one of the roots of the polynomial $2x^3-5x^2+5x+4$. Find the other two roots.
+	\end{problem}
+	\begin{solution}<3->
+		By the factor theorem, $2x+1$ must be a factor. We can then work out that the factorisation is $(2x+1)(x^2-3x+4)$. The other roots occur when the second bracket is equal to zero. Using the quadratic formula, we obtain the roots:
+		\[
+			x=\frac{3\pm i}{2}.
+		\] 
+	\end{solution}
+	\alert{You should know from the Algebra topic from you're A-level how to factorise a cubic once you've got one root by using your favourite method of polynomial division.}
+\end{frame}
+
+\begin{frame}{Finding Other Roots}
+	\begin{definition}
+		Remember that complex roots of polynomials always come in complex conjugate pairs.
+	\end{definition}
+
+	\begin{problem}
+		$-1+2i$ is one of the roots of the cubic $ z^3-z^2-z-15$.
+
+		Find the other two roots.
+	\end{problem}
+	\begin{solution}<2->
+		The other complex root is the complex conjugate: $-1-2i$.
+
+		Now expand  $(z-(-1+2i))(z-(-1-2i))=z^2+2z+5$.
+
+		We can now work out that the factorisation is $(z^2+2z+5)(z-3)$ so the other root is 3.
+	\end{solution}
+
+	\begin{problem}
+		$2-i$ is one of the roots of the cubic $z^3-11z+20$. Find the other two roots.
+	\end{problem}
+	\begin{solution}<3->
+		$2+i$ is the complex conjugate and hence is the other complex root.
+
+		$(z-(2+i))(z-(2-i))=z^2-4z+5$
+
+		The factorisation is $(z^2-4z+5)(z+4)$, so the real root is $-4$.
+	\end{solution}
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	\begin{problem}
+		Given that $3+i$ is a root of the quartic equation,
+		\[
+		2z^{4} -2z^3-39z^2+120z-50=0
+		.\] 
+		Solve the equation completely.
+	\end{problem}
+	\begin{solution}<2->
+		Another root is $3-i$.
+\begin{flalign*}
+	\text{So...} && (z-(3+i))(z-(3-i)) &= && \\
+		  && &= z^2-(3+3)z+3^2+1^2 && \\
+		  && &= z^2-6z+10 && \\
+.\end{flalign*}
+is a factor of $2z^{4} -2z^3-39z^2+120z-50$
+\[
+	(z^2-6z+10)(...)=2z^{4} -2z^3-39z^2+120z-50
+.\] 
+Use (mostly) common sense to determine the other bracket: \begin{itemize}
+	\item It must start with $2z^2$ in order to get the $2z^4$ term in the expansion.
+	\item It must end with  $-5$ to get the  $-50$ term.
+	\item So we know the second bracket is of the form  $(2z^2+az-5).$
+\end{itemize}
+
+To work out the $a$ we need to compare either  $z^3,z^2$ or $z$ terms in the expansion, say for example the  $-3z^3$ term:
+\[
+a-12=-3 \implies a=9
+.\] 
+\[
+	\therefore (z^2-6z+10)(2z^2+9z-5)=0
+.\] 
+Solving $2z^2+9z-5 \implies z=\frac{1}{2}, z=-5$.
+
+So roots are $\frac{1}{2},-5,3+i,3-i$.
+	\end{solution}
+	\alert{You could also use algebraic long division...}
+\end{frame}
+
+\begin{frame}{Past Paper Question}
+	\begin{problem}
+		Given that 2 and $5+2i$ are roots of the equation,
+		 \[
+		x^3-12x^2+cx+d=0, \quad c,d \in \R,
+		\]
+
+		\begin{itemize}
+			\item write down the other complex root of the equation.
+			\item Find the value of $c$ and the value of $d$.
+		\end{itemize}
+	\end{problem}
+	\begin{solution}<2->
+		$5-2i$ is a root.
+	\end{solution}
+	\begin{solution}<3->
+		$(x-(5+2i))(x-(5-2i))=x^2-10x+29$
+
+		$x^3-12x^2+cx+d=(x^2-10x+29)(x-2)$
+
+		$c=49, \quad \quad \quad \quad \quad \quad d=-58$
+	\end{solution}
+\end{frame}
+
+\begin{frame}{Quartics}
+	\begin{definition}
+		Any quartic (with coefficient of $x^4$ of 1) can be expressed as:
+		\[
+			y=(x-\alpha)(x-\beta)(x-\gamma)(x-\delta),
+		\]
+		where $\alpha,\beta,\gamma$ and  $\delta$ are the roots.
+	\end{definition}
+	\noindent
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\adjustbox{max width=\linewidth}{
+		\begin{tikzpicture}
+					\begin{axis}[mlineplot,width=4cm,height=4cm,
+						xmin= -4, xmax= 4,
+						ymin= -4, ymax = 4,
+						axis lines = middle,
+					]
+					\addplot[color=aa,domain=-4:4, samples=100] {(x+3)*(x+2)*(x+1)*(x-2)};
+					\node[auto] at (axis cs:-3,0) {$\alpha$};
+					\node[auto] at (axis cs:-2,0) {$\beta$};
+					\node[auto] at (axis cs:-1,0) { $\gamma$};
+					\node[auto] at (axis cs:2,0) { $\delta$};
+					\end{axis}
+			\end{tikzpicture}}
+			\sol{\parbox{\linewidth}{4 real roots (some \\ potentially repeated)}}
+	\end{minipage}%
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\adjustbox{max width=\linewidth}{
+		\begin{tikzpicture}
+					\begin{axis}[mlineplot,width=4cm,height=4cm,
+						xmin= -4, xmax= 4,
+						ymin= -4, ymax = 4,
+						axis lines = middle,
+					]
+					\addplot[color=aa,domain=-4:4, samples=100] {(x+3)*(x+2)*(x+1)*(x-2)+4};
+					\node[auto] at (axis cs:-1,0) {$\alpha$};
+					\node[auto] at (axis cs:2,0) { $\beta$};
+					\end{axis}
+			\end{tikzpicture}}
+			\sol{\parbox{\linewidth}{2 real roots, pair of \\ complex conjugate roots.}}
+	\end{minipage}%
+	\begin{minipage}{.3\linewidth}
+		\centering
+		\adjustbox{max width=\linewidth}{
+		\begin{tikzpicture}
+					\begin{axis}[mlineplot,width=4cm,height=4cm,
+						xmin= -4, xmax= 4,
+						ymin= -4, ymax = 4,
+						axis lines = middle,
+					]
+					\addplot[color=aa,domain=-4:4, samples=100] {(x+3)*(x+2)*(x-2)*(x-3)+7};
+					\end{axis}
+			\end{tikzpicture}}
+			\sol{\parbox{\linewidth}{No real roots. Two pairs \\ of complex conjugate \\ roots.}}
+	\end{minipage}
+\end{frame}
+
+\begin{frame}{Test Your Understanding}
+	\begin{problem}
+		Show that $z^2+4$ is a factor of $z^4-2z^3+21z^2-8z+68$.
+
+		Hence solve the equation $z^4-2z^3+21z^2-8z+68=0$.
+	\end{problem}
+
+	\begin{solution}<2->
+		$z^4-2z^3+21z^2-8z+68=(z^2+4)(z^2+az+17)$
+
+		Comparing $z^3$ terms:
+		\[
+		-2=a
+		.\] 
+		\[
+			\therefore z^4-2z^3+21^2-8z+68=(z^2+4)(z^2-2z+17)
+		.\] 
+
+		Solving $z^2+4=0$:
+		\[
+		z^2=-4
+		.\] 
+		\[
+		z=\pm 2i
+		.\] 
+
+		Solving $z^2-2z+17=0:$
+		\[
+		z=1\pm 4i
+		.\] 
+	\end{solution}
+\end{frame}
+
+
+
+\begin{frame}{Cubics and Quartics Exercises}
+	\begin{itemize}
+		\item Given that $1+2i$ is one of the roots of a quadratic equation with real coefficients, find the equation.
+
+			\sol{$x^2-2x+5=0$}
+
+		\item Given that $a+4i$, where  $a$ is real, is one of the roots of a quadratic equation with real
+coefficients, find the equation.
+
+\sol{ $x^2-2ax+a^2+16$}
+
+\item Show that $x=3$ is a root of the equation  $2x^3-4x^2-5x-3=0$.
+
+	Hence solve the equation completely.
+
+	\sol{Roots are $3,-\frac{1}{2}+\frac{1}{2}i,-\frac{1}{2}-\frac{1}{2}i$.}
+
+\item Given that $-4+i$ is one of the roots of the equation  $x^3+4x^2-15x-68=0$, solve the equation completely.
+
+	\sol{Roots are $4,-4+i$ and  $-4-i$.}
+
+\item Given that  $2+3i$ is one of the roots of the equation $x^4+2x^3-x^2+38x+130=0$, solve the equation completely.
+
+	\sol{Roots are $2+3i,2-3i,-3+i$ and $-3-i$ }
+
+\item Find the four roots of the equation $x^4-16=0.$ Show these roots on an Argand Diargram.
+
+	\sol{Roots are  $2,-2,2i,-2i$.}
+	\end{itemize}
+\end{frame}
+
+
+\end{document}
