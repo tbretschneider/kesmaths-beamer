@@ -55,6 +55,8 @@
 
 \usetikzlibrary{positioning}
 \usetikzlibrary{tikzmark}
+\usetikzlibrary{shadings}
+\usetikzlibrary{through}
 
 
 \def\height{0.8cm}
@@ -78,5 +80,7 @@
 \newcommand\reshist{}
 \def\reshist(#1)#2(#3)#4(#5)%
 {\draw (axis cs:#1) rectangle (axis cs:#3) node [midway] {#5};}
+
+
 
 
