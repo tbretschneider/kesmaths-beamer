@@ -1,0 +1,330 @@
+\documentclass{beamer}
+
+\input{preamble}
+%Information to be included in the title page:
+\title[Pure]{{\color{aa}\Huge\adfbullet{9}}AL FM Pure}
+\subtitle{Differentiating and Integrating Inverse Trigonometric Functions}
+%\title{Differentiating and Integrating Inverse Trigonometric Functions}
+\author{Yavuz}
+\date{\today}
+
+\begin{document}
+	
+	\setlength{\abovedisplayskip}{0pt}
+	\setlength{\belowdisplayskip}{0pt}
+	\setlength{\abovedisplayshortskip}{0pt}
+	\setlength{\belowdisplayshortskip}{0pt}
+	
+	\frame{\titlepage}
+	
+	
+	\begin{frame}[shrink=15]
+		%\fontsize{9pt}{4}\selectfont
+		\frametitle{Differentiating Inverse Functions }
+		\alert<1>{At AL you are also expected to know that, when $y$ isn't the subject, it can sometimes be easier to find $\frac{dx}{dy}$ and then \emph{'turn it upside down'}}
+		
+		\begin{definition}
+			$\dfrac{d}{dx}\left( \sin ^{-1}x\right) =\dfrac{1}{\sqrt{1-x^{2}}}$
+		\end{definition}
+		
+		Let $y = \sin ^{-1}x$ so we are trying to find \sol{$\dfrac{dy}{dx}$}
+		
+		Then $\sin y = x$ or reversing the equation \sol{$x= \sin y$}
+		
+		Differentiating both sides with respect to $y$: \sol{$\dfrac{dx}{dy} = \cos y$}
+		
+		Because there are no $y$s in the question, there should be no $y$s in our answer: 
+		
+		$\cos y=$\sol{$\sqrt{1-\sin ^{2}y}=\sqrt{1-x^{2}}$} (because on line $2$ we had $x = \sin y$)
+		
+		$\therefore\dfrac{dy}{dx}=$\sol{$\dfrac{1}{\sqrt{1-x^{2}}}$}
+	\end{frame}
+	
+	
+	\begin{frame}[shrink=15]
+		\frametitle{Test Your Understanding}
+		\begin{problem}
+			Prove $\dfrac{d}{dx}\left( \cos ^{-1}x\right) =-\dfrac{1}{\sqrt{1-x^{2}}}$
+		\end{problem}
+		
+		\begin{solution}<2->
+			Let $y = \cos^{-1}x$ so we are trying to find $\dfrac{dy}{dx}$ 
+			
+			Then $\cos y = x$ or reversing the equation $x = \cos y$
+			
+			Differentiating both sides with respect to $y$: $\dfrac{dx}{dy} = -\sin y$
+			
+			$\therefore \dfrac{dy}{dx}=\dfrac{-1}{\sin y}$
+			
+			$\sin y=\sqrt{1-\cos y}=\sqrt{1-x^{2}}$ (because on line $2$ we had $x = \cos y$)
+			
+			$\therefore \dfrac{dy}{dx}=\dfrac{-1}{\sqrt{1-x^{2}}}$
+			
+		\end{solution}
+	\end{frame}
+	
+	\begin{frame}[shrink=15]
+		\frametitle{Test Your Understanding}
+		\begin{problem}
+			Prove $\dfrac{d}{dx}\left( \tan ^{-1}x\right) =\dfrac{1}{1+x^{2}}$
+		\end{problem}
+		
+		\begin{solution}<2->
+			%\begin{minipage}{.7\linewidth}
+			
+			Let $y = \tan^{-1}x$ so we are trying to find $\dfrac{dy}{dx}$ 
+			
+			Then $\tan y = x$ or reversing the equation $x = \tan y$
+			
+			Differentiating both sides with respect to $y$: $\dfrac{dx}{dy} = \sec ^{2}y$
+			
+			$\therefore \dfrac{dy}{dx}=\dfrac{1}{\sec ^{2}y}$    \begin{minipage}{.7\linewidth}
+				\alert{\small{We could write this as $\cos ^{2}y$ but as we have a trig identity which relate tan and sec, it is simpler to leave it as it is.}}
+			\end{minipage}
+			
+			$\sec ^{2}y=1+\tan ^{2}y = 1+x^{2}$ 
+			
+			$\therefore \dfrac{dy}{dx}=\dfrac{1}{1+x^{2}}$
+			%\end{minipage}
+		\end{solution}
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Test Your Understanding}
+		\begin{problem}
+			Given that $y = arcsec 2x$, show that $\dfrac{dy}{dx}=\dfrac{1}{x\sqrt{4x^{2}-1}}$
+		\end{problem}
+		
+		\begin{solution}<2->
+			$\sec y=2x$
+			
+			$x=\dfrac{\sec y}{2}$
+			
+			$\dfrac{dx}{dy}=\dfrac{\sec y\tan y}{2}$
+			
+			$\dfrac{dy}{dx}=\dfrac{2}{\sec y\tan y}=\dfrac{2}{\sec \sqrt{\sec ^{2}y-1}}=\dfrac{2}{2x \sqrt{4x^{2}-1}}$
+			
+			$=\dfrac{1}{x\sqrt{4x^{2}-1}}$
+		\end{solution}
+	\end{frame}
+	
+	
+	
+	\begin{frame}[shrink=20]
+		\frametitle{Test Your Understanding}
+		\begin{problem}
+			Given that $y = arctan \left( \dfrac{1-x}{1+x}\right)$, find $\dfrac{dy}{dx}$
+		\end{problem}
+		
+		\begin{solution}<2->
+			Let $u = \dfrac{1-x}{1+x}$, then using the quotient rule, $\dfrac{du}{dx}=\dfrac{\left( 1-x\right) \left( -1\right) -\left( 1-x\right) \left( 1\right) }{\left( 1+x\right) ^{2}}=-\dfrac{2}{\left( 1+x\right) ^{2}}$
+			
+			Therefore, by the chain rule, $\dfrac{dy}{dx} = \dfrac{1}{1+\left( \frac{1-x}{1+x}\right) ^{2}} \times -\dfrac{2}{\left( 1+x\right) ^{2}}$
+			
+			\hspace*{149pt}$=-\dfrac{2}{\left( 1+x\right) ^{2}+\left( 1-x\right) ^{2}}$
+			
+			\hspace*{149pt}$=-\dfrac{2}{2+2x^{2}}$
+			
+			\hspace*{149pt}$=-\dfrac{1}{1+x^{2}}$
+		\end{solution}
+	\end{frame}
+	
+	\begin{frame}[shrink=40]
+		\frametitle{Integrating Inverse Functions}
+		\begin{definition}
+			$\int \dfrac{1}{\sqrt{a^{2}-x^{2}}}dx=\sin ^{-1}\left( \dfrac{x}{a}\right) +C$, $\left| x\right| <a$
+		\end{definition}
+		
+		The restriction $\left| x\right| <a$ is to ensure that there is \sol{no negative square root}
+		
+		\alert{Think about what a sensible substitution might be so that you end up with something squared under the square root. Also looking at the answer gives a hint about the substitution.}
+		
+		\begin{solution}<2->
+			Let $x=a\sin u$ then $\dfrac{dx}{du} = a\cos u$ so $dx = a\cos u$ $du$
+			
+			$\int \dfrac{1}{\sqrt{a^{2}-x^{2}}} dx =\int \dfrac{1}{\sqrt{a^{2}-a^{2}\sin ^{2}u}}a\cos u$ $du$
+			
+			\hspace*{55pt}$=\int \dfrac{1}{a\sqrt{1-sin^{2}}u}a\cos u$ $du$
+			
+			\hspace*{55pt}$=\int \dfrac{1}{a\cos u}a\cos u$ $du$
+			
+			\hspace*{55pt}$=\int 1$ $du$
+			
+			\hspace*{55pt}$= u+C$
+			
+			But rearranging $x=a\sin u$ gives $\frac{x}{a} = \sin u$ and $u = \sin ^{-1}(\frac{x}{a})$
+			
+			Therefore $\int \dfrac{1}{\sqrt{a^{2}-x^{2}}}dx=\sin ^{-1}\left( \dfrac{x}{a}\right) +C$
+			
+		\end{solution}
+	\end{frame}
+	
+	\begin{frame}[shrink=30]
+		\frametitle{Integrating Inverse Functions}
+		\begin{definition}
+			$\int \dfrac{1}{a^{2}+x^{2}}dx=\dfrac{1}{a}\tan ^{-1}\left( \dfrac{x}{a}\right) +C$
+		\end{definition}
+		\alert{Again look at the answer to think about what might be a good substitution.}
+		
+		\begin{solution}<2->
+			Let $x=a\tan u$ then $\dfrac{dx}{du} = a \sec^{2} u$ so $dx = a \sec^{2} u$ $du$
+			
+			$\int \dfrac{1}{1+x^{2}} dx =\int \dfrac{1}{a^{2}+a^{2}\tan^{2}u}a \sec^{2}u$ $du$
+			
+			\hspace*{55pt}$=\int \dfrac{1}{a^{2}(1+\tan ^{2}u)}a \sec^{2}$ $du$
+			
+			\hspace*{55pt}$=\int \dfrac{1}{a^{2} \sec^{2} u}a \sec^{2}$ $du$
+			
+			\hspace*{55pt}$=\frac{1}{a}\int 1$ $du$
+			
+			\hspace*{55pt}$= \frac{1}{a}u+C$
+			
+			But rearranging $x=a\tan u$ gives $\frac{x}{a} = \tan u$ and $u = \tan ^{-1}(\frac{x}{a})$
+			
+			Therefore $\int \dfrac{1}{a^{2}+x^{2}}dx=\dfrac{1}{a}\tan ^{-1}\left( \dfrac{x}{a}\right) +C$
+			
+		\end{solution}
+	\end{frame}
+	
+	\begin{frame}[shrink=40]
+		\frametitle{Test Your Understanding}
+		\begin{problem}
+			Find $\int \dfrac{4}{5+x^{2}} dx$
+		\end{problem}
+		\begin{solution}<2->
+			$\int \frac{4}{5+x^{2}}dx=4\int \frac{1}{5+x^{2}}dx=\frac{4}{\sqrt{5}}\arctan \left( \frac{x}{\sqrt{5}}\right) +C$
+		\end{solution}
+		
+		\begin{problem}
+			Find $\int \frac{1}{25+9x^{2}} dx$
+		\end{problem}
+		\alert{Hint: Factorise out $\frac{1}{9}$ so that you get left with a single $x^{2}$ in the integral}
+		\begin{solution}<3->
+			$\int \frac{1}{25+9x^{2}} dx=\frac{1}{9}\int \frac{1}{\frac{25}{9}+x^{2}}dx=\frac{1}{9}\times \frac{1}{\frac{5}{1}}\arctan \left( \frac{\frac{x}{5}}{3}\right) +C=\frac{1}{15}\arctan \left( \frac{3x}{5}\right) +C$
+		\end{solution}
+		
+		\begin{problem}
+			Showing full working, find $\int ^{\dfrac{\sqrt{3}}{4}}_{-\dfrac{\sqrt{3}}{4}}\dfrac{1}{\sqrt{3-4x^{2}}}dx$
+		\end{problem}
+		\begin{solution}<4->
+			$\int ^{\dfrac{\sqrt{3}}{4}}_{-\dfrac{\sqrt{3}}{4}}\dfrac{1}{\sqrt{3-4x^{2}}}dx=\int ^{\sqrt{\dfrac{3}{4}}}_{-\dfrac{\sqrt{3}}{4}}\dfrac{1}{\sqrt{4}\sqrt{\dfrac{3}{4}-x^{2}}}dx=\dfrac{1}{2}\left[ \arcsin \left( \dfrac{2x}{\sqrt{3}}\right) \right] _{-\frac{\sqrt{3}}{4}}^{\frac{\sqrt{3}}{4}}=\frac{\pi }{12}-\left( -\frac{\pi }{12}\right) =\frac{\pi }{6}$
+		\end{solution}
+	\end{frame}
+	
+	\begin{frame}[shrink]
+		\frametitle{Test Your Understanding}
+		
+		\begin{problem}
+			Find $\int \dfrac{x+4}{\sqrt{1-4x^{2}}}dx$
+		\end{problem}
+		\alert{Hint: Split up the numerator}
+		\begin{solution}<2->
+			$\int \frac{x+4}{\sqrt{1-4x^{2}}}dx = \int \frac{x}{\sqrt{1-4x^{2}}}dx+4\int \frac{1}{\sqrt{1-4x^{2}}}dx$
+			
+			Deal with each in turn:
+			$\int \frac{x}{\sqrt{1-4x^{2}}}dx = \int x\left( 1-4x^{2}\right) ^{-\frac{1}{2}}dx=\frac{1}{4}\sqrt{1-4x^{2}}+C$
+			
+			$4\int \frac{1}{\sqrt{1-4x^{2}}}dx = 4\int \frac{1}{\sqrt{ 4( \frac{1}{4}-x^{2}) }}dx=2\int \frac{1}{\sqrt{\frac{1}{4}-x^{2}}}dx=2\arcsin 2x+C$
+			
+			$\therefore \int \frac{x+4}{\sqrt{1-4x^{2}}}dx = \frac{1}{4}\sqrt{1-4x^{2}}+2\arcsin 2x+C$
+		\end{solution}
+		
+	\end{frame}
+	
+	\begin{frame}[shrink=40]
+		\frametitle{Quadratic Denominator that can't be Factorised}
+		If you have a rational function where the denominator is a quadratic that can be factorised, you should factorise and use \sol{partial fractions} as in A Level.
+		
+		\begin{definition}
+			When the denominator is a quadratic that can't be factorised, you should complete the square and use $\int \frac{1}{a^{2}+x^{2}} = \frac{1}{a} \arctan (\frac{x}{a}) + C$ formula.
+		\end{definition}
+		
+		\begin{problem}
+			Find the exact value of $\int ^{\sqrt{3}-3}_{-2}\dfrac{1}{x^{2}+6x+12}dx$
+		\end{problem}
+		
+		\begin{solution}<2->
+			$\int ^{\sqrt{3}-3}_{-2}\dfrac{1}{x^{2}+6x+12}dx = \int ^{\sqrt{3}-3}_{-2}\dfrac{1}{\left( x+3\right) ^{2}+3}dx$
+			
+			$\int ^{\sqrt{3}-3}_{-2}\dfrac{1}{\left( \sqrt{3}\right) ^{2}+\left( x+3\right) ^{2}}dx$
+			
+			$=\dfrac{1}{\sqrt{3}}\left[ \arctan \left( \dfrac{x+3}{\sqrt{3}}\right) \right] _{-2}^{\sqrt{3}-3}$\begin{minipage}{.7\linewidth}
+				\alert{\small{If you can’t see this step in one go, you could substitute $u=x+3$. However when integrating, for a linear function of $x$ you can do what you would do for $x$ but divide by the derivative of that linear function.
+						
+						Here the linear function is $x+3$ so the derivative is $1$ so you don’t need to divide.
+				}}
+			\end{minipage}
+			
+			$= \dfrac{1}{\sqrt{3}}\left( \arctan 1-\arctan \left( -\dfrac{1}{\sqrt{3}}\right) \right)$
+			
+			$= \dfrac{1}{\sqrt{3}}\left( \dfrac{\pi }{4}-\dfrac{\pi }{6}\right)$
+			
+			$= \dfrac{\pi \sqrt{3}}{36}$
+			
+		\end{solution}
+		
+	\end{frame}
+	
+	\begin{frame}[shrink=40]
+		\frametitle{Partial Fractions}
+		We can now integrate with partial fractions where one of the factors of the denominator is a quadratic that cannot be factorised.
+		
+		\alert{Recall from A Level that when you write as partial fractions, you must ensure you have the most general possible non-top heavy fraction, i.e. the ‘order’ (i.e. maximum power) of the numerator is one less than the denominator.}
+		
+		i.e. You should initially write $\dfrac{1}{x\left( x^{2}+1\right) }\dfrac{}{}\equiv \dfrac{A}{x}+\dfrac{Bx+C}{x^{2}+1}$
+		
+		\begin{problem}
+			Show that $\int \dfrac{1+x}{x^{3}+9x}dx=A\ln \left( \dfrac{x^{2}}{x^{2}+1}\right) +B\arctan \left( \dfrac{x}{3}\right) +C$, where $A$ and $B$ are constants.
+		\end{problem}
+		\begin{solution}<2->
+			$\int \dfrac{1+x}{x^{3}+9x}dx = \int \dfrac{1+x}{x(x^{2}+9)}dx = \dfrac{A}{x}+\dfrac{Bx+C}{x^{2}+9}$
+			
+			$1+x\equiv \overline{}A\left( x^{2}+9\right) +x\left( Bx+C\right)$
+			
+			$x=0\Rightarrow A=\dfrac{1}{9}$ and $x=3\Rightarrow 4=2+9B+3C$ and $x=-3 \Rightarrow -2 = 2 +9B - 3C$
+			
+			Solving the simultaneous equations gives $B = -\frac{1}{9}$ and $C = 1$
+			
+			$\int \frac{1+x}{x^{3}+9x}dx= \frac{1}{9} \int \frac{1}{x}dx - \frac{1}{9}\int\frac{x}{x^{2}+9}dx + \int \frac{1}{x^{2}+9}dx$
+			
+			\hspace*{50pt}$=\frac{1}{9}\ln x-\frac{1}{18}\ln \left( x^{2}+9\right) +\frac{1}{3}\arctan \left( \frac{x}{3}\right) +C$
+			
+			\hspace*{50pt}$=\frac{1}{18}\ln \left( \frac{x^{2}}{x^{2}+1}\right) +\frac{1}{3}\arctan \left( \frac{x}{3}\right) +C$
+		\end{solution}
+		
+	\end{frame}
+	
+	
+	\begin{frame}[shrink=50]
+		\frametitle{Partial Fractions}
+		\alert{As in A Level, if the numerator has degree at least that of the denominator then you will have to do long division first.}
+		
+		\begin{problem}
+			\begin{itemize}
+				\item Express $\dfrac{x^{4}+x}{x^{4}+5x^{2}+6}$ as partial fractions.
+				\item Hence find $\int \dfrac{x^{4}+x}{x^{4}+5x^{2}+6}dx.$
+			\end{itemize}
+		\end{problem}
+		
+		\begin{solution}<2->
+			Using algebraic long division: $x+4 = (x^{4}+5x^{2}+6)1 -5x^{2}+x-6$
+			
+			$\therefore \dfrac{x^{4}+x}{x^{4}+5x^{2}+6}=1+\dfrac{-5x^{2}+x-6}{x^{4}+5x^{2}+6}$
+			
+			Since $x^{4}+5x^{2}+6 = (x^{2}+2)(x^{2}+3)$:$\dfrac{-5x^{2}+x-6}{x^{4}+5x^{2}+6} = \dfrac{Ax+B}{x^{2}+2}+\dfrac{Cx+D}{x^{2}+3}$
+			
+			Then $-5x^{2}+x-6 = (Ax+B)(x^{2}+3)+(Cx+D)(x^{2}+2)$
+			
+			Use $x=0,1,2,3$ to get four simultaneous equations which you can then solve on your calculator to get $A=1, B=2, C=-1 and D=-9$
+			
+			$\therefore \dfrac{x^{4}+x}{x^{4}+5x^{2}+6} = 1+\dfrac{x+4}{x^{2}+2}-\dfrac{x+9}{x^{2}+3}$
+		\end{solution}
+		
+		\begin{solution}<3->
+			$\int 1+\dfrac{x+4}{x^{2}+2}-\dfrac{x+9}{x^{2}+3}dx= \int 1+\dfrac{x}{x^{2}+2}+\dfrac{4}{x^{2}+2}-\dfrac{x}{x^{2}+3}-\dfrac{9}{x^{2}+3}dx$
+			
+			$=\ldots =x+\dfrac{1}{2}\ln \left| \dfrac{x^{2}+2}{x^{2}+3}\right| +2\sqrt{2}\arctan \left( \dfrac{x}{\sqrt{2}}\right) -3\sqrt{3}\arctan \left( \dfrac{x}{\sqrt{3}}\right) +C $
+		\end{solution}
+	\end{frame}
+	
+\end{document}
