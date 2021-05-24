@@ -49,17 +49,17 @@
 
 	    $Re(1-3i)=$ \sol{$1$}
 
-	    $Re(-2-5i)=$ \sol{$-5$}
+	    $Im(-2-5i)=$ \sol{$-5i$}
 
-	    $Re(\pi + \pi i)=$ \sol{$\pi$}
+	    $Im(\pi + \pi i)=$ \sol{$\pi$}
 	    
-	    Imaginary does not mean they don’t exist, just that you can’t put draw them on a number line…
+	    Imaginary does not mean they don’t exist, just that you can’t put them on a number line…
 
         As we will see later there is a two-dimensional version of a number line called an Argand diagram.
 	\end{frame}
 	
 	\begin{frame}[shrink=15]{Types of Number}
-	    \alert<1>{Algebraic means that there is a polynomial with rational coefficients with that number as a root. For instance, $\sqrt{2}$ is the root of $x^2−2$.}
+	    \alert<1>{Algebraic means that there is a polynomial with rational coefficients with that number as a root. For instance, $\sqrt{2}$ is the root of $x^2-2$.}
 
 	    \includegraphics{numbers}
 	    
@@ -94,17 +94,6 @@
 	    
         Some other major applications of Complex Numbers:
         
-        \textbf{Fractals:}
-        
-        A Mandelbrot Set is the most popular ‘fractal’. For each possible complex number $c$, we see if $z_{n+1} = {z_n}^2 + c$ is not divergent (using $z_0 = 0$), leading to the diagram on the right. Coloured diagrams can be obtained by seeing how quickly divergence occurs for each complex $c$ (if divergent).  
-        
-        \includegraphics{mandelbrot}
-        
-        \emph{This is an Argand diagram, we will use this later}
-        
-	\end{frame}
-	
-	\begin{frame}[shrink=15]{Why Complex Numbers?}
 	    \textbf{Analytic Number Theory}
 	    
 	    Number Theory is the study of integers. Analytic Number Theory treats integers as reals/complex numbers to use other (‘analytic’) methods to study them. For example, the Riemann Zeta Function allows complex numbers as inputs, and is closely related to the distribution of prime numbers. 
@@ -112,6 +101,17 @@
         \textbf{Physics and Engineering}
         
         Used in Signal Analysis, Quantum Mechanics, Fluid Dynamics, Relativity, Control Theory...
+        
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Why Complex Numbers?}
+        \textbf{Fractals:}
+        
+        A Mandelbrot Set is the most popular ‘fractal’. For each possible complex number $c$, we see if $z_{n+1} = {z_n}^2 + c$ is not divergent (using $z_0 = 0$), leading to the diagram on the right. Coloured diagrams can be obtained by seeing how quickly divergence occurs for each complex $c$ (if divergent).  
+        
+        \includegraphics{mandelbrot}
+        
+        \emph{This is an Argand diagram, we will use this later}
         
 	\end{frame}
 	
@@ -240,7 +240,7 @@
 	        Given that $3+5i=(a+ib)(1+i)$ where $a$ and $b$ are real, find the value of $a$ and $b$:
 	    \end{problem}
 	    
-	    \begin{solution}
+	    \begin{solution}<2->
 	        Expanding: $(a-b)+i(a+b)=3+5i$
 	        
             So $a-b=3$ and $a+b=5$.
@@ -254,7 +254,7 @@
 	    
         \alert<1>{There are two numbers that when I square them I get i so you should get two answers. The fundamental theorem of arithmetic says that when you are looking for solutions in the complex numbers you should always get two solutions.}
     
-	    \begin{solution}
+	    \begin{solution}<3->
 	        Let $z=a+ib$
 	        
             $i=(a+ib)^2=a^2+2abi-b^2$
