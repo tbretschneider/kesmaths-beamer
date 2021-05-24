@@ -1,0 +1,289 @@
+\documentclass{beamer}
+
+\input{preamble}
+%Information to be included in the title page:
+\title[Pure]{{\color{aa}\Huge\adfbullet{9}}AL FM Pure}
+\subtitle{Fundamentals of Complex Numbers}
+%\title{Differentiating and Integrating Inverse Trigonometric Functions}
+\author{Liam S}
+\date{\today}
+
+\begin{document}
+	
+	\setlength{\abovedisplayskip}{0pt}
+	\setlength{\belowdisplayskip}{0pt}
+	\setlength{\abovedisplayshortskip}{0pt}
+	\setlength{\belowdisplayshortskip}{0pt}
+	
+	\frame{\titlepage}
+	
+	\begin{frame}[shrink=15]{What is $i$?}
+	    Previously in maths….
+    
+        If you came across a circumstance where you needed to square root a complex number, then you couldn’t.
+        
+        The reason for this was that there is no number which, when multiplied by itself gives a negative.
+        
+        Now there is such a number, It is called $i$.
+        
+        \begin{definition}
+            $i=\sqrt{-1}$
+        \end{definition}
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Complex vs Imaginary Numbers}
+	    
+	    \textbf{Imaginary number}: of form \sol{$bi, b \in \R$}
+	    
+	    \textbf{Complex number}: of form \sol{$a+bi, a,b \in \R$}
+	    
+	    In the complex number $3+4i$, the \sol{real} part is $3$, and the \sol{imaginary} part is $4i$.
+	    
+	    \newline
+	    
+	    \begin{definition}
+	        $Re(z)$ denotes the real part of $z$, and $Im(z)$ denotes the imaginary part of $z$.
+	    \end{definition}
+
+	    $Re(1+6i)=$ \sol{$1$}
+
+	    $Re(1-3i)=$ \sol{$1$}
+
+	    $Re(-2-5i)=$ \sol{$-5$}
+
+	    $Re(\pi + \pi i)=$ \sol{$\pi$}
+	    
+	    Imaginary does not mean they don’t exist, just that you can’t put draw them on a number line…
+
+        As we will see later there is a two-dimensional version of a number line called an Argand diagram.
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Types of Number}
+	    \alert<1>{Algebraic means that there is a polynomial with rational coefficients with that number as a root. For instance, $\sqrt{2}$ is the root of $x^2−2$.}
+
+	    \includegraphics{numbers}
+	    
+	    \alert<1>{Transcendental numbers are those which aren’t algebraic.}
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Writing Complex Numbers}
+	    We tend to ensure real and imaginary components are grouped together.
+	    
+	    (where $a,b,c \in \R$)
+	    
+	    $a+3i-4+bi = \sol{a-4+(3+b)i}$
+	    
+	    $2a-3bi+3-6ci = \sol{2a+3-3(b+2c)i}$
+	    
+	    \textbf{Convention 1:}
+	    
+	    Just like we’d write $6\pi$ instead of $\pi6$, the $i$ appears after any real constants, so we might write $5ki$ or $\pi i$. 
+
+        An exception is when we involve a function.
+        e.g. $i\sin{\theta}$  and $i\sqrt{3}$
+        
+        \textbf{Why?} \sol{This avoids ambiguity over whether the function is being applied to the $i$.}
+        
+        \textbf{Convention 2:}
+        
+        In the same way that we often initially use $x$ and $y$ as real-valued variables, we often use $z$ first to represent complex values, then $w$.
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Why Complex Numbers?}
+	    Complex numbers were originally introduced by the Italian mathematician Cardano in the 1500s to allow him to represent the \textbf{roots of polynomials} which weren’t ‘real’. They can also be used to represent outputs of functions for inputs not in the usual valid domain, e.g. Logs of negative numbers, or even the factorial of negative numbers!
+	    
+        Some other major applications of Complex Numbers:
+        
+        \textbf{Fractals:}
+        
+        A Mandelbrot Set is the most popular ‘fractal’. For each possible complex number $c$, we see if $z_{n+1} = {z_n}^2 + c$ is not divergent (using $z_0 = 0$), leading to the diagram on the right. Coloured diagrams can be obtained by seeing how quickly divergence occurs for each complex $c$ (if divergent).  
+        
+        \includegraphics{mandelbrot}
+        
+        \emph{This is an Argand diagram, we will use this later}
+        
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Why Complex Numbers?}
+	    \textbf{Analytic Number Theory}
+	    
+	    Number Theory is the study of integers. Analytic Number Theory treats integers as reals/complex numbers to use other (‘analytic’) methods to study them. For example, the Riemann Zeta Function allows complex numbers as inputs, and is closely related to the distribution of prime numbers. 
+	    
+        \textbf{Physics and Engineering}
+        
+        Used in Signal Analysis, Quantum Mechanics, Fluid Dynamics, Relativity, Control Theory...
+        
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Manipulation and Application}
+	    \alert<1>{You can use the same algebraic techniques as for real numbers}
+
+	    $-\sqrt{-36}$ \sol{$= \sqrt{36} \sqrt{-1} = 6i$}
+	    
+	    Solve $x^2+9=0$ : \sol{$x = \pm 3i$}
+	    
+	    Using the quadratic formula, solve x^2+6x+25=0: \sol{$x=-3 \pm 4i$}
+	    
+	    Simplify $(5+2i)+(8+9i)$: \sol{$= 13+11i$}
+	    
+	    Simplify $(8+i)(3-2i)$: \sol{$= 24-16i+3i-2i^2 = 24-16i+3i+2 = 26-13i$}
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Test Your Understanding}
+	    Evaluate the following:
+	    \begin{enumerate}[label={(\alph*)}]
+	        \item $\sqrt{-16}$ \sol{$=4i$}
+	        \item $\sqrt{-25}$ \sol{$=5i$}
+	        \item $\sqrt{-3}$ \sol{$=i\sqrt{3}$}
+	        \item $\sqrt{-7}$ \sol{$=i\sqrt{7}$}
+	        \item $\sqrt{-8}$ \sol{$=2i\sqrt{2}$}
+	    \end{enumerate}
+	    
+	    Calculate $z^2$ for the following $z=$
+	    \begin{enumerate}[label={(\alph*)}]
+	        \item $1+i$ \sol{$z^2 = 2i$}
+	        \item $1-i$ \sol{$z^2 = -2i$}
+	        \item $3+2i$ \sol{$z^2 = 5+12i$}
+	        \item $7-4i$ \sol{$z^2 = 33-56i$}
+	        \item $-3+3i$ \sol{$z^2 = -18i$}
+	        \item $a+bi$ \sol{$z^2 = a^2-b^2+2abi$}
+	    \end{enumerate}
+	    
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Test Your Understanding}
+	    Calculate the following:
+	    \begin{enumerate}[label={(\alph*)}]
+	        \item $(1+i)(1-i)$ \sol{$=2$}
+	        \item $(2+i)(2-2i)$ \sol{$=6-2i$}
+	        \item $(3+2i)(4-3i)$ \sol{$=18-i$}
+	        \item $(-3+i)(5+7i)$ \sol{$=22-16i$}
+	        \item $(7-3i)(3-7i)$ \sol{$=-58i$}
+	        \item $(-1-i)(9+8i)$ \sol{$=-1-17i$}
+	    \end{enumerate}
+	    
+	    What is the value of:
+	    \begin{enumerate}[label={(\alph*)}]
+	        \item $i^{100}$ \sol{$=(i^4)^{25} = 1^{25} = 1$}
+	        \item $i^{2021}$ \sol{$=i^{2020} i^1 = 1i = i$}
+	   \end{enumerate}
+	\end{frame}
+
+	\begin{frame}[shrink=15]{Complex Conjugates}
+	    In the Algebra topic of your A-Level studies you used a technique like the one below to rationalise the denominator:
+	    
+        \begin{equation*}
+            \frac{3}{4-\sqrt{2}} = \frac{3(4+\sqrt{2})}{(4-\sqrt{2})(4+\sqrt{2})} = \frac{12+3\sqrt{2}}{16-4\sqrt{2}+4\sqrt{2}-2} = \frac{12+3\sqrt{2}}{14}
+        \end{equation*}
+        
+        \vspace{\baselineskip}
+        
+        We call this rationalising the denominator because the denominator is now a rational number because all the square roots cancelled out.
+        
+        Since $i$ is really just a square root (albeit $\sqrt{-1}$) then the same trick works for complex numbers if I want to make the denominator real:
+        
+        \begin{equation*}
+            \frac{26}{2+3i} = \frac{26(2-3i)}{(2+3i)(2-3i)} = \frac{52-78i}{13} = 4-6i
+        \end{equation*}
+        
+        \vspace{\baselineskip}
+        
+        \alert<1>{Later we will see that there is another way of dividing complex numbers using something called modulus-argument form.}
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Complex Conjugates}
+        The complex number created when we reverse  the sign of the imaginary part has a special name:
+        
+        \begin{definition}
+            If $z = x + yi$, then $x-yi$ is the complex conjugate of $z$. It is denoted $z^*$
+        \end{definition}
+        
+        A complex number multiplied by its conjugate (as we saw for division) and added to its conjugate both give real answers (i.e. without any $i$s in). In particular:
+        
+        \begin{definition}
+            If $z=x+yi$ then
+            (i) $z \times z^*$  = $x2 + y2$
+            (ii) $z + z^*$  = $2x$
+        \end{definition}
+        
+        Proof
+        (i) \sol{$z \times z^* = (x+yi)(x-yi) = x^2 + xyi - xyi + y^2 = x^2+y^2$}
+        (ii) \sol{$z + z^* = (x+yi) + (x-yi) = x + yi  + x - yi = 2x$}
+    \end{frame}
+    
+	\begin{frame}[shrink=15]{Test Your Understanding}
+	    Put all the following in the form $a+bi$:
+	    \begin{enumerate}[label={(\alph*)}]
+	        \item $(1+3i)^*$ \sol{$= 1-3i$}
+	        \item $(p-qi)^*$ \sol{$= p+qi$}
+	        \item $\frac{1}{1+i}$ \sol{$= \frac{1-i}{2} = \frac{1}{2}-\frac{1}{2}i$}
+	        \item $\frac{10}{3+i}$ \sol{$= 3-i$}
+	        \item $\frac{1-i}{1+i}$ \sol{$= -i$}
+	        \item $\frac{14-5i}{3-2i}$ \sol{$= 4+i$}
+	        \item $\frac{10+3i}{1+2i}$ \sol{$= \frac{16-17i}{5} = \frac{16}{5} - \frac{17}{5}i$}
+	        \item $\frac{i}{1-i}$ \sol{$= \frac{-1+i}{2} = -\frac{1}{2}+\frac{1}{2}i$}
+	        \item $\frac{8-4i}{1-3i}$ \sol{$= 2+2i$}
+	        \item $\frac{a+i}{a-i}$ \sol{$= \frac{a^2-1+2ai}{a^2+1} = \frac{a^2-1}{a^2+1}+\frac{2a}{a^2+a}i$}
+	        \item Given that $(2 + i)(z + 3i) = 10 - 5i$, find $z$, giving your answer in the form $a + bi$:
+	        \sol{$z=3-7i$, \tiny{(either by forming $z = \frac{10 – 5i}{2+i}-3i$, or replacing $z$ with $a + bi$ before expanding and comparing parts)}}
+	    \end{enumerate}
+    \end{frame}
+    
+	\begin{frame}[shrink=15]{Complex Number Equality}
+	    \begin{definition}
+	        Two complex numbers are equal if, and only if, both their real and imaginary parts are equal.
+	        
+	        i.e. if $a_1+b_1i = a_2+b_2i$, then $a_1=b_1$ and $a_2=b_2$.
+	    \end{definition}
+	    
+	    \begin{problem}
+	        Given that $3+5i=(a+ib)(1+i)$ where $a$ and $b$ are real, find the value of $a$ and $b$:
+	    \end{problem}
+	    
+	    \begin{solution}
+	        Expanding: $(a-b)+i(a+b)=3+5i$
+	        
+            So $a-b=3$ and $a+b=5$.
+            
+            Solving: $a=4$, $b=1$. We could have also found $\frac{3+5i}{1+i}$
+	    \end{solution}
+	    
+	    \begin{problem}
+	        Calculate the solutions of $z^2=i$:
+	    \end{problem}
+	    
+        \alert<1>{There are two numbers that when I square them I get i so you should get two answers. The fundamental theorem of arithmetic says that when you are looking for solutions in the complex numbers you should always get two solutions.}
+    
+	    \begin{solution}
+	        Let $z=a+ib$
+	        
+            $i=(a+ib)^2=a^2+2abi-b^2$
+            
+            So $0+1i=(a^2-b^2 )+(2ab)i $
+            
+            $a^2-b^2=0$ and $2ab=1$
+            
+            $a=b=\pm \frac{1}{\sqrt{2}}$
+            
+            So $z=\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{2}}i$ or $-\frac{1}{\sqrt{2}}-\frac{1}{\sqrt{2}}i$
+	    \end{solution}
+	    
+	    \alert<1>{In the second complex numbers topic we will use something called De Moivre’s Theorem to do this more simply.}
+	\end{frame}
+	
+	\begin{frame}[shrink=15]{Test Your Understanding}
+        \begin{enumitem}
+            \item 1. Given that $a+2b+2ai=4+6i$, where $a$ and $b$ are real, find the value of $a$ and of $b$: \sol{$a=3,b=\frac{1}{2}$}
+            \item 2. $(a+i)^3=18+26i$ where $a$ is real. Find the value of $a$: \sol{$a=3$}
+            \item 3. Find real $x$ and $y$ such that $\frac{1}{x+yi}=3-2i$: \sol{$x=\frac{3}{13}, y=\frac{2}{13}$}
+        \end{enumitem}
+        
+        \alert<1>{Remember that there should be two solutions for each of these. Again, we will use De Moivre’s Theorem to do questions like this in the second complex numbers topic.}
+        
+        \begin{enumitem}
+            \item 4. Solve $z^2=7+24i$: \sol{$z=\pm (4+3i)$}
+            \item 5. Solve $z^2=11+60i$: \sol{$z=\pm (6-5i)$}
+            \item 6. Solve $z^2=5−12i$: \sol{$z=\pm (3-2i)$}
+        \end{enumitem}
+    \end{frame}
+\end{document}
