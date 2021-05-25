@@ -1,16 +1,16 @@
 Name,Type,Contributers,Status,LastEdited
-GroupTheory,FurtherDiscrete,Tobias,Old,Longago
-LPinGameTheory,FurtherDiscrete,Tobias,Old,Longago
-MixedStrategies,FurtherDiscrete,Tobias,Old,Longago
-ActivityNetworks,FurtherDiscrete,Tobias,Old,Longago
-BinaryOperations,FurtherDiscrete,Tobias,Old,Longago
-FundamentalsofGameTheory,FurtherDiscrete,Tobias,Old,Longago
-FundamentalsofGraphTheory,FurtherDiscrete,Tobias,Old,Longago
-FirstOrderDifferentialEquations,FurtherPure,Tobias,Old,Longago
-GraphIsomorphismandPlanarGraphs,FurtherDiscrete,Tobias,Old,Longago
-GanttChartsandResourceHistograms,FurtherDiscrete,Tobias,NolongerNewest,Recently
-TheArgandDiagram,FurtherPure,Tobias,Just some checking and tweaking needed,18.5.21
-ComplexRootsofEquation,FurtherPure,Tobias,Nealy there just some tweaking,20.5.21
-DifferentiatingIntegratingInverseTrigFunctions,FurtherPure,Yavuz,done,22.5.21
-Limits,FurtherPure,Tobias,Nearly there just some tweaking on a tikz pic,22.5.21
-FundamentalsOfComplexNumbers,FurtherPure,Liam,Needs Checking,24.5.21
+GroupTheory,FurtherDiscrete,Tobias,Just some checking,25.5.21
+LPinGameTheory,FurtherDiscrete,Tobias,Just some checking,25.5.21
+MixedStrategies,FurtherDiscrete,Tobias,Just some checking,25.5.21
+ActivityNetworks,FurtherDiscrete,Tobias,Just some checking,25.5.21
+BinaryOperations,FurtherDiscrete,Tobias,Just some checking,25.5.21
+FundamentalsofGameTheory,FurtherDiscrete,Tobias,Just some checking,25.5.21
+FundamentalsofGraphTheory,FurtherDiscrete,Tobias,Just some checking,25.5.21
+FirstOrderDifferentialEquations,FurtherPure-DifferentialEquations,Tobias,Just some checking,25.5.21
+GraphIsomorphismandPlanarGraphs,FurtherDiscrete,Tobias,Needs a couple of complicated tikz pictures...,25.5.21
+GanttChartsandResourceHistograms,FurtherDiscrete,Tobias,Just some checking,25.5.21
+TheArgandDiagram,FurtherPure-ComplexNumbers,Tobias,Just some checking,18.5.21
+ComplexRootsofEquation,FurtherPure-ComplexNumbers,Tobias,Just some checking,20.5.21
+DifferentiatingIntegratingInverseTrigFunctions,FurtherPure-FurtherCalculus,Yavuz,done,22.5.21
+Limits,FurtherPure-FurtherCalculus,Tobias,Just some checking,22.5.21
+FundamentalsOfComplexNumbers,FurtherPure-ComplexNumbers,Liam,done,24.5.21
