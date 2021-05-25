@@ -5,3 +5,9 @@
 
 ## Compiling the `.tex` files
 - You will need to have the `preamble.tex` file in the same folder as the `.tex` file you wish to compile. Then compile with lualatex to get the nice mozilla fira sans fonts. But pdftex should work fine as well.
+
+## Tasks
+- [ ] FurtherDiscrete, so far 9/13
+- [ ] FurtherPure-ComplexNumbers, so far 3/8
+- [ ] FurtherPure-DifferentialEquations, so far 1/3
+- [ ] FurtherPure-FurtherCalculus, so far 2/6
