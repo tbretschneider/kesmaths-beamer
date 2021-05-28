@@ -1,77 +1,20 @@
+% !TeX spellcheck = en_B
+% !TeX encoding = UTF-8
 \documentclass[8pt]{beamer}
 
- \usepackage[utf8]{inputenc}                                                     
- \usetheme{Bergen}                                                               
-%  \usecolortheme{crane}                                                       
-  %\useinnertheme{circles}                                                         
-  \usepackage[english]{babel}                                                     
-  \usepackage{csquotes}                                                           
-  \usepackage[T1]{fontenc}                                                        
-  \usepackage{booktabs}                                                           
-  \usepackage{amsmath}   
-  \usepackage{tikz}
-  \usepackage{amssymb}
-  \usepackage{amsfonts}
-  \usepackage{mathrsfs}   
-  \usepackage{graphicx}
-  \usepackage{varioref}
-  \usepackage{probsoln}
-  \usepackage[style=authoryear,backref=true]{biblatex}
- \usepackage[]{hyperref} 
-  \graphicspath{{Graphics/}}
-  \usepackage{multirow,array}
-  \addbibresource{../Everything.bib}
-  \usepackage{colortbl}
-  \definecolor{aa}{RGB}{247, 232, 35}
-  \definecolor{cc}{RGB}{29, 23, 80}    
-  %\setbeamercolor{palette tertiary}{fg=aa,bg=cc}
-  %\setbeamercolor{structure}{fg=cc}
-  %\setbeamercolor{alerted text}{fg=red}
-  
-  %Information to be included in the title page:
-  \title[Discrete]{AL FM Discrete}
-  
-  \subtitle{Binary Operations}
-  
-  \author[]{T. Bretschneider}
-  
-  \date[\today]{\today}
+\input{preamble}
 
-\usepackage{comment}
-\usepackage{varwidth}
-
-\newcommand{\mat}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 \\ \end{array}\right)}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\sol}[2][+]{
-\tikz[baseline]{\node[color=aa,fill=cc,rectangle,draw,anchor=base] {\onslide<#1->{#2}};}
-}
-
-\usetikzlibrary{positioning}
-
-\def\height{0.8cm}
-\def\width{1.2cm}
-
-		\newcommand{\keynode}[6]{\node[minimum height=\height,minimum width=\width,draw,rectangle,color=aa,fill=cc] (#3) at (#1,#2) {};
-	\node[rectangle,minimum height=\height/2,minimum width=\width,above,color=aa,fill=cc] at (#3) {#3};
-	\node[draw,rectangle,minimum height=\height/2,minimum width=\width/3,below,color=aa,fill=cc,inner sep =0cm] at (#3) {\footnotesize#4};
-	\node[draw,rectangle,minimum height=\height/2,minimum width=\width/3,below,xshift=\height/2,color=aa,fill=cc,inner sep=0cm] at (#3) {\footnotesize#5};
-	\node[draw,rectangle,minimum height=\height/2,minimum width=\width/3,below,xshift=-\height/2,color=aa,fill=cc,inner sep=0cm] at (#3) {\footnotesize#6}; }
-
-
+\title[Pure]{{\color{aa}\Huge\adfbullet{9}}AL FM Discrete}
+\subtitle{Binary Operations, \textattachfile{BinaryOperations.tex}{(TeX)}}
 
 \begin{document}
 
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
 \frame{\titlepage}
-
-\begin{frame}
-\frametitle{Outline}
-\tableofcontents
-
-\end{frame}
-
-\section{Introduction}
 
 \begin{frame}{What is a Binary Operation?}
 	\begin{definition}
@@ -355,7 +298,9 @@ So $\Delta$ is commutative on  $\R$.
 	\end{itemize}
 
 \end{problem}
-
+\begin{columns}[T]
+	\begin{column}{.6\linewidth}
+		
 \begin{solution}<2->
 	Using the definition we have that: 
 	\begin{align*}
@@ -367,18 +312,22 @@ So $\Delta$ is commutative on  $\R$.
 	Easy to check that this also works for $e*a$. So an identity exists for  $*$ on  $\R$ and is $\frac{1}{3}$.
 \end{solution}
 
-\begin{solution}<3->
+	\end{column}
+\begin{column}{.4\linewidth}
+	\begin{solution}<3->
 	\begin{align*}
 		a\circ e = 3a+e&= a \\
 		e &= -2a 
 	.\end{align*}
 	Since the identity element is constant it cannont change depending on $a$ so no identity for  $\circ$ on  $\R$ exists.
 \end{solution}
+\end{column}
+\end{columns}
 
 
 \end{frame}
 
-\begin{frame}{Inverse}
+\begin{frame}[shrink=5]{Inverse}
 	\begin{definition}
 		Consider a binary operation $*$ on a set  $S$ with an identity element  $e$. For  $x\in S$, an inverse element  $x^{-1}\in S$ exists if and only if $x*x^{-1}=x^{-1}*x=e$.
 	\end{definition}
@@ -392,7 +341,7 @@ So $\Delta$ is commutative on  $\R$.
 	For multiplication on $\R \backslash \{0\}$ the inverse of an element $a$ is \sol{ $\frac{1}{a}$ }.
 
 	\begin{problem}
-		The binary operation $\lozenge$ is given by  $a\lozenge b = a+b-ab$ where  $a,b\is \Z$.
+		The binary operation $\lozenge$ is given by  $a\lozenge b = a+b-ab$ where  $a,b\in \Z$.
 		\begin{itemize}
 			\item Show that the identity element in the set $\Z$ with respect to the binary operation $\lozenge$ is 0.
 			\item Find the inverse of the element 4 under the binary operation  $\lozenge$.
@@ -420,28 +369,32 @@ So $\Delta$ is commutative on  $\R$.
 			\item Is the operation  $*$ commutative?
 		\end{itemize}
 	\end{problem}
+\begin{columns}[T]
+	\begin{column}{.4\linewidth}
 	\begin{solution}<2->
 		\begin{center}
 			\colorbox{cc!30}{
-			\setlength\arrayrulewidth{0.5mm}
-			\arrayrulecolor{white}
-			\begin{tabular}{c|cccc}
+			\begin{nicetable}{c|cccc}
 				$*$ & 0 & 1 & 2 & 3 \\
 				\hline
 				0 & 0 & 0 & 0 & 0 \\
 				1 & 0 & 2 & 3 & 4 \\
 				2 & 0 & 6 & 8 & 10 \\
 				3 & 0 & 12 & 15 & 18 \\
-			\end{tabular}
+			\end{nicetable}
 		}
 		\end{center}
 	\end{solution}
+\end{column}
+\begin{column}{.6\linewidth}
 	\begin{solution}<3->
 		The operation $*$ is clearly not closed on  $S$. There are elements in the Cayley table which are not in  $S$. Take  $1*3=4\not\in S$.
 	\end{solution}
 	\begin{solution}<4->
 		The lack of symmetry around the leading diagonal indicates that the operation $*$ is not commutative.
 	\end{solution}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Test Your Understanding}
@@ -455,23 +408,25 @@ So $\Delta$ is commutative on  $\R$.
 
 		\end{itemize}
 	\end{problem}
+\begin{columns}[T]
+	\begin{column}{.6\linewidth}
 \begin{solution}<2->
 	
-		\begin{center}
+		\centering
+		\adjustbox{max width=\linewidth}{
 			\colorbox{cc!30}{
-			\setlength\arrayrulewidth{0.5mm}
-			\arrayrulecolor{white}
-			\begin{tabular}{c|cccc}
+			\begin{nicetable}{c|cccc}
 				$\times $ & $1$ & $i$ & $-i$ & $-1$ \\
 				\hline
 				$1$ & $1$ & $-i$ & $i$ & $-1$ \\
 				$i$ & $i$ & $-1$ & $1$ & $-i$ \\
 				$-i$ $-i$  & $1$ & $-1$ & $i$ \\
 				$-1$ & $-1$ & $-i$ & $i$ & $1$ \\
-			\end{tabular}
-		}
-		\end{center}
+			\end{nicetable}
+		}}
 \end{solution}	
+\end{column}
+\begin{column}{.4\linewidth}
 \begin{solution}<3->
 	The operation is both commutative and associative as multiplication is associative and commutative on the parent group of $\mathbb{C}.$
 \end{solution}
@@ -482,9 +437,11 @@ So $\Delta$ is commutative on  $\R$.
 \begin{solution}<5->
 	1 and  $-1$ are both self inverse. $i$ and  $-i$ are inverse pairs.
 \end{solution}
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}{Modular Arithmetic}
+\begin{frame}[shrink=5]{Modular Arithmetic}
 	\begin{definition}
 		\textbf{Modular arithmetic} is a system of arithmetic for integers where numbers 'wrap around' upon reaching a certain value called the modulus.
 	\end{definition}
@@ -495,9 +452,7 @@ So $\Delta$ is commutative on  $\R$.
 	\end{definition}
 
 	You do modular arithmetic all the time when reading a clock.
-
-	10 o'clock plus three hours is 1 o'clock because we wrap around at 12.
-
+   10 o'clock plus three hours is 1 o'clock because we wrap around at 12.
 	We would write $10+3\equiv 1 \mod 12$ or  $10 +_{12} 3 =1$.
 
 	$5 +_{12} 10 = $\sol{$3$},  $5\times_{12} 10=$\sol{2}, $6\times_9 3=$\sol{0}, $8+_{10} 13=$\sol{1},  $1+_{10}1=$\sol{1}.
@@ -510,25 +465,27 @@ So $\Delta$ is commutative on  $\R$.
 		 \end{itemize}
 
 	\end{problem}
-
+\begin{columns}[T]
+	\begin{column}{.5\linewidth}
 	\begin{solution}<6->
 		$5\blacksquare 3=5^2+3+2 \mod 16 = 30 \mod 16=14$.
 	\end{solution}
-
+\end{column}
+\begin{column}{.5\linewidth}
 	\begin{solution}<7->
 		$a^2+b=14, a=3, b=5$
 	\end{solution}
-	
+\end{column}
+\end{columns}
 \end{frame}
 
-\begin{frame}[shrink]{Test Your Understanding}
+\begin{frame}[shrink=15]{Test Your Understanding}
 	\begin{problem}
 		The binary operation $*$ is defined as  $x*y=x+y+1 \mod 2$ where  $x,y\in \R$.
 		\begin{itemize}
 			\item Prove that the binary operation $*$ is associative.
 			\item Find an identity element of the set $ \R$ with respect to the binary operation $*$.
 			\item Prove that the sat $ \R$ has infinitely many identity elements with respect to $*$.
-
 		\end{itemize}
 	\end{problem}
 
@@ -547,9 +504,7 @@ So $\Delta$ is commutative on  $\R$.
 \end{solution}
 \begin{solution}<3->
 	For the identity element $e, e*a=a*e=a=a+e+1 \mod 2$.
-
 	So $e+1=0 \mod 2$, and so  $e=1$ works.
-
 	So 1 is an identity element.
 \end{solution}
 \begin{solution}<4->
@@ -558,7 +513,7 @@ So $\Delta$ is commutative on  $\R$.
 
 \end{frame}
 
-\begin{frame}[shrink]{Test Your Understanding}
+\begin{frame}[shrink=20]{Test Your Understanding}
 	\begin{problem}
 		$S=\{1,2,3,4,5,6,7,8,9,10,11\}$. Find the inverse of the element  $5$ under multiplication  $\mod 12$.
 	\end{problem}
@@ -579,28 +534,30 @@ So $\Delta$ is commutative on  $\R$.
 		\end{itemize}
 	
 	\end{problem}
-	\begin{solution}<3->
-		
-		\begin{center}
+
+		\begin{columns}[T]
+			\begin{column}{.5\linewidth}
+					\begin{solution}<3->
+	\centering
+	\adjustbox{max width=.5\linewidth}{
 			\colorbox{cc!30}{
-			\setlength\arrayrulewidth{0.5mm}
-			\arrayrulecolor{white}
-			\begin{tabular}{c|cccc}
+			\begin{nicetable}{c|cccc}
 				$\times_5 $ & $1$ & $2$ & $3$ & $4$ \\
 				\hline
 				$1$ & $1$ & $2$ & $3$ & $4$ \\
 				$2$ & $2$ & $4$ & $1$ & $3$ \\
 				$3$ & $3$ & $1$ & $4$ & $2$ \\
 				$4$ & $4$ & $3$ & $2$ & $1$ \\
-			\end{tabular}
-		}
-	
-	\end{center}
-	
+			\end{nicetable}
+		}}
+
 \end{solution}
 \begin{solution}<4->
 	$x=3$
 \end{solution}
+			\end{column}
+	\begin{column}{.5\linewidth}
+
 \begin{solution}<5->
 	$4x=1\mod 5 \implies x=4$
 \end{solution}
@@ -613,6 +570,8 @@ So $\Delta$ is commutative on  $\R$.
 \begin{solution}<8->
 	1 and 4 are self inverse. 2 and 3 are an inverse pair.
 \end{solution}
+	\end{column}
+		\end{columns}
 
 	\end{frame}
 

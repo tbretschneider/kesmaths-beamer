@@ -1,69 +1,20 @@
+% !TeX spellcheck = en_B
+% !TeX encoding = UTF-8
 \documentclass[8pt]{beamer}
 
- \usepackage[utf8]{inputenc}                                                     
-  \usetheme{Bergen}                                                               
-%  \usecolortheme{crane}                                                       
-  %\useinnertheme{circles}                                                         
-  \usepackage[english]{babel}                                                     
-  \usepackage{csquotes}                                                           
-  \usepackage[T1]{fontenc}                                                        
-  \usepackage{booktabs}                                                           
-  \usepackage{amsmath}   
-  \usepackage{tikz}
-  \usepackage{amssymb}
-  \usepackage{amsfonts}
-  \usepackage{mathrsfs}   
-  \usepackage{graphicx}
-  \usepackage{varioref}
-  \usepackage{probsoln}
-  \usepackage[style=authoryear,backref=true]{biblatex}
- \usepackage[]{hyperref} 
-  \graphicspath{{Graphics/}}
-  \usepackage{multirow,array}
-  \addbibresource{../Everything.bib}
-  \usepackage{colortbl}
-  \definecolor{aa}{RGB}{247, 232, 35}
-  \definecolor{cc}{RGB}{29, 23, 80}    
-  %\setbeamercolor{palette tertiary}{fg=aa,bg=cc}
-  %\setbeamercolor{structure}{fg=cc}
-  %\setbeamercolor{alerted text}{fg=red}
-  
-  %Information to be included in the title page:
-  \title[Discrete]{AL FM Discrete}
-  
-  \subtitle{Critical Path Analysis: Activity Networks}
-  
-  \author[]{T. Bretschneider}
-  
-  \date[\today]{\today}
+\input{preamble}
 
-\usepackage{comment}
-\usepackage{varwidth}
-
-\newcommand{\mat}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 \\ \end{array}\right)}
-
-\usetikzlibrary{positioning}
-
-\def\height{0.8cm}
-\def\width{1.2cm}
-
-		\newcommand{\keynode}[6]{\node[minimum height=\height,minimum width=\width,draw,rectangle,color=aa,fill=cc] (#3) at (#1,#2) {};
-	\node[rectangle,minimum height=\height/2,minimum width=\width,above,color=aa,fill=cc] at (#3) {#3};
-	\node[draw,rectangle,minimum height=\height/2,minimum width=\width/3,below,color=aa,fill=cc,inner sep =0cm] at (#3) {\footnotesize#4};
-	\node[draw,rectangle,minimum height=\height/2,minimum width=\width/3,below,xshift=\height/2,color=aa,fill=cc,inner sep=0cm] at (#3) {\footnotesize#5};
-	\node[draw,rectangle,minimum height=\height/2,minimum width=\width/3,below,xshift=-\height/2,color=aa,fill=cc,inner sep=0cm] at (#3) {\footnotesize#6}; }
-
-
+\title[Pure]{{\color{aa}\Huge\adfbullet{9}}AL FM Discrete}
+\subtitle{Activity Networks, \textattachfile{ActivityNetworks.tex}{(TeX)}}
 
 \begin{document}
+	
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
 
 \frame{\titlepage}
-
-\begin{frame}
-\frametitle{Outline}
-\tableofcontents
-
-\end{frame}
 
 \begin{frame}{Eating Breakfast}
 
@@ -119,17 +70,16 @@
 	\end{solution}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Precedence Table and Activity Networks}
+\begin{frame}[shrink=10]{Precedence Table and Activity Networks}
 
 \begin{definition}
 	A \textbf{precedence table} shows the duration of activities and their dependence on each other. 
 \end{definition}
 
-\begin{center}
+\centering
+\adjustbox{max width=.7\linewidth}{
 	\colorbox{cc!30}{
-		\setlength\arrayrulewidth{0.5mm}
-		\arrayrulecolor{white}
-		\begin{tabular}{ccc}
+		\begin{nicetable}{ccc}
 			Activity & Immediately preceding activities & Duration / hours \\
 			\hline
 			A &  $-$ & 4 \\
@@ -138,18 +88,17 @@
 			D &  B & 2 \\
 			E &  C & 4 \\
 			F &  C,D & 3 \\
-		\end{tabular}
+		\end{nicetable}
 	}
-	
-\end{center}
+}
 
 \begin{definition}
 	We can translate a precedence table into an \textbf{activity network} where the directed arcs represent a dependence on a preceding activity. 
 	
 \end{definition}
 
-
-\begin{center}
+\centering
+\adjustbox{max width=.5\linewidth}{
 \begin{tikzpicture}
 \keynode{0}{0}{A}{4}{}{}
 \keynode{0}{-2*\height}{B}{5}{ }{}
@@ -168,7 +117,7 @@
 \draw[->,color=aa] (E) --  (End);
 \draw[->,color=aa] (F) --  (End);
 \end{tikzpicture}
-\end{center}
+}
 
 \alert{Note that the middle box is for the duration and we shall see that the left and right boxes are for the earliest start time and latest finish time respectively.}
 	
@@ -243,7 +192,7 @@ The minimum completion time for this activity is therefore 15 hours.
 
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Float}
+\begin{frame}[shrink=10]{Float}
 \begin{definition}
 	The \textbf{float} of an activity is the 'slack time'
 	\[
@@ -259,8 +208,8 @@ The minimum completion time for this activity is therefore 15 hours.
 
 \begin{columns}
 	\begin{column}{0.6\textwidth}
-
-\begin{center}
+\centering
+\adjustbox{max width=\linewidth}{
 \begin{tikzpicture}
 \keynode{0}{0}{A}{4}{5}{0}
 \keynode{0}{-2*\height}{B}{5}{5}{0}
@@ -279,7 +228,7 @@ The minimum completion time for this activity is therefore 15 hours.
 \draw[->,color=aa] (E) --  (End);
 \draw[->,color=aa] (F) --  (End);
 \end{tikzpicture}
-\end{center}
+}
 
 
 
@@ -287,12 +236,10 @@ The minimum completion time for this activity is therefore 15 hours.
 	\end{column}
 	\begin{column}{0.4\textwidth}
 		
-
-\begin{center}
+\centering
+\adjustbox{max width=\linewidth}{
 	\colorbox{cc!30}{
-		\setlength\arrayrulewidth{0.5mm}
-		\arrayrulecolor{white}
-		\begin{tabular}{ccc}
+		\begin{nicetable}{ccc}
 			Activity & Float & Critical \\
 			\hline
 			A &  1 & No \\
@@ -301,10 +248,9 @@ The minimum completion time for this activity is therefore 15 hours.
 			D &  5 & No \\
 			E &  0 & Yes \\
 			F &  1 & No \\
-		\end{tabular}
-	}
-	
-\end{center}
+		\end{nicetable}
+	}}
+
 	\end{column}
 \end{columns}
 
@@ -325,17 +271,15 @@ their duration and speeding up the overall completion time.
 	\end{itemize}
 \end{frame}
 
-\begin{frame}{Reducing Cost}
+\begin{frame}{Reducing Cost Problem}
 	\begin{problem}
 		What is the minimum extra cost from the original planned duration of this project so that it can be completed as quickly as possible?
 
 		
 
-\begin{center}
+	\adjustbox{max width=.7\linewidth}{
 	\colorbox{cc!30}{
-		\setlength\arrayrulewidth{0.5mm}
-		\arrayrulecolor{white}
-		\begin{tabular}{c>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2.2cm}>{\centering\arraybackslash}m{2cm}}
+		\begin{nicetable}{c>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2cm}>{\centering\arraybackslash}m{2.2cm}>{\centering\arraybackslash}m{2cm}}
 	Activity & Immediately preceding activities & Original Duration (in hours) & Cost of reducing duration by 1 hour & Minimum duration possible \\
 	\hline
 	A &  & 4 & 100 & 2 \\
@@ -344,16 +288,19 @@ their duration and speeding up the overall completion time.
 	D & B & 2 & 300 & 1 \\
 	E & C & 4 & 200 & 1 \\
 	F & C,D & 5 & 200 & 2 \\
-\end{tabular}
-	}
+\end{nicetable}
+	}}
 	
-\end{center}
 	\end{problem}
+
+\end{frame}
+\begin{frame}[shrink=5]{Reducing Cost Solution}
 	\begin{solution}
 		Activity network with the minimum duration:
 
 
-\begin{center}
+\centering
+\adjustbox{max width=.7\linewidth}{
 \begin{tikzpicture}
 \keynode{0}{0}{A}{2}{4}{0}
 \keynode{0}{-2*\height}{B}{4}{4}{0}
@@ -372,19 +319,17 @@ their duration and speeding up the overall completion time.
 \draw[->,color=aa] (E) --  (End);
 \draw[->,color=aa] (F) --  (End);
 \end{tikzpicture}
-\end{center}
+}
 
 The floats are, A2,B0,C0,D2,E1,F0
 
 Now calculate the extra costs to complete the activities in these durations for the minimum completion time compared to the original planned duration.
 
 
-
-\begin{center}
+\centering
+\adjustbox{max width=.6\linewidth}{
 	\colorbox{cc!30}{
-		\setlength\arrayrulewidth{0.5mm}
-		\arrayrulecolor{white}
-		\begin{tabular}{c>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1.3cm}}
+		\begin{nicetable}{c>{\centering\arraybackslash}m{1.5cm}>{\centering\arraybackslash}m{1.3cm}}
 	Activity & New Duration & Extra Cost \\
 	\hline
 	A & 4 & 0 \\
@@ -393,15 +338,14 @@ Now calculate the extra costs to complete the activities in these durations for 
 	D & 2 & 0 \\
 	E & 2 & 400 \\
 	F & 2 & 200 \\
-\end{tabular}
-	}
+\end{nicetable}
+	}}
 	
-\end{center}
 So the total extra cost is 1100.
 	\end{solution}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Past Paper Question}
+\begin{frame}{Past Paper Question}
 	\begin{problem}
 		Deva Construction Ltd undertakes a small building project. 
 
@@ -448,7 +392,10 @@ So the total extra cost is 1100.
 
 	\end{problem}
 
-\begin{solution}<2->
+\end{frame}
+\begin{frame}{Past Paper Solution}
+
+\begin{solution}<1->
 	
 
 		\begin{center}
@@ -484,11 +431,11 @@ So the total extra cost is 1100.
 
 \end{solution}
 
-\begin{solution}<3->
+\begin{solution}<2->
 	Reducing the duration of activity E to 1 reduces the project completion time to 14 hours, whereas all other activities reduce the project completion time to 15 hours or more.
 \end{solution}
 
-\begin{solution}<4->
+\begin{solution}<3->
 	Time between one activity ending and the next starting is not taken into account, as workers may need to travel to a different location.
 
 	The travelling time will cause subsequent activities to be delayed, increasing the project completion time.

@@ -1,59 +1,21 @@
+% !TeX spellcheck = en_B
+% !TeX encoding = UTF-8
 \documentclass[8pt]{beamer}
 
- \usepackage[utf8]{inputenc}                                                     
-  \usetheme{Berlin}                                                               
-%  \usecolortheme{crane}                                                       
-  %\useinnertheme{circles}                                                         
-  \usepackage[english]{babel}                                                     
-  \usepackage{csquotes}                                                           
-  \usepackage[T1]{fontenc}                                                        
-  \usepackage{booktabs}                                                           
-  \usepackage{amsmath}   
-  \usepackage{tikz}
-  \usepackage{amssymb}
-  \usepackage{amsfonts}
-  \usepackage{mathrsfs}   
-  \usepackage{graphicx}
-  \usepackage{varioref}
-  \usepackage{probsoln}
-  \usepackage[style=authoryear,backref=true]{biblatex}
- \usepackage[]{hyperref} 
-  \graphicspath{{Graphics/}}
-  \usepackage{multirow,array}
-  \addbibresource{../Everything.bib}
-  \usepackage{colortbl}
-  \definecolor{aa}{RGB}{247, 232, 35}
-  \definecolor{cc}{RGB}{29, 23, 80}    
-  %\setbeamercolor{palette tertiary}{fg=aa,bg=cc}
-  %\setbeamercolor{structure}{fg=cc}
-  %\setbeamercolor{alerted text}{fg=red}
-  
-  %Information to be included in the title page:
-  \title[Discrete]{AL FM Discrete}
-  
-  \subtitle{Group Theory}
-  
-  \author[]{T. Bretschneider}
-  
-  \date[\today]{\today}
+\input{preamble}
 
-\usepackage{comment}
-\usepackage{varwidth}
-
-\newcommand{\mat}[4]{\left(\begin{array}{cc} #1 & #2 \\ #3 & #4 \\ \end{array}\right)}
+\title[Pure]{{\color{aa}\Huge\adfbullet{9}}AL FM Discrete}
+\subtitle{Group Theory, \textattachfile{GroupTheory.tex}{(TeX)}}
 
 \begin{document}
 
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
+
 \frame{\titlepage}
-
-\begin{frame}
-\frametitle{Outline}
-\tableofcontents
-
-\end{frame}
-
-
-\section{Introduction}
 
 \begin{frame}[allowframebreaks]{What is a Group?}
 	\begin{definition}
@@ -179,7 +141,8 @@ Inverse: Set  $\beta=\alpha$ and result follows.
 
 }
 \end{frame}
-\section{Group Properties}
+
+
 \begin{frame}{Period (or Order) of an Element}
 	\begin{definition}
 		The \textbf{period (or Order) of an element} $a$ of a group  $(G,*)$ is the smallest  $n$ such that  $a^n=e$ 
@@ -199,7 +162,8 @@ For the group shown by the Clayley table:
 
 	The orders of  $X,Y,Z$ are 2, as they are all self-inverse.}
 \end{frame}
-\section{Types of Groups}
+
+
 \begin{frame}{Abelian Groups}
 	\begin{definition}
 		If a group $(G,*)$ also has the property that  $*$ is commutative the it is an  \textbf{Abelian Group}.
@@ -443,8 +407,6 @@ Any set is a subset of itself and therefore technically any group is a subgroup 
 
 \onslide<2->{9}
 \end{frame}
-
-\section{Occurrences of Groups}
 
 \begin{frame}{Rotational Symmetries of Regular Polygons}
 	Consider the anti-clockwise rotational symmetries of an equilateral triangle.

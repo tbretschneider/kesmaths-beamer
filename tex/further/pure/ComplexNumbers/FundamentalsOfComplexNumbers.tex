@@ -1,4 +1,4 @@
-\documentclass{beamer}
+\documentclass[8pt]{beamer}
 
 \input{preamble}
 %Information to be included in the title page:
@@ -17,7 +17,7 @@
 	
 	\frame{\titlepage}
 	
-	\begin{frame}[shrink=15]{What is $i$?}
+	\begin{frame}{What is $i$?}
 	    Previously in maths….
     
         If you came across a circumstance where you needed to square root a complex number, then you couldn’t.
@@ -31,15 +31,13 @@
         \end{definition}
 	\end{frame}
 	
-	\begin{frame}[shrink=15]{Complex vs Imaginary Numbers}
+	\begin{frame}{Complex vs Imaginary Numbers}
 	    
 	    \textbf{Imaginary number}: of form \sol{$bi, b \in \R$}
 	    
 	    \textbf{Complex number}: of form \sol{$a+bi, a,b \in \R$}
 	    
 	    In the complex number $3+4i$, the \sol{real} part is $3$, and the \sol{imaginary} part is $4i$.
-	    
-	    \newline
 	    
 	    \begin{definition}
 	        $Re(z)$ denotes the real part of $z$, and $Im(z)$ denotes the imaginary part of $z$.
@@ -56,17 +54,76 @@
 	    Imaginary does not mean they don’t exist, just that you can’t put them on a number line…
 
         As we will see later there is a two-dimensional version of a number line called an Argand diagram.
-	\end{frame}
+\end{frame}
 	
-	\begin{frame}[shrink=15]{Types of Number}
+	\begin{frame}{Types of Number}
 	    \alert<1>{Algebraic means that there is a polynomial with rational coefficients with that number as a root. For instance, $\sqrt{2}$ is the root of $x^2-2$.}
+	    
+	    \centering
+\adjustbox{max width=.8\textwidth}{
+\def\complex{(0,0) ellipse (7cm and 6cm)}
+\def\real{(0,0) ellipse (6.5cm and 3.5cm)}
+\def\algebraic{(1.7,0) circle (5cm)}
+\def\imag{(1.3,-4.7) ellipse (2.2cm and 1cm)}
+\def\int{(2.9,-0.6) ellipse (2.6cm and 2.3cm)}
+\def\whole{(2.9,-0.7) ellipse (2.1cm and 1.6cm)}
+\def\count{(2.9,-0.9) ellipse (1.3cm and 1cm)}
+\begin{tikzpicture}
+	%%Complex%%%%%%%%%%%%%%%%%%5
+	\filldraw[orange,fill opacity=0.1] \complex;
+	\node[color=orange] at (0,5.5) {Complex Numbers};
+	\node[color=orange] at (-4,4.2) {$\pi+3i$};
+	\node[color=orange] at (-5,3.2) {$e-\pi i$};
+	%%%%%%Real%%%%%%%%%%%%%5
+	\filldraw[green,fill opacity=0.1] \real;
+	\node[color=green] at (0,3) {Real Numbers};
+	%%%%Transcendental%%%%%%%%%%5
+	\node[color=green,align=left] at (-5,0.3) {Transcendental \\ Numbers};
+	\node[color=green] at (-6,-0.5) {$\pi$};
+	\node[color=green] at (-5.3,-1) {$e$};		
+	%%%%%%%Irrational and real%%%%%%
+	\node[color=green] at (-2.9,2.3) {Irrational Numbers};
+	\node[color=green] at (2.9,2.3) {Rational Numbers};
+	\draw[color=green] (0,-3.5) -- (0,2.5);
+	\node[color=green] at (-1.7,1.4) {$\sqrt{2}$};
+	\node[color=green] at (-2.6,-0.3) {$-\sqrt{5}$};		
+	\node[color=green] at (-1.3,-2.2) {$\sqrt[3]{26}$};
+	\node[color=green] at (0.9,1.6) {$\frac{2}{3}$};		
+	\node[color=green] at (5.7,0.7) {$\frac{97}{32}$};
+	%%%%%Algebraic%%%%%%%%%%
+	\filldraw[blue,fill opacity=0.1]  \algebraic;
+	\node[color=blue] at (1.7,4.5) {Algebraic Numbers};
+	\node[color=blue] at (3.7,3.9) {$9+5i$};
+	\node[color=blue] at (4.6,3.1) {$1+i$};
+	%%%%%Imag%%%%%%%%%%%%%%%
+	\filldraw[purple,fill opacity=0.1]  \imag;
+	\node[color=purple] at (1.3,-4.3) {\footnotesize Pure Imaginary Numbers};
+	\node[color=purple] at (-0.5,-5) {$e i$};
+	\node[color=purple] at (0.5,-5.3) {$\pi i$};
+	\node[color=purple] at (0.8,-4.6) {$i$};
+	\node[color=purple] at (2.0,-4.7) {$5 i$};
+	%%%%%Int%%%%%%%%%%%%%
+	\filldraw[color=blue, fill opacity=0.1] \int;
+	\node[color=blue] at (2.9,1.2) {Integers};
+	\node[color=blue] at (0.9,0.4) {$5$};
+	\node[color=blue] at (2.6,-2.6) {$-99$};
+	%%%%%5Whole%%%%%%5
+	\filldraw[color=blue, fill opacity=0.1] \whole;
+	\node[color=blue] at (2.9,0.3) {Whole Numbers};
+	\node[color=blue] at (4.5,-0.6) {$0$};
+	%%%%%%%%%%Count%%%%%%%%%
+	\filldraw[color=blue, fill opacity=0.1] \count;
+	\node[color=blue,align=center] at (2.9,-0.5) {Counting \\ Numbers};
+	\node[color=blue] at (2.2,-1.2) {$1$};
+	\node[color=blue] at (2.8,-1.6) {$2$};
+	\node[color=blue] at (3.4,-1.3) {$99$};
+\end{tikzpicture}}
 
-	    \includegraphics{numbers}
 	    
 	    \alert<1>{Transcendental numbers are those which aren’t algebraic.}
 	\end{frame}
 	
-	\begin{frame}[shrink=15]{Writing Complex Numbers}
+	\begin{frame}{Writing Complex Numbers}
 	    We tend to ensure real and imaginary components are grouped together.
 	    
 	    (where $a,b,c \in \R$)
@@ -89,7 +146,7 @@
         In the same way that we often initially use $x$ and $y$ as real-valued variables, we often use $z$ first to represent complex values, then $w$.
 	\end{frame}
 	
-	\begin{frame}[shrink=15]{Why Complex Numbers?}
+	\begin{frame}{Why Complex Numbers?}
 	    Complex numbers were originally introduced by the Italian mathematician Cardano in the 1500s to allow him to represent the \textbf{roots of polynomials} which weren’t ‘real’. They can also be used to represent outputs of functions for inputs not in the usual valid domain, e.g. Logs of negative numbers, or even the factorial of negative numbers!
 	    
         Some other major applications of Complex Numbers:
@@ -104,32 +161,34 @@
         
 	\end{frame}
 	
-	\begin{frame}[shrink=15]{Why Complex Numbers?}
+	\begin{frame}{Why Complex Numbers?}
         \textbf{Fractals:}
         
         A Mandelbrot Set is the most popular ‘fractal’. For each possible complex number $c$, we see if $z_{n+1} = {z_n}^2 + c$ is not divergent (using $z_0 = 0$), leading to the diagram on the right. Coloured diagrams can be obtained by seeing how quickly divergence occurs for each complex $c$ (if divergent).  
         
-        \includegraphics{mandelbrot}
+        \centering
+\tikz\shade[shading=Mandelbrot set] (0,0) rectangle (4,4);
+        
         
         \emph{This is an Argand diagram, we will use this later}
         
 	\end{frame}
 	
-	\begin{frame}[shrink=15]{Manipulation and Application}
+	\begin{frame}{Manipulation and Application}
 	    \alert<1>{You can use the same algebraic techniques as for real numbers}
 
 	    $-\sqrt{-36}$ \sol{$= \sqrt{36} \sqrt{-1} = 6i$}
 	    
 	    Solve $x^2+9=0$ : \sol{$x = \pm 3i$}
 	    
-	    Using the quadratic formula, solve x^2+6x+25=0: \sol{$x=-3 \pm 4i$}
+	    Using the quadratic formula, solve $x^2+6x+25=0$: \sol{$x=-3 \pm 4i$}
 	    
 	    Simplify $(5+2i)+(8+9i)$: \sol{$= 13+11i$}
 	    
 	    Simplify $(8+i)(3-2i)$: \sol{$= 24-16i+3i-2i^2 = 24-16i+3i+2 = 26-13i$}
 	\end{frame}
 	
-	\begin{frame}[shrink=15]{Test Your Understanding}
+	\begin{frame}[shrink=7]{Test Your Understanding}
 	    Evaluate the following:
 	    \begin{enumerate}[label={(\alph*)}]
 	        \item $\sqrt{-16}$ \sol{$=4i$}
@@ -151,7 +210,7 @@
 	    
 	\end{frame}
 	
-	\begin{frame}[shrink=15]{Test Your Understanding}
+	\begin{frame}{Test Your Understanding}
 	    Calculate the following:
 	    \begin{enumerate}[label={(\alph*)}]
 	        \item $(1+i)(1-i)$ \sol{$=2$}
@@ -169,7 +228,7 @@
 	   \end{enumerate}
 	\end{frame}
 
-	\begin{frame}[shrink=15]{Complex Conjugates}
+	\begin{frame}{Complex Conjugates}
 	    In the Algebra topic of your A-Level studies you used a technique like the one below to rationalise the denominator:
 	    
         \begin{equation*}
@@ -191,7 +250,7 @@
         \alert<1>{Later we will see that there is another way of dividing complex numbers using something called modulus-argument form.}
 	\end{frame}
 	
-	\begin{frame}[shrink=15]{Complex Conjugates}
+	\begin{frame}{Complex Conjugates}
         The complex number created when we reverse  the sign of the imaginary part has a special name:
         
         \begin{definition}
@@ -211,7 +270,7 @@
         (ii) \sol{$z + z^* = (x+yi) + (x-yi) = x + yi  + x - yi = 2x$}
     \end{frame}
     
-	\begin{frame}[shrink=15]{Test Your Understanding}
+	\begin{frame}[shrink=8]{Test Your Understanding}
 	    Put all the following in the form $a+bi$:
 	    \begin{enumerate}[label={(\alph*)}]
 	        \item $(1+3i)^*$ \sol{$= 1-3i$}
@@ -229,17 +288,19 @@
 	    \end{enumerate}
     \end{frame}
     
-	\begin{frame}[shrink=15]{Complex Number Equality}
+	\begin{frame}[shrink=10]{Complex Number Equality}
 	    \begin{definition}
 	        Two complex numbers are equal if, and only if, both their real and imaginary parts are equal.
 	        
 	        i.e. if $a_1+b_1i = a_2+b_2i$, then $a_1=b_1$ and $a_2=b_2$.
 	    \end{definition}
-	    
+    \begin{columns}[T]
+	    \begin{column}{.3\linewidth}
 	    \begin{problem}
 	        Given that $3+5i=(a+ib)(1+i)$ where $a$ and $b$ are real, find the value of $a$ and $b$:
 	    \end{problem}
-	    
+	    \end{column}
+    \begin{column}{.7\linewidth}
 	    \begin{solution}<2->
 	        Expanding: $(a-b)+i(a+b)=3+5i$
 	        
@@ -247,13 +308,18 @@
             
             Solving: $a=4$, $b=1$. We could have also found $\frac{3+5i}{1+i}$
 	    \end{solution}
-	    
+    \end{column}
+    \end{columns}
+	    \begin{columns}[T]
+	    	\begin{column}{.5\linewidth}
 	    \begin{problem}
 	        Calculate the solutions of $z^2=i$:
 	    \end{problem}
 	    
         \alert<1>{There are two numbers that when I square them I get i so you should get two answers. The fundamental theorem of arithmetic says that when you are looking for solutions in the complex numbers you should always get two solutions.}
-    
+        	    \alert<1>{In the second complex numbers topic we will use something called De Moivre’s Theorem to do this more simply.}
+        \end{column}
+    \begin{column}{.5\linewidth}
 	    \begin{solution}<3->
 	        Let $z=a+ib$
 	        
@@ -268,22 +334,24 @@
             So $z=\frac{1}{\sqrt{2}}+\frac{1}{\sqrt{2}}i$ or $-\frac{1}{\sqrt{2}}-\frac{1}{\sqrt{2}}i$
 	    \end{solution}
 	    
-	    \alert<1>{In the second complex numbers topic we will use something called De Moivre’s Theorem to do this more simply.}
+
+	\end{column}
+\end{columns}
 	\end{frame}
 	
-	\begin{frame}[shrink=15]{Test Your Understanding}
-        \begin{enumitem}
+	\begin{frame}{Test Your Understanding}
+        \begin{itemize}
             \item 1. Given that $a+2b+2ai=4+6i$, where $a$ and $b$ are real, find the value of $a$ and of $b$: \sol{$a=3,b=\frac{1}{2}$}
             \item 2. $(a+i)^3=18+26i$ where $a$ is real. Find the value of $a$: \sol{$a=3$}
             \item 3. Find real $x$ and $y$ such that $\frac{1}{x+yi}=3-2i$: \sol{$x=\frac{3}{13}, y=\frac{2}{13}$}
-        \end{enumitem}
+        \end{itemize}
         
         \alert<1>{Remember that there should be two solutions for each of these. Again, we will use De Moivre’s Theorem to do questions like this in the second complex numbers topic.}
         
-        \begin{enumitem}
+        \begin{itemize}
             \item 4. Solve $z^2=7+24i$: \sol{$z=\pm (4+3i)$}
             \item 5. Solve $z^2=11+60i$: \sol{$z=\pm (6-5i)$}
             \item 6. Solve $z^2=5−12i$: \sol{$z=\pm (3-2i)$}
-        \end{enumitem}
+        \end{itemize}
     \end{frame}
 \end{document}

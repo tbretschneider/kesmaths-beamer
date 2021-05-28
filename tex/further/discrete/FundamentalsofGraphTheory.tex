@@ -1,56 +1,20 @@
+% !TeX spellcheck = en_B
+% !TeX encoding = UTF-8
 \documentclass[8pt]{beamer}
 
- \usepackage[utf8]{inputenc}                                                     
-  \usetheme{Bergen}                                                               
-  \usecolortheme{crane}                                                       
-  %\useinnertheme{circles}                                                         
-  \usepackage[english]{babel}                                                     
-  \usepackage{csquotes}                                                           
-  \usepackage[T1]{fontenc}                                                        
-  \usepackage{booktabs}                                                           
-  \usepackage{amsmath}   
-  \usepackage{tikz}
-  \usepackage{amssymb}
-  \usepackage{amsfonts}
-  \usepackage{mathrsfs}   
-  \usepackage{graphicx}
-  \usepackage{varioref}
-  \usepackage[style=authoryear,backref=true]{biblatex}
- \usepackage[]{hyperref} 
-  \graphicspath{{Graphics/}}
-  \usepackage{multirow,array}
-  \addbibresource{../Everything.bib}
-  \usepackage{colortbl}
-  \definecolor{aa}{RGB}{247, 232, 35}
-  \definecolor{cc}{RGB}{29, 23, 80}    
-  %\setbeamercolor{palette tertiary}{fg=aa,bg=cc}
-  %\setbeamercolor{structure}{fg=cc}
-  %\setbeamercolor{alerted text}{fg=red}
-  
-  %Information to be included in the title page:
-  \title[Discrete]{AL FM Discrete}
-  
-  \subtitle{Fundamentals of Graph Theory}
-  
-  \author[]{T. Bretschneider}
-  
-  \date[\today]{\today}
+\input{preamble}
 
-\usepackage{comment}
-\usepackage{varwidth}
+\title[Discrete]{{\color{aa}\Huge\adfbullet{9}}AL FM Discrete}
+\subtitle{Fundamentals of Graph Theory, \textattachfile{FundamentalsofGraphTheory.tex}{(TeX)}}
 
 \begin{document}
 
+\setlength{\abovedisplayskip}{0pt}
+\setlength{\belowdisplayskip}{0pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+
 \frame{\titlepage}
-
-\begin{frame}
-\frametitle{Outline}
-\tableofcontents
-
-\end{frame}
-
-
-\section{Introduction}
 
 \begin{frame}{What is Graph Theory?}
 	A graph has two meanings in Mathematics. 
@@ -195,8 +159,6 @@ The degree can also be calculated from the adjacency matrix by adding the number
 	
 \end{Problem}
 \end{frame}
-
-\section{Graph types}%
 
 \begin{frame}{Simple Graphs}
 	\begin{alertblock}{Multiple edges}
@@ -362,10 +324,10 @@ Above is $K_{5,4}$.
 \end{center}
 \end{frame}
 
-\section{More graph properties}
-
 \begin{frame}{Trails, Circuits and Cycles}
-	\begin{alertblock}{Trail}
+\begin{columns}[T]
+\begin{column}{.5\linewidth}
+			\begin{alertblock}{Trail}
 		A \textbf{trail} is a sequence of edges in which the end of edge (except for the last) is the beginning  of the next, and no edge is repeated. Vertex can be repeated though.
 	\end{alertblock}
 	\begin{center}
@@ -401,34 +363,11 @@ Above is $K_{5,4}$.
 	A \textbf{circuit} is a closed trail, i.e. the end of the last edge is the start of the first. 
 \end{alertblock}
 
-	\begin{center}
-	\begin{tikzpicture}[scale=0.5]
-[every node/.style={inner sep=0pt}]
-\node (1) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (84.375pt, -185.0pt)  {};
-\node (2) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (164.375pt, -156.25pt)  {};
-\node (3) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (230.625pt, -198.125pt)  {};
-\node (4) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (305.0pt, -180.625pt)  {};
-\node (5) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (295.0pt, -279.375pt)  {};
-\node (6) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (203.75pt, -257.5pt)  {};
-\node (7) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (164.375pt, -211.25pt)  {};
-\node (8) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (108.125pt, -255.0pt)  {};
-\draw [line width=1.625, color=aa] (1) to  (2);
-\draw [line width=1.625, color=aa] (1) to  (7);
-\draw [line width=0.625, color=black] (1) to  (8);
-\draw [line width=0.625, color=black] (1) to  (6);
-\draw [line width=0.625, color=black] (2) to  (7);
-\draw [line width=1.625, color=aa] (2) to  (3);
-\draw [line width=0.625, color=black] (2) to  (6);
-\draw [line width=1.625, color=aa] (3) to  (4);
-\draw [line width=1.625, color=aa] (3) to  (8);
-\draw [line width=1.625, color=aa] (3) to  (5);
-\draw [line width=0.625, color=black] (4) to  (6);
-\draw [line width=1.625, color=aa] (4) to  (5);
-\draw [line width=0.625, color=black] (5) to  (6);
-\draw [line width=0.625, color=black] (5) to  (7);
-\draw [line width=1.625, color=aa] (7) to  (8);
-\end{tikzpicture}
-\end{center}
+
+
+
+\end{column}
+\begin{column}{.5\linewidth}
 
 \begin{alertblock}{Cycle}
 	A \textbf{cycle} is a circuit in which no vertex is repeated. 
@@ -461,9 +400,37 @@ Above is $K_{5,4}$.
 \draw [line width=1.625, color=aa] (7) to  (8);
 \end{tikzpicture}
 \end{center}
-\end{frame}
 
-\section{More Graph types}
+\vspace{1cm}
+	\begin{tikzpicture}[scale=0.5]
+		[every node/.style={inner sep=0pt}]
+		\node (1) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (84.375pt, -185.0pt)  {};
+		\node (2) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (164.375pt, -156.25pt)  {};
+		\node (3) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (230.625pt, -198.125pt)  {};
+		\node (4) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (305.0pt, -180.625pt)  {};
+		\node (5) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (295.0pt, -279.375pt)  {};
+		\node (6) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (203.75pt, -257.5pt)  {};
+		\node (7) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (164.375pt, -211.25pt)  {};
+		\node (8) [circle, minimum size=6pt, fill=cc, line width=0.625pt, draw=black] at (108.125pt, -255.0pt)  {};
+		\draw [line width=1.625, color=aa] (1) to  (2);
+		\draw [line width=1.625, color=aa] (1) to  (7);
+		\draw [line width=0.625, color=black] (1) to  (8);
+		\draw [line width=0.625, color=black] (1) to  (6);
+		\draw [line width=0.625, color=black] (2) to  (7);
+		\draw [line width=1.625, color=aa] (2) to  (3);
+		\draw [line width=0.625, color=black] (2) to  (6);
+		\draw [line width=1.625, color=aa] (3) to  (4);
+		\draw [line width=1.625, color=aa] (3) to  (8);
+		\draw [line width=1.625, color=aa] (3) to  (5);
+		\draw [line width=0.625, color=black] (4) to  (6);
+		\draw [line width=1.625, color=aa] (4) to  (5);
+		\draw [line width=0.625, color=black] (5) to  (6);
+		\draw [line width=0.625, color=black] (5) to  (7);
+		\draw [line width=1.625, color=aa] (7) to  (8);
+	\end{tikzpicture}
+\end{column}
+\end{columns}
+\end{frame}
 
 \begin{frame}{Tree} 
 	\begin{alertblock}{Tree}

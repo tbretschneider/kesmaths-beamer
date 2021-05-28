@@ -21,11 +21,9 @@
   \usepackage{attachfile2}
   \usepackage{pgfplots}
 \pgfplotsset{compat=newest}
-  \usepackage[style=authoryear,backref=true]{biblatex}
  \usepackage[]{hyperref} 
   \graphicspath{{Graphics/}}
   \usepackage{multirow,array}
-  \addbibresource{../Everything.bib}
   \usepackage{colortbl}
   \definecolor{aa}{RGB}{255, 124, 0}
   \definecolor{cc}{RGB}{230, 230, 230}    
@@ -55,6 +53,8 @@
 
 \usetikzlibrary{positioning}
 \usetikzlibrary{tikzmark}
+\usetikzlibrary{shadings}
+\usetikzlibrary{through}
 
 
 \def\height{0.8cm}
@@ -78,5 +78,7 @@
 \newcommand\reshist{}
 \def\reshist(#1)#2(#3)#4(#5)%
 {\draw (axis cs:#1) rectangle (axis cs:#3) node [midway] {#5};}
+
+
 
 
