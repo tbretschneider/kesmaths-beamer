@@ -11,7 +11,7 @@ The goal is to convert all of Dr. Rackham's *amazing* powerpoints into glorious 
 ## Compiling the `.tex` files without overleaf
 - You will need to have the `preamble.tex` file in the same folder as the `.tex` file you wish to compile. Then compile with lualatex to get the nice mozilla fira sans fonts. But pdftex should work fine as well.
 
-## Tasks
+## Progress
 - [ ] Total, so far 17 out of god knows how many
 - [ ] FurtherDiscrete, so far 11/13
 - [ ] FurtherPure-ComplexNumbers, so far 3/8
