@@ -262,7 +262,7 @@ The pivot element is the entry in the pivot column with smallest \textbf{positiv
 
 
 
-\begin{frame}{Simplex Algorithm: Find the Pivot Element}
+\begin{frame}{Simplex Algorithm: Pivoting}
 	\begin{definition}
 		\textbf{Step 5;} 
 Divide everything in the pivot row by the pivot element.
@@ -306,6 +306,292 @@ Divide everything in the pivot row by the pivot element.
   \end{tikzpicture}
 \end{frame}
 
+ \begin{frame}{Simplex Algorithm: Pivoting Interpretation}
+  
+  
+    \colorbox{cc!30}{
+            \begin{nicetable}{c|ccccc|c}
+                    $I$ & $x$ & $y$ & $s_1$ & $s_2$ & $s_3$ & RHS  \\
+    \hline
+                    1 & $0$ & $-0.3$  & 0 & 0.5 & 0 & $750$ \\
+      \hline
+                    0 &  0 & $0.5$  & 1 & $-0.5$ & 0 & 250 \\
+                    0 &  1 & $0.5$  & 0 & $0.5$ & 0 & 750  \\
+                    0 &  0 & $0.5$  & 0 & $-1.5$ & 1 & 150  \\
+    \end{nicetable}}
+  
+  In our latest tableau we can see that $x$, $ s_1$ and $ s_3$ are basic and $y$ and $ s_2$ are free. Therefore in our current situation we are using up as much of $x, s_1$ and $s_3$ as possible and none of $y$ and $ s_2$.
+  
+  \begin{definition}
+  Pivoting will make one free variable basic and one basic variable free.
+  \end{definition}
+
+So our current solution is $I=750,x=750,y=0,s_1 =0, s_3=150$.
+
+\begin{columns}
+\begin{column}{.5\linewidth}
+				\adjustbox{max width=.6\linewidth}{
+					\begin{tikzpicture}[remember picture]
+					\begin{axis}[mlineplot,width=5cm,height=5cm,
+						xmin= -200, xmax= 1200,
+						ymin= -200, ymax = 1600,
+						axis lines = middle,
+						xlabel={$x$},
+						ylabel={$y$},
+					]
+					\addplot[color=aa,domain=-200:1200] {-x+1000};
+					\addplot[color=aa,domain=-200:1200] {-2*x+1500};
+					\addplot[color=aa,domain=-200:1200] {-6*x/4+4800/4};
+					\fill[color=aa] (axis cs:750,0) circle[radius=4pt];
+					\node (G) at (axis cs:750,0) {};
+					\end{axis}
+				\end{tikzpicture}
+			}
+
+\end{column}
+\begin{column}{.5\linewidth}
+So what has happened on this pivot is
+we’ve used as much $x$ as we can and
+we had to stop at the green line
+which was the second constraint
+(which was indicated to us by having
+the lowest ratio).
+\end{column}
+\end{columns}
+
+\begin{tikzpicture}[overlay, remember picture]
+	\draw[color=aa,<-] (G) --++ (0.3,-0.5) node[right] {\tiny Current solution};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Simplex Algorithm: Pivoting Again}
+	\begin{definition}
+		\textbf{Step 7;}
+
+	Repeat until everything in the objective row is non-negative. 
+	\adjustbox{max width=.25\linewidth}{\begin{minipage}{.4\linewidth} \alert{Note it says \emph{non-negative} which is different to positive (because 0 is non-negative).} \end{minipage}}
+	\end{definition}
+	
+\begin{center}
+  \colorbox{cc!30}{
+	  \begin{nicetable}{c|ccccc|c|c}
+		  $I$ & $x$ &  \cellcolor{aa!50} $y$    & $s_1$ & $s_2$  & $s_3$ & RHS & $\frac{\text{RHS}}{x}$ \\ \hline
+		  1 &   $0$ &  \cellcolor{aa!50} $-0.3$ & 0     & $0.5$  & 0 & $750$  & \\ \hline
+\tikzmarknode{B}{0} &     0 &  \cellcolor{aa!50} $0.5$  & 1     & $-0.5$ & 0 & 250 & $\frac{250}{0.5}=500$\\ 
+		  0 &     1 &  \cellcolor{aa!50} $0.5$  & 0     & $0.5$  & 0 & 750 & $\frac{750}{0.5}=\tikzmarknode{A}{1500} $ \\ 
+		  0 &     0 &  \cellcolor{red}   $0.5$  & 0     & $-1.5$ & 1 & 150 & $\frac{150}{0.5}=300$ \\ 
+  \end{nicetable}}
+  \end{center}
+
+
+\begin{columns}
+\begin{column}{.5\linewidth}
+	\adjustbox{max width=\linewidth}{
+  \colorbox{cc!30}{
+	  \begin{nicetable}{c|ccccc|c}
+		  \tikzmarknode{C}{$I$} & $x$ & $y$    & $s_1$ & $s_2$  & $s_3$ & RHS \\ \hline
+		  1 &   $0$ & $-0.3$ & 0     & $0.5$  & 0 & \tikzmarknode{D}{$750$}   \\ \hline
+                  0 &     0 & $0.5$  & 1     & $-0.5$ & 0 & 250     \\ 
+		  0 &     1 & $0.5$  & 0     & $0.5$  & 0 & 750     \\ 
+		  0 &     0 & $1$    & 0     & $-3$   & 2 & 300     \\ 
+  \end{nicetable}}
+  }
+\end{column}
+\begin{column}{.5\linewidth}
+	\adjustbox{max width=\linewidth}{
+  \colorbox{cc!30}{
+	  \begin{nicetable}{c|ccccc|c}
+		  $I$ & $x$ & $y$    & $s_1$ & $s_2$   & $s_3$ & RHS \\ \hline
+\tikzmarknode{E}{1} &   $0$ & $0$    & 0     & $-0.4$  & $0.6$ & $840$   \\ \hline
+                  0 &     0 & $0$    & 1     & $1$     & $-1$ & 100     \\ 
+		  0 &     1 & $0$    & 0     & $2$     & $-1$ & 600     \\ 
+		  0 &     0 & $1$    & 0     & $-3$    & 2    & 300     \\ 
+  \end{nicetable}}
+  }
+
+\end{column}
+\end{columns}
+
+\begin{tikzpicture}[overlay,remember picture]
+	\draw[color=aa,->] (B) -- node[midway, anchor=south east, align=left,scale=0.5] {Divide the pivot \\ row by 0.5} (C);
+	\node[align=left,right,xshift=0.5cm,scale=0.5] at (A) {This time $y$ \\ is the pivot \\ column};
+	\draw[color=aa,->] ($(D)+(-0.5,0)$) -- node[midway, below, align=left,scale=0.5] {Row operations \\ to make other \\ entries in pivot \\ column zero } (E.west);
+\end{tikzpicture}
+
+
+\end{frame}
+
+ \begin{frame}{Simplex Algorithm: Second Pivot Interpretation}
+  
+  	  \begin{nicetable}{c|ccccc|c}
+		  $I$ & $x$ & $y$    & $s_1$ & $s_2$   & $s_3$ & RHS \\ \hline
+		  1 &   $0$ & $0$    & 0     & $-0.4$  & $0.6$ & $840$   \\ \hline
+                  0 &     0 & $0$    & 1     & $1$     & $-1$ & 100     \\ 
+		  0 &     1 & $0$    & 0     & $2$     & $-1$ & 600     \\ 
+		  0 &     0 & $1$    & 0     & $-3$    & 2    & 300     \\ 
+  \end{nicetable}
+  
+The basic variables are now $x,y$ and $ s_1$ and the free variables are $ s_2$ and $ s_3$.
+
+
+So our current solution is $I=840,x=600,y=300,s_1 =100, s_2=0, s_3=0$.
+
+\begin{columns}
+\begin{column}{.5\linewidth}
+				\adjustbox{max width=.6\linewidth}{
+					\begin{tikzpicture}[remember picture]
+					\begin{axis}[mlineplot,width=5cm,height=5cm,
+						xmin= -200, xmax= 1200,
+						ymin= -200, ymax = 1600,
+						axis lines = middle,
+						xlabel={$x$},
+						ylabel={$y$},
+					]
+					\addplot[color=aa,domain=-200:1200] {-x+1000};
+					\addplot[color=aa,domain=-200:1200] {-2*x+1500};
+					\addplot[color=aa,domain=-200:1200] {-6*x/4+4800/4};
+					\fill[color=aa] (axis cs:600,300) circle[radius=4pt];
+					\node (G) at (axis cs:600,300) {};
+					\end{axis}
+				\end{tikzpicture}
+			}
+
+\end{column}
+\begin{column}{.5\linewidth}
+	Because there is still a negative entry
+	in the objective row our solution is not yet optimal and we must continue...
+\end{column}
+\end{columns}
+
+\begin{tikzpicture}[overlay, remember picture]
+	\draw[color=aa,<-] (G) --++ (0.3,-0.5) node[right] {\tiny Current solution};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}{Simplex Algorithm: Pivoting Again}
+	
+\begin{center}
+  \colorbox{cc!30}{
+	  \begin{nicetable}{c|ccccc|c|c}
+		  $I$ & $x$ & $y$  & $s_1$ & \cellcolor{aa!50}$s_2$  & $s_3$ & RHS & $\frac{\text{RHS}}{s_2}$  \\ \hline
+		  1 &   $0$ & $0$  & 0     & \cellcolor{aa!50}$-0.4$ & $0.6$ & 840 &                         \\ \hline
+		  0 &     0 & $0$  & 1     & \cellcolor{red}   $1$   & $-1$  & 100 & $\frac{100}{1}=100$   \\ 
+		  0 &     1 & $0$  & 0     & \cellcolor{aa!50}$2$    & $-1$  & 600 & $\frac{600}{2}=300 $ \\ 
+		  0 &     \tikzmarknode{B}{0} & $1$  & 0     & \cellcolor{aa!50}$-3$   & $2$   & 300 & \tikzmarknode{A}{$\frac{300}{-3}=-100$}   \\ 
+  \end{nicetable}}
+  \end{center}
+
+
+\begin{columns}
+\begin{column}{.5\linewidth}
+	\adjustbox{max width=\linewidth}{
+  \colorbox{cc!30}{
+	  \begin{nicetable}{c|ccccc|c}
+		  \tikzmarknode{C}{$I$} & $x$ & $y$    & $s_1$ & $s_2$  & $s_3$ & RHS \\ \hline
+		  1 &   $0$ & $0$ & 0     & $-0.4$ & $0.6$ & \tikzmarknode{D}{$840$}   \\ \hline
+                  0 &     0 & $0$ & 1     & $1$    & $-1$ & 100     \\ 
+		  0 &     1 & $0$ & 0     & $2$    & $-1$ & 600     \\ 
+		  0 &     0 & $1$ & 0     & $-3$   & 2 & 300     \\ 
+  \end{nicetable}}
+  }
+\end{column}
+\begin{column}{.5\linewidth}
+	\adjustbox{max width=\linewidth}{
+  \colorbox{cc!30}{
+	  \begin{nicetable}{c|ccccc|c}
+		  $I$ & $x$ & $y$    & $s_1$ & $s_2$   & $s_3$ & RHS \\ \hline
+\tikzmarknode{E}{1} &   $0$ & $0$    & $0.4$ & $0$  & $0.2$ & $880$   \\ \hline
+                  0 &     0 & $0$    & 1     & $1$  & $-1$  & 100     \\ 
+		  0 &     1 & $0$    & $-2$  & $0$  & $1$   & 400     \\ 
+		  0 &     0 & $1$    & 3     & $0$  & $-1$  & 600     \\ 
+  \end{nicetable}}
+  }
+
+\end{column}
+\end{columns}
+
+\begin{tikzpicture}[overlay,remember picture]
+	\draw[color=aa,->] (B) -- node[midway, anchor=south east, align=left,scale=0.5] {Here the pivot element is 1 so dividing \\ by it leaves the row unchanged.} (C);
+	\node[align=left,right,xshift=1.5cm,scale=0.5] at (A) {Remember we are \\ looking for the smallest \\ positive value.};
+	\draw[color=aa,->] (D) -- node[midway, below, align=left,scale=0.5] {Row operations \\ to make other \\ entries in pivot \\ column zero. } (E.west);
+\end{tikzpicture}
+
+
+\end{frame}
+
+
+\begin{frame}{Past Paper Question}
+	A company repairs and sells computer hardware, including monitors, hard drives and keyboards.
+
+	Each monitor takes 3 hours to repair and the cost of components is 40 pounds.
+
+	Each hard drive takes 2 hours to repair and the cost of components is 20 pounds.
+
+	Each keyboard takes 1 hour to repair and the cost of components is 5 pounds.
+
+	Each month, the business has 360 hours available for repairs and 2500 pounds available to buy components.
+
+	Each month, the company sells all of its repaired hardware to a local computer shop.
+
+	Each monitor, hard drive and keyboard sold gives the company a profit of 80, 35 and 15 pounds respectively.
+
+	The company repairs and sells $x$ monitors, $y$ hard drives and $z$ keyboards each month.
+
+	The company wishes to maximise its total profit.
+
+	\begin{problem}
+		\begin{itemize}
+			\item Find five inequalities involving $x,y$ and $z$ for the company's problem.
+			\item Find how many of each type of computer hardware the company should repair and sell each month.
+			\item Explain how you know that you had reached the optimal solution.
+			\item The local computer shop complains that they are not receiving one of the types of computer hardware that the company repairs and sells.
+
+				Using the previous answer, suggest a way in which the company's problem can be modified to address the complaint.
+		\end{itemize}
+	\end{problem}
+\end{frame}
+
+\begin{frame}{Past Paper Solution}
+	\begin{columns}[T]
+		\begin{column}{.3\linewidth}
+	\begin{solution}<2->
+		$3x+2y+z \leq 360$ 
+
+		$40x+20y+5z \leq 2500$ 
+
+		$x \geq 0, y \geq 0, z \geq 0$.
+	\end{solution}
+	\begin{solution}<4->
+		The objective row of the final tableau being non-negative numbers.
+	\end{solution}
+	\begin{solution}<5->
+		As $y=0$, enforce some hard drives to be repaired by requiring that, for instance, $y \geq 10$.
+	\end{solution}
+\end{column}
+\begin{column}{.7\linewidth}
+	\begin{solution}<3->
+		\centering
+		\colorbox{cc!30}{
+			\begin{nicetable}{c|ccccc|c}
+				$P$ &  $x$  & $y$   & $z$   & $s$   & $t$   & value \\ \hline
+				1   & $-80$ & $-35$ & $-15$ & 0     & 0     & 0     \\
+				0   & 3     & 2     & 1     & 1     & 0     & 360   \\
+				0   & \cellcolor{red} 40 & 20 & 5 & 0 & 1 & 2500    \\ \hline
+				1   & 0     & 5     & $-5$  & 0     & 2     & 5000  \\
+				0   & 0     & 0.5 & \cellcolor{red} 0.625 & 1 & $-0.075$ & 172.5 \\
+				0 & 1 & 0.5 & 0.125 & 0 & 0.025 & 62.5 \\ \hline
+				1 & 0 & 9 & 0 & 8 & 1.4 & 6380 \\
+				0 & 0 & 0.8 & 1 & 1.6 & $-0.12$ & 276 \\
+				0 & 1 & 0.4 & 0 &  $-0.2$ & 0.04 & 28 \\
+
+			\end{nicetable}
+		}
+
+	To maximise profit the company should repair and sell 28 monitors, 0 hard drives and 276 keyboards each month.
+	\end{solution}
+\end{column}
+\end{columns}
+\end{frame}
 
 
 \end{document}
