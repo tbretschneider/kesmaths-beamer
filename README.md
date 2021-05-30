@@ -2,10 +2,10 @@
 The goal is to convert all of Dr. Rackham's *amazing* powerpoints into glorious LaTeX beamer presentations. The powerpoints exist for virtually every secondary school maths topic, but are sadly all in powerpoint...
 
 ## Getting Started
-- Join the [discord][1], then you can select a topic and someone will send you the .pptx which you can then start converting to .tex :)
-- Edit whatever you want on the github (especially if you see any mistakes etc.), just make sure to update the status.csv file.
-- Feel free to change the status.csv file, by adding extra columns removing ones etc.
-- When you start a new powerpoint make sure to add it to the status.csv file
+- Join the [discord][1], then you can select a topic and someone will send you the `.pptx` which you can then start converting to `.tex` :)
+- Edit whatever you want on the github (especially if you see any mistakes etc.), just make sure to update the `status.csv` file.
+- Feel free to change the `status.csv` file, by adding extra columns removing ones etc.
+- When you start a new powerpoint make sure to add it to the `status.csv` file
 - Make an overleaf and instantly access the template read to edit and compile straight in your browser. [Click here to get started straightaway][2], you can even import the github directly into your overleaf project.
 
 ## Compiling the `.tex` files without overleaf
